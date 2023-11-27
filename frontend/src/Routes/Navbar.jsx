@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { IoMdAdd } from "react-icons/io";
+import { JoinDrawer } from '../Components/JoinDrawer'
+import { LoginDrawer } from '../Components/LoginDrawer'
 
 export const Navbar = () => {
   return (
@@ -34,7 +36,7 @@ export const Navbar = () => {
           </div>
 
           <div>
-            <Text>Shop</Text>
+            <Text className={style.text}>Shop</Text>
           </div>
 
           <div className={style.spanSection}>
@@ -46,14 +48,26 @@ export const Navbar = () => {
           <div className={style.navbarContainerSearchBar}>
 
             <div>
-
-              <Input placeholder='Search' />
+              <Tooltip hasArrow label='Search you favourite artist and arts' bg='gray.300' color='black'>
+                <Input className={style.input} placeholder='Search' />
+              </Tooltip>
             </div>
             <div>
-              <Button>
-              <CiSearch fontSize={'20px'} />
+              <Button className={style.submitBtn} variant={'none'}>
+                <CiSearch fontSize={'20px'} />
               </Button>
-              
+
+            </div>
+
+            <div className={style.spanSection}>
+              <span>|</span>
+            </div>
+
+            <div>
+              <Tooltip hasArrow label='Purchase Membership' bg='gray.300' color='black'>
+
+                <Text className={style.upgradeToCore}>Upgrade to Core</Text>
+              </Tooltip>
             </div>
 
 
@@ -66,17 +80,36 @@ export const Navbar = () => {
 
 
       {/* Login section and other stuff */}
+
+
       <div className={style.navbarContainerLoginSection}>
-        <div>Login</div>
+
+      
 
         <div>
-          <Tooltip hasArrow label='Submit your Art' bg='gray.300' color='black'>
-          <Button className={style.submitBtn} variant={'none'}>
-           <div style={{marginRight: "5px"}}>
-           <IoMdAdd/>
-           </div>
-           Submit
-          </Button>
+          <JoinDrawer />
+        </div>
+
+        <div className={style.spanSection}>
+          <span>|</span>
+        </div>
+
+        <div>
+          <LoginDrawer />
+        </div>
+
+        <div className={style.spanSection}>
+          <span>|</span>
+        </div>
+
+        <div>
+          <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black'>
+            <Button className={style.submitBtn} variant={'none'}>
+              <div style={{ marginRight: "5px" }}>
+                <IoMdAdd />
+              </div>
+              Submit
+            </Button>
           </Tooltip>
         </div>
       </div>
