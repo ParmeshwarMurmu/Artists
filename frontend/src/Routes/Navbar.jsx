@@ -1,10 +1,11 @@
-import { Button, Image, Input, Stack, Text } from '@chakra-ui/react'
+import { Button, Image, Input, Stack, Text, Tooltip } from '@chakra-ui/react'
 import style from '../CSS/Navbar.module.css'
 import React from 'react'
 import Logo from '../Assets/Artist Logo.jpg'
 import { Link } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
+import { IoMdAdd } from "react-icons/io";
 
 export const Navbar = () => {
   return (
@@ -67,6 +68,17 @@ export const Navbar = () => {
       {/* Login section and other stuff */}
       <div className={style.navbarContainerLoginSection}>
         <div>Login</div>
+
+        <div>
+          <Tooltip hasArrow label='Submit your Art' bg='gray.300' color='black'>
+          <Button className={style.submitBtn} variant={'none'}>
+           <div style={{marginRight: "5px"}}>
+           <IoMdAdd/>
+           </div>
+           Submit
+          </Button>
+          </Tooltip>
+        </div>
       </div>
     </div>
   )

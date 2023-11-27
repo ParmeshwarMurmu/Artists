@@ -40,12 +40,30 @@
 .navbarContainerSearchBar >div{
     margin: 5px;
 }
-.navbarContainerLoginSection{
-    border: 2px solid black;
-}
+
 
 
 .spanSection{
     font-weight: bolder;
     color: #C0C0C0;
+}
+
+.navbarContainerLoginSection{
+    border: 2px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbarContainerLoginSection > div{
+    margin: 5px;
+    /* border: 2px solid rgb(6, 153, 82); */
+}
+
+.submitBtn{
+    background-color: rgb(17, 222, 123);
+}
+
+.submitBtn:hover{
+    background-color: rgb(80, 239, 112);
 }
