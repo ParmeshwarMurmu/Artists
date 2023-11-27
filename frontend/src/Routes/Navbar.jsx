@@ -104,12 +104,13 @@ export const Navbar = () => {
 
         <div>
           <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black'>
-            <Button className={style.submitBtn} variant={'none'}>
+            <Link to={'/newSumbission'}><Button className={style.submitBtn} variant={'none'}>
               <div style={{ marginRight: "5px" }}>
                 <IoMdAdd />
               </div>
               Submit
             </Button>
+            </Link>
           </Tooltip>
         </div>
       </div>
