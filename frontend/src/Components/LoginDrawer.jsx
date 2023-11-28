@@ -41,7 +41,8 @@ export const LoginDrawer = () => {
                             <video
                                 autoPlay
                                 loop
-                                muted
+                                // muted
+                                defaultMuted
                                 style={{ width: '100%', height: 'auto' }}
                                 // controls
                             >
