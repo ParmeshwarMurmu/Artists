@@ -1,7 +1,10 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import style from '../CSS/Navbar.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import loginVideo from '../Assets/Artist_Login_Video.mp4';
+import { FaHandsClapping } from "react-icons/fa6";
+import communityWallpaper from '../Assets/Login_Community.png'
 
 
 export const LoginDrawer = () => {
@@ -30,17 +33,30 @@ export const LoginDrawer = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Welcome Back </DrawerHeader>
+                    <DrawerHeader>Welcome Back!</DrawerHeader>
 
                     <DrawerBody>
+
+                        <div style={{marginBottom: "30px"}}>
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                style={{ width: '100%', height: 'auto' }}
+                                // controls
+                            >
+                                <source src={loginVideo} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <FormControl isRequired>
-                        <FormLabel>Email</FormLabel>
-                        <Input placeholder='Email' />
+                            <FormLabel>Email</FormLabel>
+                            <Input placeholder='Email' />
 
 
-                        <FormLabel>Password</FormLabel>
-                        <InputGroup>
-                        
+                            <FormLabel>Password</FormLabel>
+                            <InputGroup>
+
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Password"
@@ -56,13 +72,19 @@ export const LoginDrawer = () => {
                             </InputGroup>
 
                         </FormControl>
+
+                        <div style={{marginTop: "30px"}}>
+                            <Box >
+                                <Image src={communityWallpaper} alt='Community Wallpaper' />
+                            </Box>
+                        </div>
                     </DrawerBody>
 
                     <DrawerFooter>
-                    <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
+                        <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button className={style.submitBtn} variant={'none'}>Register</Button>
+                        <Button className={style.submitBtn} variant={'none'}>Login</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
