@@ -1,0 +1,16 @@
+.hambergMenuButton{
+    border: 1px solid white;
+}
+
+.hambergMenuButton:hover .hambergIcon{
+    color: rgb(17, 222, 123) !important;
+}
+
+.submitBtn {
+    background-color: rgb(17, 222, 123);
+    width: 200%;
+}
+
+.submitBtn:hover {
+    background-color: rgb(80, 239, 112);
+}

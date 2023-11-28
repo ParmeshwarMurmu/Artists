@@ -1,103 +1,132 @@
-.navbarContainer{
+.navbarContainer {
     /* border: 2px solid red; */
     background-color: black;
     display: flex;
     justify-content: space-between;
     border-bottom: #C0C0C0;
-
+    /* bo */
 
 }
 
-.navbarContainerImage{
+.navbarContainerImage {
     display: flex;
     border: 2px solid green;
     justify-content: center;
     align-items: center;
 }
 
-.navbarContainerImage >div{
+.navbarContainerImage>div {
     margin: 5px;
 
 }
+
 /* style={{ display: "flex", justifyContent: "center", alignItems: "center" }} */
 
-.shopAndSearchContainer{
+.shopAndSearchContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.shopAndSearchContainer > div{
+.shopAndSearchContainer>div {
     margin: 5px;
 }
 
 
-.input{
+.input {
     color: rgb(255, 255, 255);
 }
 
-.navbarContainerSearchBar{
+.navbarContainerSearchBar {
     display: flex;
     justify-content: center;
     align-items: center;
     /* border: 2px solid black; */
 }
 
-.navbarContainerSearchBar >div{
+.navbarContainerSearchBar>div {
     margin: 5px;
 }
 
-.upgradeToCore{
+.searchBarAndIcon{
+    margin: 5px;
+}
+.upgradeToCore {
     color: rgb(255, 106, 0);
     font-weight: bolder;
 }
 
-.upgradeToCore:hover{
+.upgradeToCore:hover {
     cursor: pointer;
-    color: rgb(245, 158, 95);;
-    
+    color: rgb(245, 158, 95);
+    ;
+
 }
 
-.text{
+.text {
     font-weight: bolder;
     color: rgb(255, 255, 255);
 }
 
-.text:hover{
+.text:hover {
     color: rgb(17, 222, 123);
     cursor: pointer;
 }
 
-.spanSection{
+.spanSection {
     font-weight: bolder;
     color: #C0C0C0;
 }
 
-.navbarContainerLoginSection{
+.navbarContainerLoginSection {
     border: 2px solid rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.navbarContainerLoginSection > div{
+.navbarContainerLoginSection>div {
     margin: 5px;
     /* border: 2px solid rgb(6, 153, 82); */
 }
 
-.submitBtn{
+.submitBtn {
     background-color: rgb(17, 222, 123);
 }
 
-.submitBtn:hover{
+.submitBtn:hover {
     background-color: rgb(80, 239, 112);
 }
 
 
-.negativeBtn{
+.negativeBtn {
     background-color: rgb(66, 111, 224);
 }
 
-.negativeBtn:hover{
+.negativeBtn:hover {
     background-color: rgb(129, 212, 233);
+}
+
+.hambergContainer{
+    display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .upgradeContainer, .upgradeSpanSection{
+        display: none;
+    }
+
+    .submitBtnContainer{
+        display: none;
+    }
+
+    .hambergContainer{
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+    
 }

@@ -39,7 +39,7 @@ export const JoinDrawer = () => {
 
                     <DrawerBody>
 
-                        <div style={{marginBottom: "20px"}}>
+                        <div style={{ marginBottom: "20px" }}>
                             <video
                                 autoPlay
                                 loop
@@ -68,6 +68,7 @@ export const JoinDrawer = () => {
                                 />
                                 <InputRightElement width="4.5rem">
                                     <IconButton
+                                        variant={'none'}
                                         h="1.75rem"
                                         size="sm"
                                         onClick={handleTogglePassword}
@@ -85,6 +86,7 @@ export const JoinDrawer = () => {
                                 />
                                 <InputRightElement width="4.5rem">
                                     <IconButton
+                                        variant={'none'}
                                         h="1.75rem"
                                         size="sm"
                                         onClick={confirmPassword}

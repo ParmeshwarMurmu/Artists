@@ -4,10 +4,12 @@ import React from 'react'
 import Logo from '../Assets/Artist Logo.jpg'
 import { Link } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
-import { CiSearch } from "react-icons/ci";
+
 import { IoMdAdd } from "react-icons/io";
 import { JoinDrawer } from '../Components/JoinDrawer'
 import { LoginDrawer } from '../Components/LoginDrawer'
+import { SearchBar } from '../Components/SearchBar'
+import { HambergMenuItem } from '../Components/HambergMenuItem'
 
 export const Navbar = () => {
   return (
@@ -47,23 +49,15 @@ export const Navbar = () => {
 
           <div className={style.navbarContainerSearchBar}>
 
-            <div>
-              <Tooltip hasArrow label='Search you favourite artist and arts' bg='gray.300' color='black'>
-                <Input className={style.input} placeholder='Search' />
-              </Tooltip>
-            </div>
-            <div>
-              <Button className={style.submitBtn} variant={'none'}>
-                <CiSearch fontSize={'20px'} />
-              </Button>
-
+            <div style={{ display: "flex" }}>
+              <SearchBar />
             </div>
 
-            <div className={style.spanSection}>
+            <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
               <span>|</span>
             </div>
 
-            <div>
+            <div className={style.upgradeContainer}>
               <Tooltip hasArrow label='Purchase Membership' bg='gray.300' color='black'>
 
                 <Text className={style.upgradeToCore}>Upgrade to Core</Text>
@@ -84,7 +78,7 @@ export const Navbar = () => {
 
       <div className={style.navbarContainerLoginSection}>
 
-      
+
 
         <div>
           <JoinDrawer />
@@ -98,11 +92,11 @@ export const Navbar = () => {
           <LoginDrawer />
         </div>
 
-        <div className={style.spanSection}>
+        <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
           <span>|</span>
         </div>
 
-        <div>
+        <div className={style.submitBtnContainer}>
           <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black'>
             <Link to={'/newSumbission'}><Button className={style.submitBtn} variant={'none'}>
               <div style={{ marginRight: "5px" }}>
@@ -113,6 +107,17 @@ export const Navbar = () => {
             </Link>
           </Tooltip>
         </div>
+
+        {/* <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
+          <span>|</span>
+        </div> */}
+
+
+        {/* Hamberg */}
+        <div className={style.hambergContainer}>
+          <HambergMenuItem />
+        </div>
+
       </div>
     </div>
   )

@@ -1,10 +1,18 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Text, Tooltip, useDisclosure } from '@chakra-ui/react'
-import React from 'react'
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import style from '../CSS/Navbar.module.css'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 export const LoginDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    const [showPassword, setShowPassword] = useState(false)
+    // const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <>
@@ -22,17 +30,39 @@ export const LoginDrawer = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Login</DrawerHeader>
+                    <DrawerHeader>Welcome Back </DrawerHeader>
 
                     <DrawerBody>
-                        <Input placeholder='Type here...' />
+                        <FormControl isRequired>
+                        <FormLabel>Email</FormLabel>
+                        <Input placeholder='Email' />
+
+
+                        <FormLabel>Password</FormLabel>
+                        <InputGroup>
+                        
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Password"
+                                />
+                                <InputRightElement width="4.5rem">
+                                    <IconButton variant={'none'}
+                                        h="1.75rem"
+                                        size="sm"
+                                        onClick={handleTogglePassword}
+                                        icon={showPassword ? <FaEyeSlash /> : <FaEye />}
+                                    />
+                                </InputRightElement>
+                            </InputGroup>
+
+                        </FormControl>
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button variant='outline' mr={3} onClick={onClose}>
+                    <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button colorScheme='blue'>Save</Button>
+                        <Button className={style.submitBtn} variant={'none'}>Register</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
