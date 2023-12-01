@@ -4,12 +4,19 @@ import style from '../CSS/Navbar.module.css'
 import { FaUserLarge } from "react-icons/fa6";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import artVideo from '../Assets/Artist_Video.mp4'
-
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 export const JoinDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+    const dipatch = useDispatch()
+    
+    const {firstName, lastName, email, password, confirmPassword} = useSelector((store)=>{
+        return {
+            firstName: store.UserRegisterReducer.firstName
+        }
+    }, shallowEqual)
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
@@ -18,6 +25,8 @@ export const JoinDrawer = () => {
     const confirmPassword = () => {
         setShowPasswordConfirm(!showPasswordConfirm)
     }
+
+    
 
     return (
         <>
