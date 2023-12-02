@@ -156,6 +156,7 @@ export const JoinDrawer = () => {
                 setConfirmValuePass("")
                 setVerify("")
                 setConfirmPassMessage("")
+                onClose()
                 // return <Navigate to={'/'}/>
                 
             })

@@ -1,5 +1,5 @@
-import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
+import React, { useContext, useState } from 'react'
 import style from '../CSS/Navbar.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import loginVideo from '../Assets/Artist_Login_Video.mp4';
@@ -8,6 +8,7 @@ import communityWallpaper from '../Assets/Login_Community.png'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { loginEmailAction, loginPasswordAction, loginResetAction } from '../Redux/UserLoginReducer/action';
 import axios from 'axios';
+import { appContent } from '../ContextApi/ContextApi';
 
 
 export const LoginDrawer = () => {
@@ -15,6 +16,8 @@ export const LoginDrawer = () => {
     const btnRef = React.useRef()
     const [showPassword, setShowPassword] = useState(false)
     // const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+    const {setIsAuth} = useContext(appContent)
+    const toast = useToast()
     const dispatch = useDispatch()
     const { email, password } = useSelector((store) => {
         return {
@@ -36,6 +39,17 @@ export const LoginDrawer = () => {
         axios.post('http://localhost:8000/user/login', data)
         .then((res)=>{
             console.log(res);
+            toast({
+                // title: 'Account created.',
+                description: `${res.data.msg}`,
+                status: 'success',
+                duration: 4000,
+                isClosable: true,
+            })
+            onClose()
+            setIsAuth(true)
+            localStorage.setItem("Artist-Token", res.data.token)
+            localStorage.setItem('Artist-UserId', res.data.userId)
         })
         .catch((err)=>{
             console.log(err);

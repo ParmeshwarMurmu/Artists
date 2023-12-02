@@ -1,5 +1,6 @@
 const express = require('express')
 const bcrypt = require('bcrypt');
+require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const { UserModel } = require('../Models/userSchema')
 
@@ -50,7 +51,8 @@ userRoute.post('/login', async(req, res)=>{
                     
                 }
                 
-                res.status(200).send({"msg": "Login Successfully"})
+                const token = jwt.sign({userId: existingUser._id, userName: existingUser.firstName}, process.env.SECRET_KEY);
+                res.status(200).send({"msg": "Login Successfully", "userId": existingUser._id, "token": token})
                 
             });
         }
@@ -64,6 +66,25 @@ userRoute.post('/login', async(req, res)=>{
         
     }
 })
+
+
+
+userRoute.get('/singleUser/:id', async(req, res)=>{
+
+    try {
+        const {id} = req.params;
+        if(id){
+            const user = await UserModel.findOne({_id: id})
+            res.status(200).send({"user": user})
+        }
+        
+    } catch (error) {
+        res.status(400).send({"msg": "sommething went wrong", "err": error})
+        
+    }
+})
+
+
 
 
 

@@ -1,6 +1,6 @@
 import { Button, Image, Input, Stack, Text, Tooltip } from '@chakra-ui/react'
 import style from '../CSS/Navbar.module.css'
-import React from 'react'
+import React, { useContext } from 'react'
 import Logo from '../Assets/Artist Logo.jpg'
 import { Link } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
@@ -10,8 +10,14 @@ import { JoinDrawer } from '../Components/JoinDrawer'
 import { LoginDrawer } from '../Components/LoginDrawer'
 import { SearchBar } from '../Components/SearchBar'
 import { HambergMenuItem } from '../Components/HambergMenuItem'
+import { UserAvtar } from '../Components/UserAvtar'
+import { UserAvtarMenuItem } from '../Components/UserAvtarMenuItem'
+import { appContent } from '../ContextApi/ContextApi'
 
 export const Navbar = () => {
+
+  const {isAuth} = useContext(appContent)
+
   return (
     <div className={style.navbarContainer}>
 
@@ -111,6 +117,11 @@ export const Navbar = () => {
         {/* <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
           <span>|</span>
         </div> */}
+       
+
+       {
+        isAuth &&  <UserAvtarMenuItem />
+       }
 
 
         {/* Hamberg */}
