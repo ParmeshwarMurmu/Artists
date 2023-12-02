@@ -1,4 +1,4 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure } from '@chakra-ui/react'
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import style from '../CSS/Navbar.module.css'
 import { FaUserLarge } from "react-icons/fa6";
@@ -7,6 +7,10 @@ import artVideo from '../Assets/Artist_Video.mp4'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { registerFirstNameAction, registerConfirmPasswordAction, registerEmailAction, registerLastNameAction, registerPasswordAction, registerResetAction } from '../Redux/UserRegisterReducer/action';
+import axios from 'axios'
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
 
 export const JoinDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -21,6 +25,8 @@ export const JoinDrawer = () => {
     const [confirmPassMessage, setConfirmPassMessage] = useState("")
     const [valuePass, setValuePass] = useState("")
     const [confirmValuePass, setConfirmValuePass] = useState("")
+    const toast = useToast()
+    const navigate = useNavigate()
 
     const { firstName, lastName, email, password, confirmPassword } = useSelector((store) => {
         return {
@@ -112,14 +118,14 @@ export const JoinDrawer = () => {
 
     }
 
-    const confirmPasswordHandleChange = (e)=>{
-        
+    const confirmPasswordHandleChange = (e) => {
+
         setConfirmValuePass(e.target.value)
-        if(password!==e.target.value){
-           setErrorConfirmPass(true)
-           setConfirmPassMessage("Both Pasword Should Match")
+        if (password !== e.target.value) {
+            setErrorConfirmPass(true)
+            setConfirmPassMessage("Both Pasword Should Match")
         }
-        else{
+        else {
             dispatch(registerConfirmPasswordAction(e.target.value))
             setErrorConfirmPass(false)
             setConfirmPassMessage("Password Matched")
@@ -135,12 +141,30 @@ export const JoinDrawer = () => {
             password
         }
 
+        axios.post('http://localhost:8000/user/register', data)
+            .then((res) => {
+                console.log(res)
+                toast({
+                    title: 'Account created.',
+                    description: `${res.data.msg}`,
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                })
+                dispatch(registerResetAction())
+                setValuePass("")
+                setConfirmValuePass("")
+                setVerify("")
+                setConfirmPassMessage("")
+                // return <Navigate to={'/'}/>
+                
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
         console.log(data)
-        dispatch(registerResetAction())
-        setValuePass("")
-        setConfirmValuePass("")
-        setVerify("")
-        setConfirmPassMessage("")
+
 
     }
 
@@ -220,7 +244,7 @@ export const JoinDrawer = () => {
 
                             </InputGroup>
                             <div>
-                                <Text  color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
+                                <Text color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
                             </div>
 
 
@@ -259,7 +283,7 @@ export const JoinDrawer = () => {
                         <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button className={style.submitBtn} variant={'none'}  onClick={RegisterUserHandler} isDisabled={errorPass || errorConfirmPass}>Register</Button>
+                        <Button className={style.submitBtn} variant={'none'} onClick={RegisterUserHandler} isDisabled={errorPass || errorConfirmPass}>Register</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

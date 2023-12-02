@@ -5,6 +5,9 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import loginVideo from '../Assets/Artist_Login_Video.mp4';
 import { FaHandsClapping } from "react-icons/fa6";
 import communityWallpaper from '../Assets/Login_Community.png'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { loginEmailAction, loginPasswordAction, loginResetAction } from '../Redux/UserLoginReducer/action';
+import axios from 'axios';
 
 
 export const LoginDrawer = () => {
@@ -12,10 +15,35 @@ export const LoginDrawer = () => {
     const btnRef = React.useRef()
     const [showPassword, setShowPassword] = useState(false)
     // const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
+    const dispatch = useDispatch()
+    const { email, password } = useSelector((store) => {
+        return {
+            email: store.UserLoginReducer.email,
+            password: store.UserLoginReducer.password,
+        }
+    }, shallowEqual)
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
+
+    const LoginHandler = ()=>{
+        let data = {
+            email,
+            password
+        }
+
+        axios.post('http://localhost:8000/user/login', data)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
+        console.log(data);
+        dispatch(loginResetAction())
+    }
 
     return (
         <>
@@ -52,7 +80,10 @@ export const LoginDrawer = () => {
                         </div>
                         <FormControl isRequired>
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder='Email' />
+                            <Input placeholder='Email'
+                            onChange={(e)=>{dispatch(loginEmailAction(e.target.value))}}
+                            value={email}
+                             />
 
 
                             <FormLabel>Password</FormLabel>
@@ -61,6 +92,8 @@ export const LoginDrawer = () => {
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Password"
+                                    value={password}
+                                    onChange={(e)=>{dispatch(loginPasswordAction(e.target.value))}}
                                 />
                                 <InputRightElement width="4.5rem">
                                     <IconButton variant={'none'}
@@ -85,7 +118,7 @@ export const LoginDrawer = () => {
                         <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button className={style.submitBtn} variant={'none'}>Login</Button>
+                        <Button className={style.submitBtn} variant={'none'} onClick={LoginHandler}>Login</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

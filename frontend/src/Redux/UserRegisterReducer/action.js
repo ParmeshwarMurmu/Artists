@@ -1,7 +1,4 @@
-// "firstName": "ram",
-// "lastName": "murmu",
-// "email": "ram@gmail.com",
-// "password": "mlpnko"
+
 
 export const REGISTER_FIRST_NAME = "REGISTER_FIRST_NAME"
 export const REGISTER_LAST_NAME = "REGISTER_LAST_NAME"
