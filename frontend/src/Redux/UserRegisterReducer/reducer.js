@@ -1,4 +1,4 @@
-import { REGISTER_CONFIRM_PASSWORD, REGISTER_EMAIL, REGISTER_FIRST_NAME, REGISTER_LAST_NAME, REGISTER_PASSWORD } from "./action"
+import { REGISTER_CONFIRM_PASSWORD, REGISTER_EMAIL, REGISTER_FIRST_NAME, REGISTER_LAST_NAME, REGISTER_PASSWORD, REGISTER_RESET } from "./action"
 
 const initialState = {
     firstName: "",
@@ -42,6 +42,11 @@ export const reducer = (state = initialState, { type, payload }) => {
                 confirmPassword: payload
             }
 
+
+            case REGISTER_RESET:
+            return {
+                ...initialState
+            }
 
         default:
             return {

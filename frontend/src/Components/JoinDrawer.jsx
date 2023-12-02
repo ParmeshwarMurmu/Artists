@@ -5,8 +5,9 @@ import { FaUserLarge } from "react-icons/fa6";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import artVideo from '../Assets/Artist_Video.mp4'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { registerFirstNameAction, registerConfirmPasswordAction, registerEmailAction, registerLastNameAction, registerPasswordAction } from '../Redux/UserRegisterReducer/action';
-// import { registerConfirmPasswordAction, registerEmailAction, registerFirstNameAction, registerLastNameAction, registerPasswordAction } from '../Redux/UserRegistrationReducer/action';
+import styled from 'styled-components'
+import { registerFirstNameAction, registerConfirmPasswordAction, registerEmailAction, registerLastNameAction, registerPasswordAction, registerResetAction } from '../Redux/UserRegisterReducer/action';
+
 export const JoinDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
@@ -15,8 +16,11 @@ export const JoinDrawer = () => {
     const dispatch = useDispatch()
     const ref = useRef(null)
     const [verify, setVerify] = useState("")
-    
-    const {firstName, lastName, email, password, confirmPassword} = useSelector((store)=>{
+    const [errorPass, setErrorPass] = useState(false)
+    const [errorConfirmPass, setErrorConfirmPass] = useState(false)
+    const [confirmPassMessage, setConfirmPassMessage] = useState("")
+
+    const { firstName, lastName, email, password, confirmPassword } = useSelector((store) => {
         return {
             firstName: store.UserRegistrationReducer.firstName,
             lastName: store.UserRegistrationReducer.lastName,
@@ -34,20 +38,20 @@ export const JoinDrawer = () => {
         setShowPasswordConfirm(!showPasswordConfirm)
     }
 
-    const checkPasswordStrength = (pass)=>{
+    const checkPasswordStrength = (pass) => {
         const alpha = "abcdefghijklmnopqrstuvwxyz"
         const ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const numeric = "0123456789";
         const specialChar = "!`@#$%^&*()_+=-{}[]|,.<>?/";
-        if(pass.length >= 6){
+        if (pass.length >= 6) {
             let hasLowercase = false;
             let hasUppercase = false;
             let hasNumeric = false;
             let hasSpecialChar = false;
-        
+
             for (let i = 0; i < pass.length; i++) {
                 const char = pass[i];
-        
+
                 if (alpha.includes(char)) {
                     hasLowercase = true;
                 } else if (ALPHA.includes(char)) {
@@ -58,55 +62,88 @@ export const JoinDrawer = () => {
                     hasSpecialChar = true;
                 }
             }
-        
+
             // Check for lowercase letters
             if (!hasLowercase) {
                 return "Password should contain at least one lowercase letter";
             }
-        
+
             // Check for uppercase letters
             if (!hasUppercase) {
                 return "Password should contain at least one uppercase letter";
             }
-        
+
             // Check for numeric digits
             if (!hasNumeric) {
                 return "Password should contain at least one numeric digit";
             }
-        
+
             // Check for special characters
             if (!hasSpecialChar) {
                 return "Password should contain at least one special character";
             }
-        
+
             // Password meets all criteria
-            return "OK"; 
+            return "OK";
+        }
+        else {
+            return "Password length should be greater than 6"
         }
 
     }
 
-    const RegisterUserHandler = ()=>{
-
-        const result = checkPasswordStrength(password)
-        // console.log("result", result);
-        if(result!=='OK'){
-        //    ref.current = result;
-          setVerify(result)
+    const passwordHandleChange = (e) => {
+        // console.log(e.target.value);
+        const result = checkPasswordStrength(e.target.value)
+        if (result !== 'OK') {
+            //    ref.current = result;
+            setErrorPass(true)
+            setVerify(result)
+            console.log(errorPass, "errPass");
         }
-
-        console.log(ref.current)
-    
+        else {
+            setVerify("Strong Password")
+            setErrorPass(false)
+            dispatch(registerPasswordAction(e.target.value))
+        }
 
     }
 
-    
+    const confirmPasswordHandleChange = (e)=>{
+        
+        if(password!==e.target.value){
+           setErrorConfirmPass(true)
+           setConfirmPassMessage("Both Pasword Should Match")
+        }
+        else{
+            dispatch(registerConfirmPasswordAction(e.target.value))
+            setErrorConfirmPass(false)
+            setConfirmPassMessage("Password Matched")
+        }
+
+    }
+
+    const RegisterUserHandler = () => {
+        const data = {
+            firstName,
+            lastName,
+            email,
+            password
+        }
+
+        console.log(data)
+        dispatch(registerResetAction())
+
+    }
 
 
 
-    
+
+
+
 
     return (
-        <>
+        <DIV errorPass={errorPass}>
             <Button ref={btnRef} variant={'none'} onClick={onOpen}>
                 <Tooltip hasArrow label='New User ? Register Now' bg='gray.300' color='black'>
                     <Text className={style.text}>Join</Text>
@@ -138,21 +175,28 @@ export const JoinDrawer = () => {
                         </div>
                         <FormControl isRequired>
                             <FormLabel>First Name</FormLabel>
-                            <Input placeholder='First name' value={firstName} onChange={(e)=>{dispatch(registerFirstNameAction(e.target.value))}}  />
+                            <Input placeholder='First name' value={firstName} onChange={(e) => { dispatch(registerFirstNameAction(e.target.value)) }} />
 
                             <FormLabel>Last Name</FormLabel>
-                            <Input placeholder='Last name' value={lastName} onChange={(e)=>{dispatch(registerLastNameAction(e.target.value))}} />
+                            <Input placeholder='Last name' value={lastName} onChange={(e) => { dispatch(registerLastNameAction(e.target.value)) }} />
 
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder='Email' value={email} onChange={(e)=>{dispatch(registerEmailAction(e.target.value))}} />
+                            <Input placeholder='Email' value={email} onChange={(e) => { dispatch(registerEmailAction(e.target.value)) }} />
 
                             <FormLabel>Password</FormLabel>
                             <InputGroup>
                                 <Input
+                                    className='password'
+                                    style={{
+                                        border: errorPass ? '1px solid red' : 'none', // Set border to transparent when there is an error
+                                        // Add other styles based on conditions
+                                    }}
+                                    focusBorderColor={errorPass ? 'transparent' : ''}
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Password"
-                                    value={password}
-                                    onChange={(e)=>{dispatch(registerPasswordAction(e.target.value))}}
+                                    // value={password}
+                                    onChange={passwordHandleChange}
+                                // (e)=>{dispatch(registerPasswordAction(e.target.value))}
                                 />
                                 <InputRightElement width="4.5rem">
                                     <IconButton
@@ -161,10 +205,14 @@ export const JoinDrawer = () => {
                                         size="sm"
                                         onClick={handleTogglePassword}
                                         icon={showPassword ? <FaEyeSlash /> : <FaEye />}
-                                        
+
                                     />
                                 </InputRightElement>
+
                             </InputGroup>
+                            <div>
+                                <Text color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
+                            </div>
 
 
                             <FormLabel>Confirm Password</FormLabel>
@@ -172,10 +220,12 @@ export const JoinDrawer = () => {
                                 <Input
                                     type={showPasswordConfirm ? 'text' : 'password'}
                                     placeholder="Confirm Password"
-                                    value={confirmPassword}
-                                    onChange={(e)=>{dispatch(registerConfirmPasswordAction(e.target.value))}}
+                                    // value={confirmPassword}
+                                    disabled={errorPass}
+
+                                    onChange={confirmPasswordHandleChange}
                                 />
-                              <Text>{verify}</Text>
+
                                 <InputRightElement width="4.5rem">
                                     <IconButton
                                         variant={'none'}
@@ -186,6 +236,9 @@ export const JoinDrawer = () => {
                                     />
                                 </InputRightElement>
                             </InputGroup>
+                            <div>
+                                <Text color={errorConfirmPass ? 'red' : 'green'} fontSize={'x-small'}>{errorConfirmPass ? confirmPassMessage : confirmPassMessage}</Text>
+                            </div>
 
                         </FormControl>
 
@@ -197,10 +250,24 @@ export const JoinDrawer = () => {
                         <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button className={style.submitBtn} variant={'none'} onClick={RegisterUserHandler}>Register</Button>
+                        <Button className={style.submitBtn} variant={'none'}  onClick={RegisterUserHandler} isDisabled={errorPass || errorConfirmPass}>Register</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-        </>
+        </DIV>
     )
 }
+
+
+const DIV = styled.div`
+
+.password{
+    border-color: ${props => (props.errorPass ? "red" : "")};
+}
+
+.errorMessage{
+    /* color:  ${props => (props.errorPass === true ? "red" : "")}; */
+    color: red;
+}
+    
+`
