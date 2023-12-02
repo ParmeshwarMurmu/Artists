@@ -14,11 +14,13 @@ export const JoinDrawer = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
     const dispatch = useDispatch()
-    const ref = useRef(null)
+    // const ref = useRef(null)
     const [verify, setVerify] = useState("")
     const [errorPass, setErrorPass] = useState(false)
     const [errorConfirmPass, setErrorConfirmPass] = useState(false)
     const [confirmPassMessage, setConfirmPassMessage] = useState("")
+    const [valuePass, setValuePass] = useState("")
+    const [confirmValuePass, setConfirmValuePass] = useState("")
 
     const { firstName, lastName, email, password, confirmPassword } = useSelector((store) => {
         return {
@@ -94,6 +96,7 @@ export const JoinDrawer = () => {
 
     const passwordHandleChange = (e) => {
         // console.log(e.target.value);
+        setValuePass(e.target.value)
         const result = checkPasswordStrength(e.target.value)
         if (result !== 'OK') {
             //    ref.current = result;
@@ -111,6 +114,7 @@ export const JoinDrawer = () => {
 
     const confirmPasswordHandleChange = (e)=>{
         
+        setConfirmValuePass(e.target.value)
         if(password!==e.target.value){
            setErrorConfirmPass(true)
            setConfirmPassMessage("Both Pasword Should Match")
@@ -133,6 +137,10 @@ export const JoinDrawer = () => {
 
         console.log(data)
         dispatch(registerResetAction())
+        setValuePass("")
+        setConfirmValuePass("")
+        setVerify("")
+        setConfirmPassMessage("")
 
     }
 
@@ -191,6 +199,7 @@ export const JoinDrawer = () => {
                                         border: errorPass ? '1px solid red' : 'none', // Set border to transparent when there is an error
                                         // Add other styles based on conditions
                                     }}
+                                    value={valuePass}
                                     focusBorderColor={errorPass ? 'transparent' : ''}
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Password"
@@ -211,7 +220,7 @@ export const JoinDrawer = () => {
 
                             </InputGroup>
                             <div>
-                                <Text color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
+                                <Text  color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
                             </div>
 
 
@@ -220,7 +229,7 @@ export const JoinDrawer = () => {
                                 <Input
                                     type={showPasswordConfirm ? 'text' : 'password'}
                                     placeholder="Confirm Password"
-                                    // value={confirmPassword}
+                                    value={confirmValuePass}
                                     disabled={errorPass}
 
                                     onChange={confirmPasswordHandleChange}
