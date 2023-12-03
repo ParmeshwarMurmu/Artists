@@ -83,6 +83,7 @@ export const LoginDrawer = () => {
                 </Tooltip>
             </Button>
             <Drawer
+                // isOpen={isOpen}
                 isOpen={loginOpen || isOpen}
                 placement='right'
                 onClose={onClose}
@@ -99,7 +100,7 @@ export const LoginDrawer = () => {
 
                     <DrawerBody>
 
-                        <div style={{ marginBottom: "30px" }}>
+                        <div style={{ marginBottom: "20px" }}>
                             <video
                                 autoPlay
                                 loop
@@ -141,7 +142,7 @@ export const LoginDrawer = () => {
 
                         </FormControl>
 
-                        <div style={{ marginTop: "30px" }}>
+                        <div style={{ marginTop: "20px" }}>
                             <Box >
                                 <Image src={communityWallpaper} alt='Community Wallpaper' />
                             </Box>

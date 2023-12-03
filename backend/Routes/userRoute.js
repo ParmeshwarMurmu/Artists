@@ -1,4 +1,5 @@
 const express = require('express')
+const multer = require('multer')
 const bcrypt = require('bcrypt');
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
@@ -7,6 +8,8 @@ const { UserModel } = require('../Models/userSchema')
 
 
 const userRoute = express.Router()
+
+
 
 userRoute.post('/register', async(req, res)=>{
         
