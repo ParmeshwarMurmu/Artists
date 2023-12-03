@@ -1,7 +1,20 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import React from 'react'
+import { Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from '@chakra-ui/react'
+import React, { useContext } from 'react'
+import { appContent } from '../ContextApi/ContextApi'
 
 export const Home = () => {
+    const {loginOpen} = useContext(appContent)
+    const toast = useToast();
+    
+    if(loginOpen){
+        toast({
+            // title: 'Account created.',
+            description: "Please Login",
+            status: 'warning',
+            duration: 4000,
+            isClosable: true,
+        })
+    }
     return (
         <div>
             <Tabs variant='unstyled' style={{display: "flex"}}>

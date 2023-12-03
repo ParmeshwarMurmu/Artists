@@ -1,3 +1,4 @@
+import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
 
@@ -8,6 +9,9 @@ export const ContextApi = ({children}) => {
     const token = localStorage.getItem('Artist-Token')
     const userId = localStorage.getItem('Artist-UserId')
     const [userData, setUserData] = useState({})
+    const [loginOpen, setLoginOpen] = useState(false)
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
     // m("Artist-Token", res.data.token)
     //         localStorage.setItem('Artist-UserId', res.data.userId)
 
@@ -28,7 +32,7 @@ export const ContextApi = ({children}) => {
 
 
 
-    return <appContent.Provider value={{isAuth, setIsAuth, userData}}>{children}</appContent.Provider>
+    return <appContent.Provider value={{isAuth, setIsAuth, userData, isOpen, onOpen, onClose, loginOpen, setLoginOpen}}>{children}</appContent.Provider>
 
   
 }

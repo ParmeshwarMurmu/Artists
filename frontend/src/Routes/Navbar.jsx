@@ -16,7 +16,9 @@ import { appContent } from '../ContextApi/ContextApi'
 
 export const Navbar = () => {
 
-  const {isAuth} = useContext(appContent)
+  const {isAuth, setLoginOpen} = useContext(appContent)
+
+  
 
   return (
     <div className={style.navbarContainer}>

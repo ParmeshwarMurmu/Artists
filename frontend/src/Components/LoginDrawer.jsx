@@ -1,5 +1,5 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from '../CSS/Navbar.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import loginVideo from '../Assets/Artist_Login_Video.mp4';
@@ -8,15 +8,17 @@ import communityWallpaper from '../Assets/Login_Community.png'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { loginEmailAction, loginPasswordAction, loginResetAction } from '../Redux/UserLoginReducer/action';
 import axios from 'axios';
+import { RxCross2 } from "react-icons/rx";
 import { appContent } from '../ContextApi/ContextApi';
 
 
 export const LoginDrawer = () => {
+
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
     const [showPassword, setShowPassword] = useState(false)
     // const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
-    const {setIsAuth} = useContext(appContent)
+    const { setIsAuth, loginOpen, setLoginOpen } = useContext(appContent)
     const toast = useToast()
     const dispatch = useDispatch()
     const { email, password } = useSelector((store) => {
@@ -30,34 +32,48 @@ export const LoginDrawer = () => {
         setShowPassword(!showPassword);
     };
 
-    const LoginHandler = ()=>{
+    const LoginHandler = () => {
         let data = {
             email,
             password
         }
 
         axios.post('http://localhost:8000/user/login', data)
-        .then((res)=>{
-            console.log(res);
-            toast({
-                // title: 'Account created.',
-                description: `${res.data.msg}`,
-                status: 'success',
-                duration: 4000,
-                isClosable: true,
+            .then((res) => {
+                console.log(res);
+                if (res.data.msg === 'Login Successfully') {
+
+                    toast({
+                        // title: 'Account created.',
+                        description: `${res.data.msg}`,
+                        status: 'success',
+                        duration: 4000,
+                        isClosable: true,
+                    })
+                    onClose()
+                    setIsAuth(true)
+                    localStorage.setItem("Artist-Token", res.data.token)
+                    localStorage.setItem('Artist-UserId', res.data.userId)
+                }
+                else {
+                    toast({
+                        // title: 'Account created.',
+                        description: `${res.data.msg}`,
+                        status: 'error',
+                        duration: 4000,
+                        isClosable: true,
+                    })
+                }
             })
-            onClose()
-            setIsAuth(true)
-            localStorage.setItem("Artist-Token", res.data.token)
-            localStorage.setItem('Artist-UserId', res.data.userId)
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+            .catch((err) => {
+                console.log(err);
+            })
 
         console.log(data);
         dispatch(loginResetAction())
     }
+
+
 
     return (
         <>
@@ -67,26 +83,30 @@ export const LoginDrawer = () => {
                 </Tooltip>
             </Button>
             <Drawer
-                isOpen={isOpen}
+                isOpen={loginOpen || isOpen}
                 placement='right'
                 onClose={onClose}
                 finalFocusRef={btnRef}
             >
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton />
+                    <DrawerCloseButton onClick={() => {
+                        setLoginOpen(false)
+                        onClose()
+                    }} />
+                    
                     <DrawerHeader>Welcome Back!</DrawerHeader>
 
                     <DrawerBody>
 
-                        <div style={{marginBottom: "30px"}}>
+                        <div style={{ marginBottom: "30px" }}>
                             <video
                                 autoPlay
                                 loop
                                 // muted
                                 defaultMuted
                                 style={{ width: '100%', height: 'auto' }}
-                                // controls
+                            // controls
                             >
                                 <source src={loginVideo} type="video/mp4" />
                                 Your browser does not support the video tag.
@@ -95,9 +115,9 @@ export const LoginDrawer = () => {
                         <FormControl isRequired>
                             <FormLabel>Email</FormLabel>
                             <Input placeholder='Email'
-                            onChange={(e)=>{dispatch(loginEmailAction(e.target.value))}}
-                            value={email}
-                             />
+                                onChange={(e) => { dispatch(loginEmailAction(e.target.value)) }}
+                                value={email}
+                            />
 
 
                             <FormLabel>Password</FormLabel>
@@ -107,7 +127,7 @@ export const LoginDrawer = () => {
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Password"
                                     value={password}
-                                    onChange={(e)=>{dispatch(loginPasswordAction(e.target.value))}}
+                                    onChange={(e) => { dispatch(loginPasswordAction(e.target.value)) }}
                                 />
                                 <InputRightElement width="4.5rem">
                                     <IconButton variant={'none'}
@@ -121,7 +141,7 @@ export const LoginDrawer = () => {
 
                         </FormControl>
 
-                        <div style={{marginTop: "30px"}}>
+                        <div style={{ marginTop: "30px" }}>
                             <Box >
                                 <Image src={communityWallpaper} alt='Community Wallpaper' />
                             </Box>
@@ -129,7 +149,10 @@ export const LoginDrawer = () => {
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button className={style.negativeBtn} variant='none' mr={3} onClick={onClose}>
+                        <Button className={style.negativeBtn} variant='none' mr={3} onClick={() => {
+                            setLoginOpen(false)
+                            onClose()
+                        }}>
                             Cancel
                         </Button>
                         <Button className={style.submitBtn} variant={'none'} onClick={LoginHandler}>Login</Button>
