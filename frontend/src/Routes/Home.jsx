@@ -1,6 +1,7 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import { appContent } from '../ContextApi/ContextApi'
+import { AllArts } from '../Components/AllArts'
 
 export const Home = () => {
     const {loginOpen} = useContext(appContent)
@@ -24,7 +25,7 @@ export const Home = () => {
                 </TabList>
                 <TabPanels style={{ }}>
                     <TabPanel>
-                        <p>one!</p>
+                        <AllArts />
                     </TabPanel>
                     <TabPanel>
                         <p>two!</p>

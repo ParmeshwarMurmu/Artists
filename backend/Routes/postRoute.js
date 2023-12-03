@@ -16,7 +16,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-postRoute.get('/', )
+postRoute.get('/', async(req, res)=>{
+
+    try {
+        const posts = await PostModel.find().populate('user')
+        res.status(200).send({"msg": "All Posts", data: posts})
+        
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get posts", "err": error})
+        
+    }
+})
 
 postRoute.post('/create', upload.array("photos", 5), auth, async (req, res) => {
 
