@@ -47,11 +47,11 @@ background-color: black;
     /* Prevent vertical gaps */
     line-height: 0;
 
-    -webkit-column-count: 7;
+    -webkit-column-count: 5;
     -webkit-column-gap: 5px;
-    -moz-column-count: 7;
+    -moz-column-count: 5;
     -moz-column-gap: 5px;
-    column-count: 7;
+    column-count: 5;
     column-gap: 10px;
   }
 

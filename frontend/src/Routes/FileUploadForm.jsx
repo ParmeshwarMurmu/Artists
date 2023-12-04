@@ -1,5 +1,5 @@
 import { Input, Text, useToast } from '@chakra-ui/react';
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
@@ -11,15 +11,49 @@ export const FileUploadForm = () => {
   const toast = useToast();
   const token = localStorage.getItem('Artist-Token')
   // const data = useSelector((store) => store.authReducer);
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const dispatch = useDispatch();
+
+
+  const onChange = (e) => {
+    const files = e.target.files;
+    const maxFiles = 5; // Set your maximum allowed number of files here
+
+    if (files.length > maxFiles) {
+      // alert(`You can only upload up to ${maxFiles} files.`);
+      toast({
+        title: "Max Files",
+        description: `You can only upload up to ${maxFiles} files.`,
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
+      // Clear the selected files to prevent exceeding the limit
+      fileInput.current.value = null;
+      setSelectedFiles([]);
+    } else {
+      // Update the selected files
+      setSelectedFiles(files);
+    }
+  };
 
   const onSubmit = (e) => {
 
     e.preventDefault();
+    // console.log("selectedFiles");
+    // console.log(selectedFiles);
 
     const formData = new FormData();
-    formData.append("photos", fileInput.current.files[0]);
-    console.log(fileInput.current.files[0].name);
+    // formData.append("photos", fileInput.current.files[0]);
+    // console.log("***");
+    // console.log(fileInput.current.files);
+
+    for(let i=0; i<5; i++){
+      formData.append("photos", fileInput.current.files[i]);
+      // formData.append("photos", selectedFiles[i]);
+      // console.log(fileInput.current.files[i].name);
+      // console.log(selectedFiles[i].name);
+    }
 
     const headers = {
       Authorization: `bearer ${token}`,
@@ -42,8 +76,9 @@ export const FileUploadForm = () => {
   };
 
   return (
+    // enctype="multipart/form-data"
     <DIV>
-      <form onSubmit={onSubmit} enctype="multipart/form-data">
+      <form onSubmit={onSubmit} >
         <div style={{}}>
           <div style={{ width: "25%", margin: "auto" }}>
             <div style={{ marginBottom: "20px" }}>
@@ -52,8 +87,8 @@ export const FileUploadForm = () => {
                 type="file"
                 name="photos"
                 ref={fileInput}
-                // multiple
-
+                multiple
+                onChange={onChange}
               />
 
              
