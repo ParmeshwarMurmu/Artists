@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const postSchema = mongoose.Schema({
     image: String,
+    title: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',

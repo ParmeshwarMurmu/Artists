@@ -4,6 +4,9 @@
     display: flex;
     justify-content: space-between;
     border-bottom: #C0C0C0;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
     /* bo */
 
 }

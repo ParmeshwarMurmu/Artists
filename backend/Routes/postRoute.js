@@ -17,15 +17,27 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 
-postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
-
-    console.log("***");
+postRoute.get('/', async(req, res)=>{
 
     try {
-        console.log("++++++++++++++++++++++++++");
+        const posts = await PostModel.find().populate('user')
+        res.status(200).send({"msg": "All Posts", data: posts})
+        
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get posts", "err": error})
+        
+    }
+})
+
+postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
+
+    // console.log("***");
+
+    try {
+        // console.log("++++++++++++++++++++++++++");
         const file = req.file;
         // console.log(req.body);
-        console.log(file);
+        // console.log(file);
 
         // Move each file to the uploads directory
 
@@ -36,12 +48,12 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
         const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
 
-        console.log(fileUrl);
-        console.log("title", title);
+        // console.log(fileUrl);
+        // console.log("title", title);
 
         req.body.image = fileUrl;
-        console.log("reqbody", req.body);
-        const we = PostModel(req.body)
+        // console.log("reqbody", req.body);
+        const we = PostModel({...req.body, title})
         await we.save();
 
         res.status(200).send({ "msg": "success" })

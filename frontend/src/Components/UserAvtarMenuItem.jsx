@@ -35,8 +35,8 @@ export const UserAvtarMenuItem = () => {
             <MenuList>
                 <MenuGroup title='Profile'>
                     <MenuItem><span style={{marginRight: "5px"}}><FaUserEdit /></span> {`${userData.firstName} ${userData.lastName}`}</MenuItem>
-                    <MenuItem>My Account</MenuItem>
-                    <MenuItem>Payments </MenuItem>
+                    <MenuItem>You Posts</MenuItem>
+                    <MenuItem>Payments</MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title='Help'>

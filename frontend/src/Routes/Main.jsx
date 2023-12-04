@@ -9,7 +9,7 @@ export const Main = () => {
         <Navbar />
 
       </div>
-      <div style={{marginTop: "100px"}}>
+      <div style={{paddingTop: "80px"}}>
         <AllRoutes />
 
       </div>

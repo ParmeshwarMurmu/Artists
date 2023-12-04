@@ -17,21 +17,22 @@ export const Home = () => {
         })
     }
     return (
-        <div>
-            <Tabs variant='unstyled' style={{display: "flex"}}>
-                <TabList style={{ flexDirection: "column",  borderRight: "2px solid red"}}>
+        <div style={{ }}>
+            <Tabs variant='unstyled' style={{ display: "flex", height: "100vh" }}>
+                <TabList style={{  flexDirection: "column", borderRight: "2px solid red", flex: "0 0 auto" }}>
                     <Tab style={{}} _selected={{ color: 'white', bg: 'blue.500' }}>Tab 1</Tab>
                     <Tab style={{}} _selected={{ color: 'white', bg: 'green.400' }}>Tab 2</Tab>
                 </TabList>
-                <TabPanels style={{ }}>
+                <TabPanels style={{ flex: "1", overflowY: 'auto' }}>
+                    <TabPanel style={{ height: '100%',overflowY: 'auto' }}>
+                    <AllArts />
+                    </TabPanel>
                     <TabPanel>
                         <AllArts />
                     </TabPanel>
-                    <TabPanel>
-                        <p>two!</p>
-                    </TabPanel>
                 </TabPanels>
             </Tabs>
+            
         </div>
     )
 }
