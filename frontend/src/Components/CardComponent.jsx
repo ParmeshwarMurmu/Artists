@@ -1,23 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const CardComponent = ({image, user, title}) => {
-    
+export const CardComponent = ({ image, user, title, _id }) => {
+
   return (
-    // <Link to={`/singleProduct/${_id}`}>
+
     <DIV>
-    <div className='container'>
-     
-      <img className='contImage' src={image} alt={`${user.firstName}`} />
-      
+      <div className='container'>
 
-      <div className='bottom-left-user'>
-      {/* {title} */}
-      </div>
+        <Link to={`/singlePage/${_id}`}>
 
-      
+          <img className='contImage' src={image} alt={`${user.firstName}`} />
+        </Link>
+
+
+        <div className='bottom-left-user'>
+          {/* {title} */}
+        </div>
+
+
       </div>
-      </DIV>
+    </DIV>
   )
 }
 

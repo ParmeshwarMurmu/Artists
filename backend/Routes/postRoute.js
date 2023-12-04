@@ -111,6 +111,20 @@ postRoute.post('/uploads', upload.array('photos', 5), auth, async (req, res) => 
 })
 
 
+postRoute.get('/singlePost/:_id', async(req, res)=>{
+
+    try {
+        const {_id} = req.params;
+        // console.log("_id", _id);
+        const singleData = await PostModel.findOne({_id})
+        res.status(200).send({"singleData": singleData})
+        
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get singleData", "err": error})
+        
+    }
+})
+
 
 module.exports = {
     postRoute

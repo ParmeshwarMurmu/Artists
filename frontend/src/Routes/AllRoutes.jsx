@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Home } from './Home'
 import { NewArtSubmission } from './NewArtSubmission'
 import { PrivateRoute } from './PrivateRoute'
+import { SinglePage } from './SinglePage'
 
 
 export const AllRoutes = () => {
@@ -13,6 +14,7 @@ export const AllRoutes = () => {
      <Route path='/newSumbission' element={<PrivateRoute>
       <NewArtSubmission />
      </PrivateRoute>}/>
+     <Route path='/singlePage/:id' element={<SinglePage/>} />
     </Routes>
   )
 }
