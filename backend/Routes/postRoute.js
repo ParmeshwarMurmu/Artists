@@ -16,50 +16,36 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-postRoute.get('/', async(req, res)=>{
+
+postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
+
+    console.log("***");
 
     try {
-        const posts = await PostModel.find().populate('user')
-        res.status(200).send({"msg": "All Posts", data: posts})
+        console.log("++++++++++++++++++++++++++");
+        const file = req.file;
+        // console.log(req.body);
+        console.log(file);
+
+        // Move each file to the uploads directory
+
+        const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+        fs.renameSync(file.path, destination);
         
-    } catch (error) {
-        res.status(400).send({"msg": "cannot get posts", "err": error})
-        
-    }
-})
+        const fileName = file.filename;
+        const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
+        const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
 
-postRoute.post('/create', upload.array("photos", 5), auth, async (req, res) => {
+        console.log(fileUrl);
+        console.log("title", title);
 
-    // console.log(req.body);
+        req.body.image = fileUrl;
+        console.log("reqbody", req.body);
+        const we = PostModel(req.body)
+        await we.save();
 
-    try {
-        const files = req.files;
-        // console.log(files);
+        res.status(200).send({ "msg": "success" })
 
-        files.forEach((file) => {
-            const destination = path.join(__dirname, "..", "uploads", file.originalname)
-            fs.renameSync(file.path, destination)
-        })
-
-        // generating URL for files
-
-        const fileUrls = files.map((file) => {
-            return `${req.protocol}://${req.get("host")}/uploads/${file.filename}`;
-        });
-
-        req.body.image = fileUrls[0];
-        // console.log("imageUrl",req.body.image);
-        const urlObject = new URL(req.body.image);
-        const filename = path.basename(urlObject.pathname);
-
-        // Split the filename at the first space to get the title
-        const parts = filename.split(" ");
-        const title = parts[0]
-        // console.log("title",title);
-
-        const newArt = new PostModel({...req.body})
-        await newArt.save()
-        res.status(200).send({"msg": "Art Uploaded Successfully"})
 
     } catch (error) {
 
@@ -70,3 +56,19 @@ postRoute.post('/create', upload.array("photos", 5), auth, async (req, res) => {
 module.exports = {
     postRoute
 }
+
+
+
+// ***
+// [
+//   {
+//     fieldname: 'photos',
+//     originalname: 'searchNot Found.jpg',
+//     encoding: '7bit',
+//     mimetype: 'image/jpeg',
+//     destination: './uploads',
+//     filename: 'searchNot Found.jpg',
+//     path: 'uploads\\searchNot Found.jpg',
+//     size: 4354
+//   }
+// ]

@@ -9,13 +9,10 @@ const app = express()
 
 app.use(express.json())
 app.use(cors())
-
+app.use('/uploads', express.static('uploads'));
 app.use('/user', userRoute)
 app.use('/post', postRoute)
 
-// app.get('/', (req, res)=>{
-//   res.send("succes")
-// })
 
 app.listen(process.env.PORT, async()=>{
     try {
@@ -28,3 +25,7 @@ app.listen(process.env.PORT, async()=>{
         console.log(error);
     }
 })
+
+
+
+// https://artists-jvdl.onrender.com
