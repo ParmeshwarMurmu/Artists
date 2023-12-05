@@ -8,7 +8,7 @@ import singlePageStyle from '../CSS/SinglePage.module.css'
 import { MoreArts } from './MoreArts'
 import styled from "styled-components"
 import { FaRegStar } from "react-icons/fa";
-import { Button, Tooltip, useToast } from '@chakra-ui/react'
+import { Avatar, Button, Heading, Image, Stack, Text, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
 import { FaRegCommentAlt } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
 import { FaRegCopy } from "react-icons/fa6";
@@ -46,6 +46,9 @@ export const SinglePage = () => {
     if (image.naturalHeight > image.naturalWidth) {
       setIsHeightGreater(true);
     }
+    else if (image.naturalHeight === image.naturalWidth) {
+      setIsHeightGreater("equal");
+    }
   };
 
   const downloadImageHandler = async () => {
@@ -69,19 +72,19 @@ export const SinglePage = () => {
     }
   };
 
-  
-  const copyLinkHandler = async()=>{
+
+  const copyLinkHandler = async () => {
     try {
       await navigator.clipboard.writeText(singleData.image);
       // You can show a success message to the user if needed
-      
+
       toast({
         // title: 'Account created.',
         description: `Link Copied to your Clipboard`,
         status: 'success',
         duration: 4000,
         isClosable: true,
-    })
+      })
     } catch (error) {
       console.error('Error copying to clipboard:', error);
       toast({
@@ -90,7 +93,7 @@ export const SinglePage = () => {
         status: 'error',
         duration: 4000,
         isClosable: true,
-    })
+      })
       // Handle error, e.g., show an error message to the user
     }
   }
@@ -98,8 +101,10 @@ export const SinglePage = () => {
   useEffect(() => {
     dispatch(getSinglePageData(id))
 
-  }, [id])
+  }, [])
 
+
+  console.log(isData && singleData.createdAt.split("T")[0]);
 
 
 
@@ -110,7 +115,7 @@ export const SinglePage = () => {
 
       {/* main image container */}
 
-      <div style={{width: "75%"}}>
+      <div style={{ width: "75%" }}>
 
         <div className={singlePageStyle.singlePageImage}>
 
@@ -122,27 +127,78 @@ export const SinglePage = () => {
 
         </div>
 
+
+
         <div className={singlePageStyle.favouriteAndDownloadContainer}>
-          
+
           {/* Favourite and comment */}
           <div>
-          <Button><span><FaRegStar /></span> Add to Favourites</Button>
-          <Button><span><FaRegCommentAlt /></span> Comment</Button>
+
+            <Tooltip hasArrow label='Add to favourite' bg='gray.300' color='black'>
+              <Button variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
+            </Tooltip>
+
+            <Tooltip hasArrow label='Comment' bg='gray.300' color='black'>
+              <Button variant={'none'}><span className={singlePageStyle.spanTag}><FaRegCommentAlt /></span> Comment</Button>
+            </Tooltip>
           </div>
+
+
+          {/* download and copy link */}
+          <div>
+            <Tooltip hasArrow label='Download' bg='gray.300' color='black'>
+              <Button variant={'none'} onClick={downloadImageHandler}><IoMdDownload /></Button>
+            </Tooltip>
+
+            <Tooltip hasArrow label='Copy Link' bg='gray.300' color='black'>
+              <Button variant={'none'} onClick={copyLinkHandler}><FaRegCopy /></Button>
+            </Tooltip>
+
+          </div>
+
+
+        </div>
+
+
+
+        <div className={singlePageStyle.userPostTitleContainer}>
            
 
-           {/* download and copy link */}
-          <div>
-          <Tooltip hasArrow label='Download' bg='gray.300' color='black'>
-          <Button onClick={downloadImageHandler}><IoMdDownload /></Button>
-          </Tooltip>
+           {/* user image and post title section */}
+           <div className={singlePageStyle.userAndTitle}>
 
-          <Tooltip hasArrow label='Copy Link' bg='gray.300' color='black'>
-          <Button onClick={copyLinkHandler}><FaRegCopy /></Button>
-          </Tooltip>
+          <div style={{}}>
+           
+            <Wrap>
+              <WrapItem>
+                <Avatar size='lg' borderRadius={'10px'} name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
+              </WrapItem>
+            </Wrap>
+          </div>
+
+
+          {/* post Title */}
+          <div style={{marginLeft: "10px"}}>
+            <Heading as='h1' size='lg'>
+              {isData && singleData.title}
+            </Heading>
+
+            <div className={singlePageStyle.userCredit}>
+              <Text>by <span style={{fontSize: "20px", fontWeight: "bold"}}>{isData && singleData.user.firstName}</span></Text> 
+              
+            </div>
+          </div>
 
           </div>
+
+
+          {/* published at */}
+          <div>
+            <Text>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
+          </div>
         </div>
+
+
 
       </div>
 
@@ -166,10 +222,20 @@ color: white; */
   align-items: center;
   border: 4px solid red;
   width:  ${props => (props.isHeightGreater === true ? "32%" : "100%")};
+  /* height:  ${props => (props.isHeightGreater === true ? "400px" : "100%")}; */
 }
 
 img{
   border: 1px solid grey;
+  /* width: ${props => (props.isHeightGreater === true ? "" : "100%")}; */
+  width: ${props => (
+    props.isHeightGreater === true
+      ? ""
+      : props.isHeightGreater === "equal"
+        ? "50%"
+        : "100%"
+  )};
+  height:  ${props => (props.isHeightGreater === true ? "500px" : "")};
 }
   
 `

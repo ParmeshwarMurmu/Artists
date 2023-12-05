@@ -118,7 +118,7 @@ postRoute.get('/singlePost/:_id', async(req, res)=>{
     try {
         const {_id} = req.params;
         // console.log("_id", _id);
-        const singleData = await PostModel.findOne({_id})
+        const singleData = await PostModel.findOne({_id}).populate('user')
         res.status(200).send({"singleData": singleData})
         
     } catch (error) {
