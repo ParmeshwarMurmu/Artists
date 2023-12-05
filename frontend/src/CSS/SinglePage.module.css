@@ -57,3 +57,16 @@
 .userCredit{
     display: flex;
 }
+
+
+/* comment section CSS */
+
+.commentContainer{
+    width: 90%;
+    margin: auto;
+
+}
+.logoCommentArea{
+    display: flex;
+}
+

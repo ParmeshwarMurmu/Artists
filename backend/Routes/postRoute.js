@@ -4,6 +4,7 @@ const multer = require('multer')
 const fs = require("fs");
 const path = require("path");
 const { PostModel } = require('../Models/postSchema');
+const { CommentModel } = require('../Models/commentSchema');
 
 const postRoute = express.Router()
 
@@ -126,6 +127,25 @@ postRoute.get('/singlePost/:_id', async(req, res)=>{
         
     }
 })
+
+postRoute.post('/comment/:id',auth, async(req, res)=>{
+    console.log(req.body);
+    const {id} = req.params;
+    console.log(id);
+
+    try {
+        const newComment = new CommentModel({...req.body, post: id})
+        await newComment.save()
+        res.status(200).send({"msg": "Comment Posted"})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot comment", "err": error})
+        
+    }
+})
+
+
+
+
 
 
 module.exports = {

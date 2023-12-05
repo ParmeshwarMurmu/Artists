@@ -1,6 +1,6 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useContext, useEffect, useState } from 'react'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { store } from '../Redux/Store/store'
 import { getSinglePageData } from '../Redux/SinglePageReducer/action'
@@ -8,14 +8,21 @@ import singlePageStyle from '../CSS/SinglePage.module.css'
 import { MoreArts } from './MoreArts'
 import styled from "styled-components"
 import { FaRegStar } from "react-icons/fa";
-import { Avatar, Button, Heading, Image, Stack, Text, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
+import { Avatar, Button, Flex, Heading, Image, Input, Stack, Text, Textarea, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
 import { FaRegCommentAlt } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
 import { FaRegCopy } from "react-icons/fa6";
+import { AiFillLike } from "react-icons/ai";
+import { FaEye } from "react-icons/fa";
+import { FaCommentAlt } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import { appContent } from '../ContextApi/ContextApi'
+import { postUserComment, userCommentAction } from '../Redux/CommentReducer/action'
 
 export const SinglePage = () => {
 
   const [isHeightGreater, setIsHeightGreater] = useState(false);
+  const {isAuth} = useContext(appContent)
   const { id } = useParams()
   console.log("singlePge ID", id);
   const dispatch = useDispatch()
@@ -35,9 +42,15 @@ export const SinglePage = () => {
       singleData: store.singlePageReducer.singleData,
       isData: store.singlePageReducer.isData,
     }
-  })
+  }, shallowEqual)
 
-  console.log("singleData", singleData);
+  const { comment } = useSelector((store) => {
+    return {
+      comment: store.CommentReducer.comment,
+    }
+  }, shallowEqual)
+
+  // console.log("singleData", singleData);
 
   const handleImageLoad = (e) => {
     const image = e.target;
@@ -98,13 +111,20 @@ export const SinglePage = () => {
     }
   }
 
+  //comment handler
+  const commentSubmitHandler = ()=>{
+    dispatch(postUserComment(id, comment))
+
+  }
+
   useEffect(() => {
     dispatch(getSinglePageData(id))
 
   }, [])
 
 
-  console.log(isData && singleData.createdAt.split("T")[0]);
+  // console.log(isData && singleData.createdAt.split("T")[0]);
+  // console.log("comment", comment);
 
 
 
@@ -162,32 +182,32 @@ export const SinglePage = () => {
 
 
         <div className={singlePageStyle.userPostTitleContainer}>
-           
-
-           {/* user image and post title section */}
-           <div className={singlePageStyle.userAndTitle}>
-
-          <div style={{}}>
-           
-            <Wrap>
-              <WrapItem>
-                <Avatar size='lg' borderRadius={'10px'} name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
-              </WrapItem>
-            </Wrap>
-          </div>
 
 
-          {/* post Title */}
-          <div style={{marginLeft: "10px"}}>
-            <Heading as='h1' size='lg'>
-              {isData && singleData.title}
-            </Heading>
+          {/* user image and post title section */}
+          <div className={singlePageStyle.userAndTitle}>
 
-            <div className={singlePageStyle.userCredit}>
-              <Text>by <span style={{fontSize: "20px", fontWeight: "bold"}}>{isData && singleData.user.firstName}</span></Text> 
-              
+            <div style={{}}>
+
+              <Wrap>
+                <WrapItem>
+                  <Avatar size='lg' borderRadius={'10px'} name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
+                </WrapItem>
+              </Wrap>
             </div>
-          </div>
+
+
+            {/* post Title */}
+            <div style={{ marginLeft: "10px" }}>
+              <Heading as='h1' size='lg'>
+                {isData && singleData.title}
+              </Heading>
+
+              <div className={singlePageStyle.userCredit}>
+                <Text>by <span style={{ fontSize: "20px", fontWeight: "bold" }}>{isData && singleData.user.firstName}</span></Text>
+
+              </div>
+            </div>
 
           </div>
 
@@ -195,6 +215,52 @@ export const SinglePage = () => {
           {/* published at */}
           <div>
             <Text>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
+          </div>
+        </div>
+
+
+        {/* Like comment and views */}
+
+        <div>
+          <Button><AiFillLike /></Button>
+          <Button><FaCommentAlt /></Button>
+          <Button><FaEye /></Button>
+        </div>
+
+
+
+
+        {/* Comment Box Section */}
+
+        <div  className={singlePageStyle.commentContainer}>
+          <Text>Comment 17</Text>
+
+          <div className={singlePageStyle.logoCommentArea}>
+
+
+            {/* comment logo */}
+            <div style={{marginRight: "10px"}}>
+              <FaUserCircle fontSize={'30px'} />
+            </div>
+
+
+            {/* comment text area */}
+
+            <div style={{width: "100%"}}>
+              <Textarea className={singlePageStyle.textArea} isDisabled={isAuth===false} placeholder={isAuth === true ? "Write some thoughts about his post" : "Please Login To Comment"}
+              onChange={(e)=>{dispatch(userCommentAction(e.target.value))}}
+              value={comment}
+              />
+
+              
+            </div>
+
+          </div>
+
+
+
+          <div style={{display: "flex", flexDirection: "row-reverse"}}>
+          <Button onClick={commentSubmitHandler}>Comment</Button>
           </div>
         </div>
 
