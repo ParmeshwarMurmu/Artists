@@ -8,7 +8,7 @@
     border: 4px solid yellow;
     display: flex;
     justify-content: center;
-    width: 75%;
+    
 }
 
 .mainImage{
@@ -22,4 +22,11 @@
 
 .moreArts{
     border: 2px solid green;
+}
+
+/*  Favourites comment download CSS*/
+
+.favouriteAndDownloadContainer{
+    display: flex;
+    justify-content: space-between;
 }

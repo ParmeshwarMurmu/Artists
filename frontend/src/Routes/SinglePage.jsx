@@ -7,6 +7,11 @@ import { getSinglePageData } from '../Redux/SinglePageReducer/action'
 import singlePageStyle from '../CSS/SinglePage.module.css'
 import { MoreArts } from './MoreArts'
 import styled from "styled-components"
+import { FaRegStar } from "react-icons/fa";
+import { Button, Tooltip, useToast } from '@chakra-ui/react'
+import { FaRegCommentAlt } from "react-icons/fa";
+import { IoMdDownload } from "react-icons/io";
+import { FaRegCopy } from "react-icons/fa6";
 
 export const SinglePage = () => {
 
@@ -14,6 +19,15 @@ export const SinglePage = () => {
   const { id } = useParams()
   console.log("singlePge ID", id);
   const dispatch = useDispatch()
+  const toast = useToast()
+
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const handleFullScreenClick = () => {
+    setIsFullScreen(!isFullScreen);
+  };
+
+
   const { isLoading, isError, singleData, isData } = useSelector((store) => {
     return {
       isLoading: store.singlePageReducer.isLoading,
@@ -34,7 +48,52 @@ export const SinglePage = () => {
     }
   };
 
+  const downloadImageHandler = async () => {
+    try {
+      const response = await axios({
+        url: singleData.image,
+        method: 'GET',
+        responseType: 'blob', // important: responseType should be 'blob'
+      });
 
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${singleData.title}.jpg`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading image:', error);
+      // Handle error, e.g., show a message to the user
+    }
+  };
+
+  
+  const copyLinkHandler = async()=>{
+    try {
+      await navigator.clipboard.writeText(singleData.image);
+      // You can show a success message to the user if needed
+      
+      toast({
+        // title: 'Account created.',
+        description: `Link Copied to your Clipboard`,
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+    })
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
+      toast({
+        // title: 'Account created.',
+        description: `Cannot Copy Link`,
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+    })
+      // Handle error, e.g., show an error message to the user
+    }
+  }
 
   useEffect(() => {
     dispatch(getSinglePageData(id))
@@ -43,19 +102,48 @@ export const SinglePage = () => {
 
 
 
+
+
+
   return (
     <DIV isHeightGreater={isHeightGreater} className={singlePageStyle.singlePageConatiner}>
 
       {/* main image container */}
 
-      <div className={singlePageStyle.singlePageImage}>
+      <div style={{width: "75%"}}>
 
-        {/* <StyledMainImage aspectRatio={aspectRatio}> */}
-        <div className={'singleImage'}>
+        <div className={singlePageStyle.singlePageImage}>
 
-          <img src={singleData.image} alt="" onLoad={handleImageLoad} />
+
+          <div className={'singleImage'}>
+
+            <img src={singleData.image} alt="" onLoad={handleImageLoad} />
+          </div>
+
         </div>
-        {/* </StyledMainImage> */}
+
+        <div className={singlePageStyle.favouriteAndDownloadContainer}>
+          
+          {/* Favourite and comment */}
+          <div>
+          <Button><span><FaRegStar /></span> Add to Favourites</Button>
+          <Button><span><FaRegCommentAlt /></span> Comment</Button>
+          </div>
+           
+
+           {/* download and copy link */}
+          <div>
+          <Tooltip hasArrow label='Download' bg='gray.300' color='black'>
+          <Button onClick={downloadImageHandler}><IoMdDownload /></Button>
+          </Tooltip>
+
+          <Tooltip hasArrow label='Copy Link' bg='gray.300' color='black'>
+          <Button onClick={copyLinkHandler}><FaRegCopy /></Button>
+          </Tooltip>
+
+          </div>
+        </div>
+
       </div>
 
 
@@ -69,13 +157,15 @@ export const SinglePage = () => {
 }
 
 const DIV = styled.div`
-background-color: black;
-color: white;
+/* background-color: black;
+color: white; */
 
 .singleImage{
-  width:  ${props => (props.isHeightGreater === true ? "32%" : "100%")};
   display: flex;
   justify-content: center;
+  align-items: center;
+  border: 4px solid red;
+  width:  ${props => (props.isHeightGreater === true ? "32%" : "100%")};
 }
 
 img{
