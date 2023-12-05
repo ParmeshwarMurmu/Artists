@@ -3,7 +3,8 @@ import { SINGLE_PAGE_DATA_ERROR, SINGLE_PAGE_DATA_LOADING, SINGLE_PAGE_DATA_SUCC
 const initialState = {
     isLoading: false,
     isError: false,
-    singleData: {}
+    singleData: {},
+    isData: false
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -18,7 +19,8 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                singleData: payload
+                singleData: payload,
+                isData: true
             }
 
         case SINGLE_PAGE_DATA_ERROR:

@@ -111,6 +111,8 @@ postRoute.post('/uploads', upload.array('photos', 5), auth, async (req, res) => 
 })
 
 
+
+
 postRoute.get('/singlePost/:_id', async(req, res)=>{
 
     try {
