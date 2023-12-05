@@ -1,7 +1,10 @@
 
 .singlePageConatiner{
+    margin-top: 0px;
+    padding: 50px;
     border: 2px solid red;
     display: flex;
+    background-color: black;
 }
 
 .singlePageImage{
@@ -21,7 +24,8 @@
 }
 
 .moreArts{
-    /* border: 2px solid green; */
+    border: 2px solid green;
+    width: 25%;
 }
 
 /*  Favourites comment download CSS*/
@@ -38,6 +42,15 @@
     margin-right: 10px;
 }
 
+.favComBtn{
+    color: white;
+
+}
+
+.favComBtn:hover{
+    color: rgb(17, 222, 123);
+    cursor: pointer;
+}
 
 /* User Post Title Published CSS */
 
@@ -51,11 +64,13 @@
 
 .userAndTitle{
     display: flex;
+    color: #ffffff;
     /* justify-content: center; */
 }
 
 .userCredit{
     display: flex;
+    
 }
 
 
@@ -69,4 +84,37 @@
 .logoCommentArea{
     display: flex;
 }
+
+
+.commentBtn {
+    background-color: rgb(17, 222, 123);
+}
+
+.commentBtn:hover {
+    background-color: rgb(80, 239, 112);
+}
+
+
+
+/* user Comments Container css */
+
+.userCommentsContainer{
+    border: 2px solid red;
+    width: 90%;
+    margin: auto;
+
+}
+
+.userContent{
+    border: 2px solid rgb(25, 13, 197);
+    display: flex;
+    margin: 10px 0px 10px 0px;
+}
+
+.userComments{
+    border: 2px solid rgb(13, 197, 25);
+    width: 100%;
+    margin-left: 10px;
+}
+
 

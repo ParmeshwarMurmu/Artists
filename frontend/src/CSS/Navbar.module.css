@@ -3,17 +3,18 @@
     background-color: black;
     display: flex;
     justify-content: space-between;
-    border-bottom: #C0C0C0;
+    border-bottom: 1px solid #C0C0C0;
     position: fixed;
     z-index: 1;
     width: 100%;
+    
     /* bo */
 
 }
 
 .navbarContainerImage {
     display: flex;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     justify-content: center;
     align-items: center;
 }

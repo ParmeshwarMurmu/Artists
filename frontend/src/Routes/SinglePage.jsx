@@ -18,6 +18,7 @@ import { FaCommentAlt } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { appContent } from '../ContextApi/ContextApi'
 import { postUserComment, userCommentAction } from '../Redux/CommentReducer/action'
+import { UserComments } from '../Components/UserComments'
 
 export const SinglePage = () => {
 
@@ -155,11 +156,11 @@ export const SinglePage = () => {
           <div>
 
             <Tooltip hasArrow label='Add to favourite' bg='gray.300' color='black'>
-              <Button variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
+              <Button  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
             </Tooltip>
 
             <Tooltip hasArrow label='Comment' bg='gray.300' color='black'>
-              <Button variant={'none'}><span className={singlePageStyle.spanTag}><FaRegCommentAlt /></span> Comment</Button>
+              <Button  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegCommentAlt /></span> Comment</Button>
             </Tooltip>
           </div>
 
@@ -167,11 +168,11 @@ export const SinglePage = () => {
           {/* download and copy link */}
           <div>
             <Tooltip hasArrow label='Download' bg='gray.300' color='black'>
-              <Button variant={'none'} onClick={downloadImageHandler}><IoMdDownload /></Button>
+              <Button className={singlePageStyle.favComBtn}  variant={'none'} onClick={downloadImageHandler}><IoMdDownload /></Button>
             </Tooltip>
 
             <Tooltip hasArrow label='Copy Link' bg='gray.300' color='black'>
-              <Button variant={'none'} onClick={copyLinkHandler}><FaRegCopy /></Button>
+              <Button className={singlePageStyle.favComBtn}  variant={'none'} onClick={copyLinkHandler}><FaRegCopy /></Button>
             </Tooltip>
 
           </div>
@@ -198,7 +199,7 @@ export const SinglePage = () => {
 
 
             {/* post Title */}
-            <div style={{ marginLeft: "10px" }}>
+            <div className={singlePageStyle.postTitle} style={{ marginLeft: "10px" }}>
               <Heading as='h1' size='lg'>
                 {isData && singleData.title}
               </Heading>
@@ -214,7 +215,7 @@ export const SinglePage = () => {
 
           {/* published at */}
           <div>
-            <Text>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
+            <Text color={'white'}>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
           </div>
         </div>
 
@@ -240,7 +241,7 @@ export const SinglePage = () => {
 
             {/* comment logo */}
             <div style={{marginRight: "10px"}}>
-              <FaUserCircle fontSize={'30px'} />
+              <FaUserCircle fontSize={'50px'} />
             </div>
 
 
@@ -255,14 +256,23 @@ export const SinglePage = () => {
               
             </div>
 
+
+           
+
           </div>
 
+           
 
 
-          <div style={{display: "flex", flexDirection: "row-reverse"}}>
-          <Button onClick={commentSubmitHandler}>Comment</Button>
+
+          <div style={{display: "flex", flexDirection: "row-reverse", marginTop: "10px"}}>
+          <Button variant={'none'} className={singlePageStyle.commentBtn} onClick={commentSubmitHandler}>Comment</Button>
           </div>
         </div>
+
+
+        {/* user Cmmnts */}
+        <UserComments />
 
 
 
@@ -286,13 +296,24 @@ color: white; */
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 4px solid red;
+  /* border: 4px solid red; */
   width:  ${props => (props.isHeightGreater === true ? "32%" : "100%")};
   /* height:  ${props => (props.isHeightGreater === true ? "400px" : "100%")}; */
+  /* box-shadow: rgb(255, 255, 255) 0px 20px 30px -10px; */
+
+  position: relative;
+  cursor: pointer;
+  transition: all .3s;
+  /* box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px; */
+  box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.singleImage:hover{
+  transform: scale(0.9);
 }
 
 img{
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   /* width: ${props => (props.isHeightGreater === true ? "" : "100%")}; */
   width: ${props => (
     props.isHeightGreater === true

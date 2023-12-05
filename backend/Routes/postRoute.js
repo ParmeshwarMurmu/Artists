@@ -144,6 +144,20 @@ postRoute.post('/comment/:id',auth, async(req, res)=>{
 })
 
 
+postRoute.get('/postComment/:_id', async(req, res)=>{
+    // console.log(req.body);
+    const {_id} = req.params;
+    console.log(_id);
+
+    try {
+        const postComment = await CommentModel.find({post:_id}).populate('user')
+        res.status(200).send({"msg": "All Post Comments", "postComment": postComment})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get Post Comment", "err": error})
+        
+    }
+})
+
 
 
 
