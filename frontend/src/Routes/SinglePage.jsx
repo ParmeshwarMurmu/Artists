@@ -19,6 +19,8 @@ import { FaUserCircle } from "react-icons/fa";
 import { appContent } from '../ContextApi/ContextApi'
 import { postUserComment, userCommentAction } from '../Redux/CommentReducer/action'
 import { UserComments } from '../Components/UserComments'
+import Emoji from '../Components/Emoji'
+// import { Emoji } from '../Components/Emoji'
 
 export const SinglePage = () => {
 
@@ -30,6 +32,12 @@ export const SinglePage = () => {
   const toast = useToast()
 
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [Comment, setComment] = useState('');
+
+  const handleEmojiSelect = (commentWithEmoji) => {
+    setComment(commentWithEmoji);
+    console.log(commentWithEmoji); // Display the comment with emoji in the console
+  };
 
   const handleFullScreenClick = () => {
     setIsFullScreen(!isFullScreen);
@@ -125,7 +133,7 @@ export const SinglePage = () => {
 
 
   // console.log(isData && singleData.createdAt.split("T")[0]);
-  // console.log("comment", comment);
+  console.log("comment", comment);
 
 
 
@@ -251,7 +259,10 @@ export const SinglePage = () => {
               <Textarea className={singlePageStyle.textArea} isDisabled={isAuth===false} placeholder={isAuth === true ? "Write some thoughts about his post" : "Please Login To Comment"}
               onChange={(e)=>{dispatch(userCommentAction(e.target.value))}}
               value={comment}
+              // value={comment + (selectedEmoji ? selectedEmoji.native : '')}
               />
+              {/* <Emoji   /> */}
+              {/* <Emoji onEmojiSelect={handleEmojiSelect} /> */}
 
               
             </div>
@@ -301,15 +312,15 @@ color: white; */
   /* height:  ${props => (props.isHeightGreater === true ? "400px" : "100%")}; */
   /* box-shadow: rgb(255, 255, 255) 0px 20px 30px -10px; */
 
-  position: relative;
+  /* position: relative;
   cursor: pointer;
-  transition: all .3s;
+  transition: all .3s; */
   /* box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px; */
-  box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  /* box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
 }
 
 .singleImage:hover{
-  transform: scale(0.9);
+  /* transform: scale(0.9); */
 }
 
 img{
@@ -323,6 +334,15 @@ img{
         : "100%"
   )};
   height:  ${props => (props.isHeightGreater === true ? "500px" : "")};
+  position: relative;
+  cursor: pointer;
+  transition: all .3s;
+  /* box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px; */
+  box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+img:hover{
+  transform: scale(0.9);
 }
   
 `
