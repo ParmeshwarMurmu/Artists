@@ -160,6 +160,29 @@ postRoute.get('/postComment/:_id', async(req, res)=>{
 
 
 
+postRoute.get('/moreArts/:_id', async(req, res)=>{
+    // console.log(req.body);
+    const {_id} = req.params;
+    console.log(_id, "moreArts");
+    
+    try {
+        const postData = await PostModel.findOne({_id})
+        // console.log("postData", postData);
+        
+        const userId = postData.user
+        // console.log(userId, "userId");
+        const moreArts = await PostModel.find({user:userId})
+        // console.log("mortArts");
+        // console.log(moreArts);
+        res.status(200).send({"msg": "AmoreArts", "moreArts": moreArts})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get moreArts", "err": error})
+        
+    }
+})
+
+
+
 
 
 module.exports = {

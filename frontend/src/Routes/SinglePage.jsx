@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import { store } from '../Redux/Store/store'
 import { getSinglePageData } from '../Redux/SinglePageReducer/action'
 import singlePageStyle from '../CSS/SinglePage.module.css'
-import { MoreArts } from './MoreArts'
 import styled from "styled-components"
 import { FaRegStar } from "react-icons/fa";
 import { Avatar, Button, Flex, Heading, Image, Input, Stack, Text, Textarea, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
@@ -20,6 +19,7 @@ import { appContent } from '../ContextApi/ContextApi'
 import { postUserComment, userCommentAction } from '../Redux/CommentReducer/action'
 import { UserComments } from '../Components/UserComments'
 import Emoji from '../Components/Emoji'
+import { MoreArts } from '../Components/MoreArts'
 // import { Emoji } from '../Components/Emoji'
 
 export const SinglePage = () => {
@@ -133,7 +133,7 @@ export const SinglePage = () => {
 
 
   // console.log(isData && singleData.createdAt.split("T")[0]);
-  console.log("comment", comment);
+  // console.log("comment", comment);
 
 
 
@@ -231,9 +231,9 @@ export const SinglePage = () => {
         {/* Like comment and views */}
 
         <div>
-          <Button><AiFillLike /></Button>
-          <Button><FaCommentAlt /></Button>
-          <Button><FaEye /></Button>
+          <Button variant={'none'}><AiFillLike color={'grey'} /> <span style={{color: "grey", marginLeft: "5px"}}>34</span></Button>
+          <Button variant={'none'}><FaCommentAlt color={'grey'}/> <span style={{color: "grey", marginLeft: "5px"}}>17</span></Button>
+          <Button variant={'none'}><FaEye color={'grey'}/> <span style={{color: "grey", marginLeft: "5px"}}>100k</span></Button>
         </div>
 
 
@@ -292,7 +292,7 @@ export const SinglePage = () => {
 
       {/* More Arts */}
       <div className={singlePageStyle.moreArts}>
-        <MoreArts />
+       <MoreArts />
       </div>
 
     </DIV>
