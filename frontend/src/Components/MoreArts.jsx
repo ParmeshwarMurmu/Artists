@@ -31,6 +31,7 @@ export const MoreArts = () => {
     }, [])
 
     // console.log("moreArts", moreArts);
+    // console.log("moreArts", moreArts);
     console.log("sArts", suggestedArts);
 
 

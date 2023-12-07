@@ -47,7 +47,9 @@ export const FileUploadForm = () => {
     formData.append("photos", fileInput.current.files[0]);
     console.log("***");
     console.log(fileInput.current.files);
+ 
 
+    // Array Of Images
     // for(let i=0; i<5; i++){
     //   formData.append("photos", fileInput.current.files[i]);
     //   // formData.append("photos", selectedFiles[i]);
