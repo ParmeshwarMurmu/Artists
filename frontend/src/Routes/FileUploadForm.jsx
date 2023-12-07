@@ -67,12 +67,24 @@ export const FileUploadForm = () => {
           title: "New Submission",
           description: `${res.data.msg}`,
           status: "success",
-          duration: 2000,
+          duration: 4000,
           isClosable: true,
         });
         fileInput.current.form.reset();
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>{
+        toast({
+          title: "New Submission",
+          description: `${err.message} Please try Again`,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+        });
+        fileInput.current.form.reset();
+
+        console.log(err)
+      } 
+      );
   };
 
   return (

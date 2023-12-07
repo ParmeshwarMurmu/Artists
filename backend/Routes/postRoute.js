@@ -21,7 +21,7 @@ const upload = multer({ storage: storage })
 postRoute.get('/', async(req, res)=>{
 
     try {
-        const posts = await PostModel.find().populate('user')
+        const posts = await PostModel.find().populate('user').sort({_id: -1})
         res.status(200).send({"msg": "All Posts", data: posts})
         
     } catch (error) {

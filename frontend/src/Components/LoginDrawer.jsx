@@ -38,7 +38,7 @@ export const LoginDrawer = () => {
             password
         }
 
-        axios.post('http://localhost:8000/user/login', data)
+        axios.post('https://artists-jvdl.onrender.com/user/login', data)
             .then((res) => {
                 console.log(res);
                 if (res.data.msg === 'Login Successfully') {
@@ -115,7 +115,7 @@ export const LoginDrawer = () => {
                         </div>
                         <FormControl isRequired>
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder='Email'
+                            <Input placeholder='Email' type='email'
                                 onChange={(e) => { dispatch(loginEmailAction(e.target.value)) }}
                                 value={email}
                             />
@@ -149,7 +149,7 @@ export const LoginDrawer = () => {
                         </div>
                     </DrawerBody>
 
-                    <DrawerFooter>
+                    <DrawerFooter>       
                         <Button className={style.negativeBtn} variant='none' mr={3} onClick={() => {
                             setLoginOpen(false)
                             onClose()

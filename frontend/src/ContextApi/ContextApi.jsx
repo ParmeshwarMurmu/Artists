@@ -28,7 +28,7 @@ export const ContextApi = ({children}) => {
                 console.log(err);
             })
         }
-    }, [])
+    }, [isAuth])
 
 
 

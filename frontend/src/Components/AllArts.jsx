@@ -9,7 +9,7 @@ export const AllArts = () => {
 
     useEffect(()=>{
 
-        axios.get(`http://localhost:8000/post/`)
+        axios.get(`https://artists-jvdl.onrender.com/post/`)
         .then((res)=>{
             console.log(res.data);
             setData(res.data.data)
