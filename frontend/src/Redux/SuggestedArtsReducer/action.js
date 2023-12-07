@@ -27,7 +27,7 @@ export const sggestedArtsErrorAction  = ()=>{
 
 export const getSggestedArtsData  = ()=>(dispatch)=>{
    dispatch(sggestedArtsLodingAction());
-   axios.get(`http://localhost:8000/post/suggestedArts`)
+   axios.get(`https://artists-jvdl.onrender.com/post/suggestedArts`)
         .then((res)=>{
             dispatch(sggestedArtsSuccessAction(res.data.suggestedArts))
             console.log(res.data);

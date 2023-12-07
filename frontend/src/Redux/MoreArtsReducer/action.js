@@ -27,7 +27,7 @@ export const moreArtsErrorAction  = ()=>{
 
 export const getMoreArtsData  = (id)=>(dispatch)=>{
    dispatch(moreArtsLodingAction());
-   axios.get(`http://localhost:8000/post/moreArts/${id}`)
+   axios.get(`https://artists-jvdl.onrender.com/post/moreArts/${id}`)
         .then((res)=>{
             dispatch(moreArtsSuccessAction(res.data.moreArts))
             console.log(res.data);

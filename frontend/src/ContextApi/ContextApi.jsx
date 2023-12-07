@@ -19,7 +19,7 @@ export const ContextApi = ({children}) => {
       
         if(token){
             setIsAuth(true)
-            axios.get(`http://localhost:8000/user/singleUser/${userId}`)
+            axios.get(`https://artists-jvdl.onrender.com/user/singleUser/${userId}`)
             .then((res)=>{
                 console.log(res);
                 setUserData(res.data.user)

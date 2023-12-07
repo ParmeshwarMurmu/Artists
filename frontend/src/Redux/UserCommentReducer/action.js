@@ -18,7 +18,7 @@ const headers = {
 
 
 export const getPostComment = (id) => (dispatch) => {
-    axios.get(`http://localhost:8000/post/postComment/${id}`)
+    axios.get(`https://artists-jvdl.onrender.com/post/postComment/${id}`)
         .then((res) => {
             console.log(res.data);
             dispatch(postCommentAction(res.data.postComment))
