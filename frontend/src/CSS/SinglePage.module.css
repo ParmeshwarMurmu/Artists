@@ -26,6 +26,7 @@
 .moreArts{
     border: 2px solid green;
     width: 25%;
+    padding: 10px;
 }
 
 /*  Favourites comment download CSS*/

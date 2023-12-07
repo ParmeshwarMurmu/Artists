@@ -30,86 +30,86 @@ postRoute.get('/', async(req, res)=>{
     }
 })
 
-// postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
+postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
-//     // console.log("***");
-
-//     try {
-//         // console.log("++++++++++++++++++++++++++");
-//         const file = req.file;
-//         // console.log(req.body);
-//         // console.log(file);
-
-//         // Move each file to the uploads directory
-
-//         const destination = path.join(__dirname, '..', 'uploads', file.originalname);
-//         fs.renameSync(file.path, destination);
-        
-//         const fileName = file.filename;
-//         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-//         const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
-
-//         // console.log(fileUrl);
-//         // console.log("title", title);
-
-//         req.body.image = fileUrl;
-//         // console.log("reqbody", req.body);
-//         const we = PostModel({...req.body, title})
-//         await we.save();
-
-//         res.status(200).send({ "msg": "success" })
-
-
-//     } catch (error) {
-
-//     }
-// })
-
-
-
-
-postRoute.post('/uploads', upload.array('photos', 5), auth, async (req, res) => {
-
-   
+    console.log("***");
 
     try {
-        
-        console.log("++++++++++++++++++++++++++");
-        const files = req.files;
+        // console.log("++++++++++++++++++++++++++");
+        const file = req.file;
         // console.log(req.body);
-        // console.log(files);
+        console.log(file);
 
-    // Move each file to the uploads directory
-    files.forEach(file => {
-      const destination = path.join(__dirname, '..', 'uploads', file.originalname);
-      fs.renameSync(file.path, destination);
-    });
+        // Move each file to the uploads directory
 
-    const fileUrls = files.map(file => {
-        // console.log(file);
-        const title = file.originalname.split(".")
-        // console.log(title);
-        return {
-            title: title[0],
-            url: `${req.protocol}://${req.get('host')}/uploads/${file.filename}`
-        }
-        // return `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
-      });
-
-    //   console.log(fileUrls);
-
-      req.body.image=fileUrls
-      const we = new PostModel(req.body)
-      await we.save();
-      res.status(200).send({ "msg": "success" })
-      
-      
-    } catch (error) {
-        res.status(400).send({ "err": error })
+        const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+        fs.renameSync(file.path, destination);
         
+        const fileName = file.filename;
+        const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
+        const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
+
+        // console.log(fileUrl);
+        // console.log("title", title);
+
+        req.body.image = fileUrl;
+        // console.log("reqbody", req.body);
+        const we = PostModel({...req.body, title})
+        await we.save();
+
+        res.status(200).send({ "msg": "success" })
+
+
+    } catch (error) {
 
     }
 })
+
+
+
+
+// postRoute.post('/uploads', upload.array('photos', 5), auth, async (req, res) => {
+
+   
+
+//     try {
+        
+//         console.log("++++++++++++++++++++++++++");
+//         const files = req.files;
+//         // console.log(req.body);
+//         // console.log(files);
+
+//     // Move each file to the uploads directory
+//     files.forEach(file => {
+//       const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+//       fs.renameSync(file.path, destination);
+//     });
+
+//     const fileUrls = files.map(file => {
+//         // console.log(file);
+//         const title = file.originalname.split(".")
+//         // console.log(title);
+//         return {
+//             title: title[0],
+//             url: `${req.protocol}://${req.get('host')}/uploads/${file.filename}`
+//         }
+//         // return `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
+//       });
+
+//     //   console.log(fileUrls);
+
+//       req.body.image=fileUrls
+//       const we = new PostModel(req.body)
+//       await we.save();
+//       res.status(200).send({ "msg": "success" })
+      
+      
+//     } catch (error) {
+//         res.status(400).send({ "err": error })
+        
+
+//     }
+// })
 
 
 
@@ -171,7 +171,7 @@ postRoute.get('/moreArts/:_id', async(req, res)=>{
         
         const userId = postData.user
         // console.log(userId, "userId");
-        const moreArts = await PostModel.find({user:userId})
+        const moreArts = await PostModel.find({user:userId}).limit(15)
         // console.log("mortArts");
         // console.log(moreArts);
         res.status(200).send({"msg": "AmoreArts", "moreArts": moreArts})
@@ -181,6 +181,18 @@ postRoute.get('/moreArts/:_id', async(req, res)=>{
     }
 })
 
+
+postRoute.get('/suggestedArts', async(req, res)=>{
+    
+    try {
+
+        const suggestedArts = await PostModel.find().limit(15)
+        res.status(200).send({"msg": "suggestedArts", "suggestedArts": suggestedArts})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get suggestedArts", "err": error})
+        
+    }
+})
 
 
 

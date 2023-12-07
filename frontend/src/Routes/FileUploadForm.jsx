@@ -44,23 +44,23 @@ export const FileUploadForm = () => {
     // console.log(selectedFiles);
 
     const formData = new FormData();
-    // formData.append("photos", fileInput.current.files[0]);
-    // console.log("***");
-    // console.log(fileInput.current.files);
+    formData.append("photos", fileInput.current.files[0]);
+    console.log("***");
+    console.log(fileInput.current.files);
 
-    for(let i=0; i<5; i++){
-      formData.append("photos", fileInput.current.files[i]);
-      // formData.append("photos", selectedFiles[i]);
-      // console.log(fileInput.current.files[i].name);
-      // console.log(selectedFiles[i].name);
-    }
+    // for(let i=0; i<5; i++){
+    //   formData.append("photos", fileInput.current.files[i]);
+    //   // formData.append("photos", selectedFiles[i]);
+    //   // console.log(fileInput.current.files[i].name);
+    //   // console.log(selectedFiles[i].name);
+    // }
 
     const headers = {
       Authorization: `bearer ${token}`,
     };
-    // .post("https://artists-jvdl.onrender.com/post/uploads", formData, { headers })
+    // .post("http://localhost:8000/post/uploads", formData, {headers})
     axios
-    .post("http://localhost:8000/post/uploads", formData, {headers})
+    .post("https://artists-jvdl.onrender.com/post/uploads", formData, { headers })
       .then((res) => {
         console.log(res);
         toast({
@@ -76,9 +76,9 @@ export const FileUploadForm = () => {
   };
 
   return (
-    // enctype="multipart/form-data"
+    // 
     <DIV>
-      <form onSubmit={onSubmit} >
+      <form onSubmit={onSubmit} enctype="multipart/form-data">
         <div style={{}}>
           <div style={{ width: "25%", margin: "auto" }}>
             <div style={{ marginBottom: "20px" }}>
@@ -87,8 +87,8 @@ export const FileUploadForm = () => {
                 type="file"
                 name="photos"
                 ref={fileInput}
-                multiple
-                onChange={onChange}
+                // multiple
+                // onChange={onChange}
               />
 
              
