@@ -62,7 +62,7 @@ export const FileUploadForm = () => {
     };
     // .post("http://localhost:8000/post/uploads", formData, {headers})
     axios
-    .post("https://artists-jvdl.onrender.com/post/uploads", formData, { headers })
+    .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
       .then((res) => {
         console.log(res);
         toast({

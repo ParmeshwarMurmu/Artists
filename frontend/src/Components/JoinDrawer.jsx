@@ -141,7 +141,7 @@ export const JoinDrawer = () => {
             password
         }
 
-        axios.post('https://artists-jvdl.onrender.com/user/register', data)
+        axios.post('https://artists-kg0g.onrender.com/user/register', data)
             .then((res) => {
                 console.log(res)
                 toast({
