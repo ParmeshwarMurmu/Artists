@@ -2,6 +2,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from '@chakra-ui/re
 import React, { useContext } from 'react'
 import { appContent } from '../ContextApi/ContextApi'
 import { AllArts } from '../Components/AllArts'
+import { HomePageLoader } from '../Components/HomePageLoader'
 
 export const Home = () => {
     const {loginOpen} = useContext(appContent)
@@ -25,10 +26,11 @@ export const Home = () => {
                 </TabList>
                 <TabPanels style={{ flex: "1", overflowY: 'auto' }}>
                     <TabPanel style={{ height: '100%',overflowY: 'auto' }}>
+                        {/* <HomePageLoader /> */}
                     <AllArts />
                     </TabPanel>
                     <TabPanel>
-                        <AllArts />
+                        {/* <AllArts /> */}
                     </TabPanel>
                 </TabPanels>
             </Tabs>

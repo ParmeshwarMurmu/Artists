@@ -9,7 +9,7 @@ const { CommentModel } = require('../Models/commentSchema');
 const postRoute = express.Router()
 
 const storage = multer.diskStorage({
-    destination: './uploads',
+    destination: './uploadArt',
     filename: (req, file, callback) => {
         callback(null, file.originalname)
     },
@@ -42,12 +42,12 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
         // Move each file to the uploads directory
 
-        const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+        const destination = path.join(__dirname, '..', 'uploadArt', file.originalname);
         fs.renameSync(file.path, destination);
         
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
+        const fileUrl = `${req.protocol}://${req.get('host')}/uploadArt/${file.filename}`;
 
         // console.log(fileUrl);
         // console.log("title", title);
