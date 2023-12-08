@@ -18,7 +18,7 @@ const postSchema = mongoose.Schema({
     timestamps: true
 })
 
-const PostModel = mongoose.model("art", postSchema)
+const PostModel = mongoose.model("post", postSchema)
 
 module.exports = {
     PostModel

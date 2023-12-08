@@ -9,7 +9,8 @@ const app = express()
 
 app.use(express.json())
 app.use(cors())
-app.use('/uploads', express.static('uploadArt'));
+// app.use('/uploads', express.static('uploadArt'));
+app.use('/uploads', express.static('uploads'));
 app.use('/user', userRoute)
 app.use('/post', postRoute)
 
