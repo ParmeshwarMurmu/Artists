@@ -1,18 +1,31 @@
 import { Input, Text, useToast } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { postArtSubmission } from '../Redux/ArtSubmissionReducer/action';
 
 
 
-export const FileUploadForm = () => {
+export const FileUploadForm = ({setLoading} ) => {
   const fileInput = React.createRef();
   const toast = useToast();
   const token = localStorage.getItem('Artist-Token')
   // const data = useSelector((store) => store.authReducer);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  
   const dispatch = useDispatch();
+  const formRef = useRef(null);
+  
+
+  const { isLoading, isError, completed} = useSelector((store) => {
+    return {
+        isLoading: store.ArtSubmissionReducer.isLoading,
+        isError: store.ArtSubmissionReducer.isError, 
+        completed: store.ArtSubmissionReducer.completed, 
+        
+    }
+}, shallowEqual)
 
 
   const onChange = (e) => {
@@ -37,6 +50,22 @@ export const FileUploadForm = () => {
     }
   };
 
+  // if(completed){
+  //   if(!isLoading){
+  //     toast({
+  //           title: "New Submission",
+  //           description: `Uploaded Successfully`,
+  //           status: "success",
+  //           duration: 4000,
+  //           isClosable: true,
+  //         });
+  //         fileInput.current.form.reset();
+  //   }
+
+  // }
+
+  
+
   const onSubmit = (e) => {
 
     e.preventDefault();
@@ -45,26 +74,34 @@ export const FileUploadForm = () => {
 
     const formData = new FormData();
     formData.append("photos", fileInput.current.files[0]);
-    console.log("***");
+    // console.log("***");
     console.log(fileInput.current.files);
- 
+
 
     // Array Of Images
     // for(let i=0; i<5; i++){
     //   formData.append("photos", fileInput.current.files[i]);
-    //   // formData.append("photos", selectedFiles[i]);
-    //   // console.log(fileInput.current.files[i].name);
-    //   // console.log(selectedFiles[i].name);
+      // formData.append("photos", selectedFiles[i]);
+      // console.log(fileInput.current.files[i].name);
+      // console.log(selectedFiles[i].name);
     // }
 
     const headers = {
       Authorization: `bearer ${token}`,
     };
     // .post("http://localhost:8000/post/uploads", formData, {headers})
+    
+    // setLoading(true)
     axios
-    .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
+      .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
       .then((res) => {
         console.log(res);
+        
+        // if (formRef.current) {
+        //   formRef.current.reset(); // Use the stored form reference
+        //   fileInput.current.form.reset();
+        // }
+        // formRef.current = null;
         toast({
           title: "New Submission",
           description: `${res.data.msg}`,
@@ -73,26 +110,42 @@ export const FileUploadForm = () => {
           isClosable: true,
         });
         fileInput.current.form.reset();
-      })
-      .catch((err) =>{
-        toast({
-          title: "New Submission",
-          description: `${err.message} Please try Again`,
-          status: "error",
-          duration: 4000,
-          isClosable: true,
-        });
-        fileInput.current.form.reset();
+        // setLoading(false)
 
-        console.log(err)
-      } 
+        
+      })
+      .catch((err) => {
+        // if (formRef.current) {
+        //   formRef.current.reset(); // Use the stored form reference
+        //   }
+        //   fileInput.current = null;
+        //   fileInput.current.form.reset();
+        //   setLoading(false)
+          console.log(err)
+          toast({
+            title: "New Submission",
+            description: `${err.message} Please try Again`,
+            status: "error",
+            duration: 4000,
+            isClosable: true,
+          });
+          fileInput.current.form.reset();
+
+      }
       );
+
+
+
+      // dispatch(postArtSubmission(formData))
   };
 
   return (
     // 
     <DIV>
-      <form onSubmit={onSubmit} enctype="multipart/form-data">
+
+      
+
+      <form onSubmit={onSubmit} enctype="multipart/form-data" >
         <div style={{}}>
           <div style={{ width: "25%", margin: "auto" }}>
             <div style={{ marginBottom: "20px" }}>
@@ -101,11 +154,11 @@ export const FileUploadForm = () => {
                 type="file"
                 name="photos"
                 ref={fileInput}
-                // multiple
-                // onChange={onChange}
+              // multiple
+              // onChange={onChange}
               />
 
-             
+
             </div>
 
             <div style={{}}>
@@ -136,3 +189,4 @@ const DIV = styled.div`
     background-color: #3182ce;
   }
 `;
+

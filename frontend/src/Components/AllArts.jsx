@@ -2,22 +2,41 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CardComponent } from './CardComponent'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { getAllArtsData } from '../Redux/AllArtsReducer/action'
+import { HomePageLoader } from './HomePageLoader'
 
 export const AllArts = () => {
 
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
+
+  const dispatch = useDispatch();
+
+  
+
+  const { isLoading, isError, isData, data} = useSelector((store) => {
+    return {
+        isLoading: store.AllArtsReducer.isLoading,
+        isError: store.AllArtsReducer.isError, 
+        data: store.AllArtsReducer.data, 
+        isData: store.AllArtsReducer.isData, 
+        
+    }
+}, shallowEqual)
 
     useEffect(()=>{
 
       // axios.get(`http://localhost:8000/post/`)
-      axios.get(`https://artists-kg0g.onrender.com/post/`)
-        .then((res)=>{
-            console.log(res.data);
-            setData(res.data.data)
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+      // axios.get(`https://artists-kg0g.onrender.com/post/`)
+      //   .then((res)=>{
+      //       console.log(res.data);
+      //       setData(res.data.data)
+      //   })
+      //   .catch((err)=>{
+      //       console.log(err);
+      //   })
+
+      dispatch(getAllArtsData())
 
     }, [])
 
@@ -25,7 +44,7 @@ export const AllArts = () => {
   return (
     <DIV className="grid-container">
       <section id="photos">
-        {data.map((el, index) => (
+        { isLoading ? <HomePageLoader /> : data.map((el, index) => (
           <CardComponent key={index} {...el} />
         ))}
       </section>
