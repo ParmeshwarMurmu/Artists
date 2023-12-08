@@ -20,6 +20,7 @@ import { postUserComment, userCommentAction } from '../Redux/CommentReducer/acti
 import { UserComments } from '../Components/UserComments'
 import Emoji from '../Components/Emoji'
 import { MoreArts } from '../Components/MoreArts'
+import { HomePageLoader } from '../Components/HomePageLoader'
 // import { Emoji } from '../Components/Emoji'
 
 export const SinglePage = () => {
@@ -129,7 +130,7 @@ export const SinglePage = () => {
   useEffect(() => {
     dispatch(getSinglePageData(id))
 
-  }, [])
+  }, [id])
 
 
   // console.log(isData && singleData.createdAt.split("T")[0]);
@@ -143,6 +144,8 @@ export const SinglePage = () => {
     <DIV isHeightGreater={isHeightGreater} className={singlePageStyle.singlePageConatiner}>
 
       {/* main image container */}
+
+      {isLoading ? <HomePageLoader /> : isData && 
 
       <div style={{ width: "75%" }}>
 
@@ -288,12 +291,19 @@ export const SinglePage = () => {
 
 
       </div>
+}
 
 
       {/* More Arts */}
+      {
+        isLoading ? <HomePageLoader /> :
+      
       <div className={singlePageStyle.moreArts}>
        <MoreArts />
       </div>
+}
+
+  
 
     </DIV>
   )

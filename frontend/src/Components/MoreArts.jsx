@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getMoreArtsData } from '../Redux/MoreArtsReducer/action';
 import { Heading, Image, Stack } from '@chakra-ui/react';
 import styled from 'styled-components';
@@ -13,7 +13,7 @@ export const MoreArts = () => {
     const dispatch = useDispatch()
 
 
-    const { isLoading, isError, isData, moreArts , suggestedArts} = useSelector((store) => {
+    const { isLoading, isError, isData, moreArts, suggestedArts } = useSelector((store) => {
         return {
             isLoading: store.MoreArtsReducer.isLoading,
             isError: store.MoreArtsReducer.isError,
@@ -38,8 +38,8 @@ export const MoreArts = () => {
 
     return (
         <DIV >
-            <Heading as='h6' size='sm' style={{ color: "white" }}>
-                {isData && `MoreArts by ${moreArts[0].userName}`}
+            <Heading as='h6' size='sm' style={{ color: "white" }} mb={'15px'}>
+                {isData && `More by ${moreArts[0].userName}`}
             </Heading>
 
 
@@ -47,7 +47,10 @@ export const MoreArts = () => {
                 {
                     isData && moreArts.map((el) => (
                         <div className='arts' >
-                            <img className='artImg' src={el.image} alt='' />
+                            <Link to={`/singlePage/${el._id}`} >
+
+                                <img className='artImg' src={el.image} alt='' />
+                            </Link>
                         </div>
                     ))
                 }
@@ -55,7 +58,7 @@ export const MoreArts = () => {
 
             </div>
 
-            <Heading as='h6' size='sm' style={{ color: "white" }}>
+            <Heading as='h6' size='sm' style={{ color: "white" }} mb={'15px'}>
                 Suggested
             </Heading>
 
@@ -63,7 +66,9 @@ export const MoreArts = () => {
                 {
                     isData && suggestedArts.map((el) => (
                         <div className='arts' >
-                            <img className='artImg' src={el.image} alt='' />
+                            <Link to={`/singlePage/${el._id}`} >
+                                <img className='artImg' src={el.image} alt='' />
+                            </Link>
                         </div>
                     ))
                 }

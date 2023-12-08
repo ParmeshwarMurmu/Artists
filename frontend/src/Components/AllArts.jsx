@@ -12,39 +12,39 @@ export const AllArts = () => {
 
   const dispatch = useDispatch();
 
-  
 
-  const { isLoading, isError, isData, data} = useSelector((store) => {
+
+  const { isLoading, isError, isData, data } = useSelector((store) => {
     return {
-        isLoading: store.AllArtsReducer.isLoading,
-        isError: store.AllArtsReducer.isError, 
-        data: store.AllArtsReducer.data, 
-        isData: store.AllArtsReducer.isData, 
-        
+      isLoading: store.AllArtsReducer.isLoading,
+      isError: store.AllArtsReducer.isError,
+      data: store.AllArtsReducer.data,
+      isData: store.AllArtsReducer.isData,
+
     }
-}, shallowEqual)
+  }, shallowEqual)
 
-    useEffect(()=>{
+  useEffect(() => {
 
-      // axios.get(`http://localhost:8000/post/`)
-      // axios.get(`https://artists-kg0g.onrender.com/post/`)
-      //   .then((res)=>{
-      //       console.log(res.data);
-      //       setData(res.data.data)
-      //   })
-      //   .catch((err)=>{
-      //       console.log(err);
-      //   })
+    // axios.get(`http://localhost:8000/post/`)
+    // axios.get(`https://artists-kg0g.onrender.com/post/`)
+    //   .then((res)=>{
+    //       console.log(res.data);
+    //       setData(res.data.data)
+    //   })
+    //   .catch((err)=>{
+    //       console.log(err);
+    //   })
 
-      dispatch(getAllArtsData())
+    dispatch(getAllArtsData())
 
-    }, [])
+  }, [])
 
-    console.log("data", data)
+  console.log("data", data)
   return (
     <DIV className="grid-container">
       <section id="photos">
-        { isLoading ? <HomePageLoader /> : data.map((el, index) => (
+        {isLoading ? <HomePageLoader /> : data.map((el, index) => (
           <CardComponent key={index} {...el} />
         ))}
       </section>

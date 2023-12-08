@@ -186,7 +186,7 @@ postRoute.get('/suggestedArts', async(req, res)=>{
     
     try {
 
-        const suggestedArts = await PostModel.find().limit(15)
+        const suggestedArts = await PostModel.find().limit(25)
         res.status(200).send({"msg": "suggestedArts", "suggestedArts": suggestedArts})
     } catch (error) {
         res.status(400).send({"msg": "cannot get suggestedArts", "err": error})
