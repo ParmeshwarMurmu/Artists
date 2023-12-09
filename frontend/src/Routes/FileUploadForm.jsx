@@ -89,13 +89,13 @@ export const FileUploadForm = ({setLoading} ) => {
     const headers = {
       Authorization: `bearer ${token}`,
     };
-    // .post("http://localhost:8000/post/uploads", formData, {headers})
+    // .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
     
     // setLoading(true)
     axios
-      .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
-      .then((res) => {
-        console.log(res);
+    .post("http://localhost:8000/post/uploads", formData, {headers})
+    .then((res) => {
+      console.log(res);
         
         // if (formRef.current) {
         //   formRef.current.reset(); // Use the stored form reference

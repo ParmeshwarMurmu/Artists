@@ -24,6 +24,7 @@ import { HomePageLoader } from '../Components/HomePageLoader'
 // import { Emoji } from '../Components/Emoji'
 import { Link } from 'react-scroll'
 import AUdio from '../Assets/Like_Audio.mp3'
+import { patchUserLikes } from '../Redux/LikesReducer/action'
 
 export const SinglePage = () => {
 
@@ -57,6 +58,8 @@ export const SinglePage = () => {
     }
   }, shallowEqual)
 
+
+
   const { comment, commentLoading } = useSelector((store) => {
     return {
       comment: store.CommentReducer.comment,
@@ -64,10 +67,18 @@ export const SinglePage = () => {
     }
   }, shallowEqual)
 
+
   const { postComments } = useSelector((store) => {
     return {
       postComments: store.UserCommentReducer.postComments
 
+    }
+  }, shallowEqual)
+
+  const { totalLikes , isLiked} = useSelector((store) => {
+    return {
+      totalLikes: store.LikesReducer.totalLikes,
+      isLiked: store.LikesReducer.isLiked,
     }
   }, shallowEqual)
 
@@ -96,7 +107,7 @@ export const SinglePage = () => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `${singleData.title}.jpg`);
+      link.setAttribute('download', `${singleData.image}`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -144,15 +155,8 @@ export const SinglePage = () => {
     const audio = new Audio(AUdio);
     audio.playbackRate = 1.30;
     audio.play();
-    axios.patch(`http://localhost:8000/post/postComment/${id}`)
-        .then((res) => {
-            console.log(res.data);
-            
-        })
-        .catch((err) => {
-
-            console.log(err);
-        })
+    dispatch(patchUserLikes(id))
+    
   }
 
   useEffect(() => {
@@ -162,9 +166,10 @@ export const SinglePage = () => {
 
 
   // console.log(isData && singleData.createdAt.split("T")[0]);
-  console.log("Cmt", comment);
-  console.log("commentLoading", commentLoading);
+  // console.log("Cmt", comment);
+  // console.log("commentLoading", commentLoading);
   // console.log("singleData", singleData);
+  console.log("Likes", totalLikes);
 
 
 
@@ -267,8 +272,8 @@ export const SinglePage = () => {
           {/* Like comment and views */}
 
           <div className={singlePageStyle.commentAndViews}>
-            <Button variant={'none'} onClick={likeHandler}><AiFillLike color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{like}</span></Button>
-            <Button variant={'none'}><FaCommentAlt color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{postComments.length}</span></Button>
+            <Button variant={'none'} onClick={likeHandler}><AiFillLike color={isLiked ? 'rgb(17, 222, 123)' : 'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{totalLikes || singleData.likes}</span></Button>
+            <Button variant={'none'}><FaCommentAlt color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{postComments.length > 0 && postComments.length}</span></Button>
             <Button variant={'none'}><FaEye color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>100k</span></Button>
           </div>
 

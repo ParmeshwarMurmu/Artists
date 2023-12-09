@@ -53,8 +53,9 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
         // console.log("title", title);
 
         req.body.image = fileUrl;
-        // console.log("reqbody", req.body);
-        const we = PostModel({...req.body, title})
+        // console.log("reqbody", req.body); likes: Number,
+    // isLiked: Boolean,
+        const we = PostModel({...req.body, title, likes:0, isLiked: false})
         await we.save();
 
         res.status(200).send({ "msg": "success" })
@@ -161,6 +162,9 @@ postRoute.get('/postComment/:_id', async(req, res)=>{
     }
 })
 
+
+
+
 // patch for likes posts
 postRoute.patch('/postLike/:_id', async(req, res)=>{
     // console.log(req.body);
@@ -168,8 +172,25 @@ postRoute.patch('/postLike/:_id', async(req, res)=>{
     console.log(_id);
 
     try {
-        const postComment = await CommentModel.find({post:_id}).populate('user').sort({_id: -1})
-        res.status(200).send({"msg": "All Post Comments", "postComment": postComment})
+        const singlePost = await PostModel.findOne({_id}).populate('user')
+        let isLiked = singlePost.isLiked;
+        if(isLiked){
+            let totalLikes = singlePost.likes - 1;
+            singlePost.isLiked = false;
+            singlePost.likes = totalLikes;
+        }
+        else{
+            let totalLikes = singlePost.likes + 1;
+            singlePost.isLiked = true;
+            singlePost.likes = totalLikes;
+        }
+        // let totalLikes = singlePost.likes + 1;
+        // console.log(totalLikes, "totallikes");
+        // singlePost.likes = totalLikes;
+        // singlePost.isLiked = true
+        const likes = await PostModel.findByIdAndUpdate({_id}, {...singlePost})
+        const totalUserLikes= await PostModel.findOne({_id}).populate('user')
+        res.status(200).send({"msg": "likes", "totalUserLikes": totalUserLikes})
     } catch (error) {
         res.status(400).send({"msg": "cannot get Post Comment", "err": error})
         

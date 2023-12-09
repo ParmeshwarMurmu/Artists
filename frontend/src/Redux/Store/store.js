@@ -9,6 +9,7 @@ import { reducer as MoreArtsReducer } from "../MoreArtsReducer/reducer";
 import { reducer as SuggestedArtsReducer } from "../SuggestedArtsReducer/reducer";
 import { reducer as ArtSubmissionReducer } from "../ArtSubmissionReducer/reducer";
 import { reducer as AllArtsReducer } from "../AllArtsReducer/reducer";
+import { reducer as LikesReducer } from "../LikesReducer/reducer";
 
 const rootReducer = combineReducers({
    UserRegistrationReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
    MoreArtsReducer,
    SuggestedArtsReducer,
    ArtSubmissionReducer,
-   AllArtsReducer
+   AllArtsReducer,
+   LikesReducer
 })
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))

@@ -32,7 +32,9 @@ export const UserComments = () => {
             All Comments
             </Heading> */}
 
-            <Text id='userComment'>All Comments</Text>
+            {
+                postComments.length > 0 && <Text id='userComment'>All Comments</Text>
+            }
 
 
             {
