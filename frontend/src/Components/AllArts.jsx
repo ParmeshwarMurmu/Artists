@@ -24,6 +24,14 @@ export const AllArts = () => {
     }
   }, shallowEqual)
 
+  const { singlePageIsLoading} = useSelector((store) => {
+    return {
+      singlePageIsLoading: store.singlePageReducer.singlePageIsLoading,
+    }
+  }, shallowEqual)
+
+  
+
   useEffect(() => {
 
     // axios.get(`http://localhost:8000/post/`)
@@ -42,7 +50,7 @@ export const AllArts = () => {
 
   console.log("data", data)
   return (
-    <DIV className="grid-container">
+    <DIV className="grid-container" isLoading={isLoading}>
       <section id="photos">
         {isLoading ? <HomePageLoader /> : data.map((el, index) => (
           <CardComponent key={index} {...el} />
@@ -61,6 +69,7 @@ background-color: black;
 
 .grid-container{
   padding-top: 20px;
+  height: ${props => (props.isLoading  ? "600px" : "")};
 }
 
   #photos {

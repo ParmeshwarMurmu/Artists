@@ -1,0 +1,46 @@
+
+.footerContainer{
+    /* border: 2px solid red; */
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    /* background-color: black; */
+    margin-top: 20px;
+}
+
+.footerContainer > div{
+    /* border: 2px solid rgb(8, 212, 25); */
+    width: 15%;
+}
+
+.icons{
+    display: flex;
+    /* margin: 10px 5px 0px 5px */
+    justify-content: space-around;
+}
+
+/* .icons:hover{
+ color: rgb(80, 239, 112);
+} */
+
+.facebook:hover, .instagram:hover, .twitter:hover{
+    color: rgb(80, 239, 112);
+    cursor: pointer;
+}
+
+
+.footerImg{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.heading{
+    margin-bottom: 20px
+}
+.about:hover{
+    color: rgb(80, 239, 112);
+    cursor: pointer;
+}

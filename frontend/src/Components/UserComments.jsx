@@ -28,9 +28,7 @@ export const UserComments = () => {
 
     return (
         <div className={style.userCommentsContainer} >
-            {/* <Heading as='h2' size='sm'>
-            All Comments
-            </Heading> */}
+            
 
             {
                 postComments.length > 0 && <Text id='userComment'>All Comments</Text>

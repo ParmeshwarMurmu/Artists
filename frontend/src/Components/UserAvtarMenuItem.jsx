@@ -9,6 +9,7 @@ import { SlDocs } from "react-icons/sl";
 import styled from 'styled-components'
 import { SlLogout } from "react-icons/sl";
 import { FaQuestionCircle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 export const UserAvtarMenuItem = () => {
 
@@ -38,9 +39,9 @@ export const UserAvtarMenuItem = () => {
             </MenuButton>
             <MenuList>
                 <MenuGroup title='Profile'>
-                    <MenuItem><span style={{marginRight: "5px"}}><FaUserEdit /></span> {`${userData.firstName} ${userData.lastName}`}</MenuItem>
-                    <MenuItem><span style={{marginRight: "5px"}}><FaFileImage /></span>Your Posts</MenuItem>
-                    <MenuItem><span style={{marginRight: "5px"}}><FaFileImage /></span>Your Favourites</MenuItem>
+                    <Link to={'/userProfile'}><MenuItem><span style={{marginRight: "5px"}}><FaUserEdit /></span> {`${userData.firstName} ${userData.lastName}`}</MenuItem></Link>
+                    <Link to={'/userPosts'}><MenuItem><span style={{marginRight: "5px"}}><FaFileImage /></span>Your Posts</MenuItem></Link>
+                    <Link to={'/userFavourites'}><MenuItem><span style={{marginRight: "5px"}}><FaFileImage /></span>Your Favourites</MenuItem></Link>
                     <MenuItem><span style={{marginRight: "5px"}}><MdOutlinePayment /></span>Payments</MenuItem>
                    
                 </MenuGroup>
