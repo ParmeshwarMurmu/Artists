@@ -1,3 +1,4 @@
+import axios from "axios"
 
 
 export const USER_POST_LOADING = 'USER_POST_LOADING'
@@ -16,6 +17,24 @@ export const userPostErrorAction = ()=>{
     return {type: USER_POST_ERROR}
 }
 
-export const getUserPostData = ()=>()=>{
-    
+const token = localStorage.getItem('Artist-Token')
+const userId = localStorage.getItem('Artist-UserId')
+
+const headers = {
+    Authorization: `bearer ${token}`,
+};
+
+
+export const getUserPostData = ()=>(dispatch)=>{
+    dispatch(userPostLoadingAction())
+    axios.get(`http://localhost:8000/post/userPost`)
+    .then((res)=>{
+        console.log(res.data);
+        dispatch(userPostLoadingAction(res.data.userPost))
+    })
+    .catch((err)=>{
+        console.log(err);
+        dispatch(userPostErrorAction())
+    })
+
 }

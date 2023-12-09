@@ -1,41 +1,42 @@
-import { ART_SUBMISSION_ERROR, ART_SUBMISSION_LOADING, ART_SUBMISSION_SUCCESS, USER_COMMENT, USER_COMMENT_RESET } from "./action";
+import { USER_POST_ERROR, USER_POST_LOADING, USER_POST_SUCCESS } from "./action"
 
 const initialState = {
+    userPost: [],
     isLoading: false,
     isError: false,
-    completed: false
+    isData: false
 }
 
-export const reducer = (state = initialState, {type, payload})=>{
+export const reducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
-        case ART_SUBMISSION_LOADING:
+        case USER_POST_LOADING:
             return {
                 ...state,
                 isLoading: true
             }
 
-            case ART_SUBMISSION_SUCCESS:
+        case USER_POST_SUCCESS:
             return {
-               ...state,
-               isLoading: false,
-               completed: true
+                ...state,
+                isLoading: false,
+                isData: true,
+                userPost: payload
 
-               
+
             }
 
-            case ART_SUBMISSION_ERROR:
+        case USER_POST_ERROR:
             return {
-               ...state,
-               isLoading: false,
-               isError: true
+                ...state,
+                isError: true
 
-               
+
             }
         default:
             return {
                 ...state,
-        
+
             }
     }
 
