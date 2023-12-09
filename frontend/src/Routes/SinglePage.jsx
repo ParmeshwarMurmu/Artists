@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { store } from '../Redux/Store/store'
 import { getSinglePageData } from '../Redux/SinglePageReducer/action'
 import singlePageStyle from '../CSS/SinglePage.module.css'
@@ -22,6 +22,7 @@ import Emoji from '../Components/Emoji'
 import { MoreArts } from '../Components/MoreArts'
 import { HomePageLoader } from '../Components/HomePageLoader'
 // import { Emoji } from '../Components/Emoji'
+import { Link } from 'react-scroll'
 
 export const SinglePage = () => {
 
@@ -170,9 +171,12 @@ export const SinglePage = () => {
               <Button  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
             </Tooltip>
 
+               <Link to='userComment' smooth={true} duration={500} offset={-50} >
             <Tooltip hasArrow label='Comment' bg='gray.300' color='black'>
+
               <Button  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegCommentAlt /></span> Comment</Button>
             </Tooltip>
+               </Link>
           </div>
 
 
@@ -251,7 +255,7 @@ export const SinglePage = () => {
 
 
             {/* comment logo */}
-            <div style={{marginRight: "10px"}}>
+            <div style={{marginRight: "10px"}} id='userComment'>
               <FaUserCircle fontSize={'50px'} />
             </div>
 

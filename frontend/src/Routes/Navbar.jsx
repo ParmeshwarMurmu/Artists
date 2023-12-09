@@ -16,9 +16,9 @@ import { appContent } from '../ContextApi/ContextApi'
 
 export const Navbar = () => {
 
-  const {isAuth, setLoginOpen} = useContext(appContent)
+  const { isAuth, setLoginOpen } = useContext(appContent)
 
-  
+
 
   return (
     <div className={style.navbarContainer}>
@@ -88,21 +88,26 @@ export const Navbar = () => {
 
 
 
-        <div>
-          <JoinDrawer />
-        </div>
+        {
+          isAuth || <div className='joinDrawer'>
+            <JoinDrawer />
+          </div>
+        }
 
-        <div className={style.spanSection}>
+        {isAuth || <div className={style.spanSection}>
           <span>|</span>
         </div>
+        }
 
-        <div>
+        {isAuth || <div className='loginDrawer'>
           <LoginDrawer />
         </div>
+        }
 
-        <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
+        {isAuth || <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
           <span>|</span>
         </div>
+        }
 
         <div className={style.submitBtnContainer}>
           <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black'>
@@ -119,11 +124,11 @@ export const Navbar = () => {
         {/* <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
           <span>|</span>
         </div> */}
-       
 
-       {
-        isAuth &&  <UserAvtarMenuItem />
-       }
+
+        {
+          isAuth && <UserAvtarMenuItem />
+        }
 
 
         {/* Hamberg */}
