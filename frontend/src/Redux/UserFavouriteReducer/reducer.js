@@ -1,7 +1,8 @@
-import { USER_POST_ERROR, USER_POST_LOADING, USER_POST_SUCCESS } from "./action"
+import { USER_FAVOURITE_ERROR, USER_FAVOURITE_LOADING, USER_FAVOURITE_SUCCESS } from "./action"
+
 
 const initialState = {
-    userPost: [],
+    userFavourite: [],
     isLoading: false,
     isError: false,
     isData: false
@@ -10,23 +11,23 @@ const initialState = {
 export const reducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
-        case USER_POST_LOADING:
+        case USER_FAVOURITE_LOADING:
             return {
                 ...state,
                 isLoading: true
             }
 
-        case USER_POST_SUCCESS:
+        case USER_FAVOURITE_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 isData: true,
-                userPost: payload
+                userFavourite: payload
 
 
             }
 
-        case USER_POST_ERROR:
+        case USER_FAVOURITE_ERROR:
             return {
                 ...state,
                 isError: true
