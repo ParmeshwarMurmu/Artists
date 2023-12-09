@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getPostComment } from '../Redux/UserCommentReducer/action';
-import { Avatar, Text, Wrap, WrapItem } from '@chakra-ui/react';
+import { Avatar, Heading, Text, Wrap, WrapItem } from '@chakra-ui/react';
 import style from '../CSS/SinglePage.module.css'
+import { Link } from 'react-scroll';
 
 export const UserComments = () => {
 
@@ -27,18 +28,25 @@ export const UserComments = () => {
 
     return (
         <div className={style.userCommentsContainer} >
+            {/* <Heading as='h2' size='sm'>
+            All Comments
+            </Heading> */}
+
+            <Text id='userComment'>All Comments</Text>
+
+
             {
                 postComments.map((el) => (
                     <div key={el._id} className={style.userContent}>
                         <Wrap>
                             <WrapItem>
-                                <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+                                <Avatar name={`${el.user.firstName}`} src={`${el.user.image}`} />
                             </WrapItem>
                         </Wrap>
 
                         <div className={style.userComments}>
-                          <Text>{`${el.user.firstName} ${el.user.lastName}`  }</Text>
-                          <Text>{`${el.comment}`  }</Text>
+                            <Text fontWeight={'bold'}>{`${el.user.firstName} ${el.user.lastName}`}</Text>
+                            <Text color={'grey'}>{`${el.comment}`}</Text>
                         </div>
 
 

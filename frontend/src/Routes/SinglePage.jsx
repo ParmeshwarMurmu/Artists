@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import {  useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { store } from '../Redux/Store/store'
 import { getSinglePageData } from '../Redux/SinglePageReducer/action'
 import singlePageStyle from '../CSS/SinglePage.module.css'
@@ -23,15 +23,17 @@ import { MoreArts } from '../Components/MoreArts'
 import { HomePageLoader } from '../Components/HomePageLoader'
 // import { Emoji } from '../Components/Emoji'
 import { Link } from 'react-scroll'
+import AUdio from '../Assets/Like_Audio.mp3'
 
 export const SinglePage = () => {
 
   const [isHeightGreater, setIsHeightGreater] = useState(false);
-  const {isAuth} = useContext(appContent)
+  const { isAuth } = useContext(appContent)
   const { id } = useParams()
   console.log("singlePge ID", id);
   const dispatch = useDispatch()
   const toast = useToast()
+  const [like, setLike] = useState(0)
 
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [Comment, setComment] = useState('');
@@ -55,9 +57,17 @@ export const SinglePage = () => {
     }
   }, shallowEqual)
 
-  const { comment } = useSelector((store) => {
+  const { comment, commentLoading } = useSelector((store) => {
     return {
       comment: store.CommentReducer.comment,
+      commentLoading: store.CommentReducer.commentLoading,
+    }
+  }, shallowEqual)
+
+  const { postComments } = useSelector((store) => {
+    return {
+      postComments: store.UserCommentReducer.postComments
+
     }
   }, shallowEqual)
 
@@ -123,9 +133,26 @@ export const SinglePage = () => {
   }
 
   //comment handler
-  const commentSubmitHandler = ()=>{
+  const commentSubmitHandler = () => {
     dispatch(postUserComment(id, comment))
 
+  }
+
+  const likeHandler = () => {
+    setLike((prev) => prev + 1)
+
+    const audio = new Audio(AUdio);
+    audio.playbackRate = 1.30;
+    audio.play();
+    axios.patch(`http://localhost:8000/post/postComment/${id}`)
+        .then((res) => {
+            console.log(res.data);
+            
+        })
+        .catch((err) => {
+
+            console.log(err);
+        })
   }
 
   useEffect(() => {
@@ -135,7 +162,9 @@ export const SinglePage = () => {
 
 
   // console.log(isData && singleData.createdAt.split("T")[0]);
-  // console.log("comment", comment);
+  console.log("Cmt", comment);
+  console.log("commentLoading", commentLoading);
+  // console.log("singleData", singleData);
 
 
 
@@ -146,176 +175,183 @@ export const SinglePage = () => {
 
       {/* main image container */}
 
-      {isLoading ? <HomePageLoader /> : isData && 
+      {isLoading ? <HomePageLoader /> : isData &&
 
-      <div style={{ width: "75%" }}>
+        <div style={{ width: "75%" }}>
 
-        <div className={singlePageStyle.singlePageImage}>
-
-
-          <div className={'singleImage'}>
-
-            <img src={singleData.image} alt="" onLoad={handleImageLoad} />
-          </div>
-
-        </div>
+          <div className={singlePageStyle.singlePageImage}>
 
 
+            <div className={'singleImage'}>
 
-        <div className={singlePageStyle.favouriteAndDownloadContainer}>
-
-          {/* Favourite and comment */}
-          <div>
-
-            <Tooltip hasArrow label='Add to favourite' bg='gray.300' color='black'>
-              <Button  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
-            </Tooltip>
-
-               <Link to='userComment' smooth={true} duration={500} offset={-50} >
-            <Tooltip hasArrow label='Comment' bg='gray.300' color='black'>
-
-              <Button  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegCommentAlt /></span> Comment</Button>
-            </Tooltip>
-               </Link>
-          </div>
-
-
-          {/* download and copy link */}
-          <div>
-            <Tooltip hasArrow label='Download' bg='gray.300' color='black'>
-              <Button className={singlePageStyle.favComBtn}  variant={'none'} onClick={downloadImageHandler}><IoMdDownload /></Button>
-            </Tooltip>
-
-            <Tooltip hasArrow label='Copy Link' bg='gray.300' color='black'>
-              <Button className={singlePageStyle.favComBtn}  variant={'none'} onClick={copyLinkHandler}><FaRegCopy /></Button>
-            </Tooltip>
+              <img src={singleData.image} alt="" onLoad={handleImageLoad} />
+            </div>
 
           </div>
 
 
-        </div>
 
+          <div className={singlePageStyle.favouriteAndDownloadContainer}>
 
+            {/* Favourite and comment */}
+            <div>
 
-        <div className={singlePageStyle.userPostTitleContainer}>
+              <Tooltip hasArrow label='Add to favourite' bg='gray.300' color='black'>
+                <Button className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
+              </Tooltip>
 
+              <Link to='userComment' smooth={true} duration={500} offset={-50} >
+                <Tooltip hasArrow label='Comment' bg='gray.300' color='black'>
 
-          {/* user image and post title section */}
-          <div className={singlePageStyle.userAndTitle}>
-
-            <div style={{}}>
-
-              <Wrap>
-                <WrapItem>
-                  <Avatar size='lg' borderRadius={'10px'} name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
-                </WrapItem>
-              </Wrap>
+                  <Button className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegCommentAlt /></span> Comment</Button>
+                </Tooltip>
+              </Link>
             </div>
 
 
-            {/* post Title */}
-            <div className={singlePageStyle.postTitle} style={{ marginLeft: "10px" }}>
-              <Heading as='h1' size='lg'>
-                {isData && singleData.title}
-              </Heading>
+            {/* download and copy link */}
+            <div>
+              <Tooltip hasArrow label='Download' bg='gray.300' color='black'>
+                <Button className={singlePageStyle.favComBtn} variant={'none'} onClick={downloadImageHandler}><IoMdDownload /></Button>
+              </Tooltip>
 
-              <div className={singlePageStyle.userCredit}>
-                <Text>by <span style={{ fontSize: "20px", fontWeight: "bold" }}>{isData && singleData.user.firstName}</span></Text>
+              <Tooltip hasArrow label='Copy Link' bg='gray.300' color='black'>
+                <Button className={singlePageStyle.favComBtn} variant={'none'} onClick={copyLinkHandler}><FaRegCopy /></Button>
+              </Tooltip>
+
+            </div>
+
+
+          </div>
+
+
+
+          <div className={singlePageStyle.userPostTitleContainer}>
+
+
+            {/* user image and post title section */}
+            <div className={singlePageStyle.userAndTitle}>
+
+              <div style={{}}>
+
+                <Wrap>
+                  <WrapItem>
+                    <Avatar size='lg' borderRadius={'50px'} name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
+                  </WrapItem>
+                </Wrap>
+              </div>
+
+
+              {/* post Title */}
+              <div className={singlePageStyle.postTitle} style={{ marginLeft: "10px" }}>
+                <Heading as='h1' size='lg'>
+                  {isData && singleData.title}
+                </Heading>
+
+                <div className={singlePageStyle.userCredit}>
+                  <Text>by <span style={{ fontSize: "20px", fontWeight: "bold" }}>{isData && singleData.user.firstName}</span></Text>
+
+                </div>
+              </div>
+
+            </div>
+
+
+            {/* published at */}
+            <div>
+              <Text color={'white'}>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
+            </div>
+          </div>
+
+
+          {/* Like comment and views */}
+
+          <div className={singlePageStyle.commentAndViews}>
+            <Button variant={'none'} onClick={likeHandler}><AiFillLike color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{like}</span></Button>
+            <Button variant={'none'}><FaCommentAlt color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{postComments.length}</span></Button>
+            <Button variant={'none'}><FaEye color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>100k</span></Button>
+          </div>
+
+
+
+
+          {/* Comment Box Section */}
+
+          <div className={singlePageStyle.commentContainer}>
+            {/* <Text>Comment 17</Text> */}
+
+            <div className={singlePageStyle.logoCommentArea}>
+
+
+              {/* comment logo */}
+              <div style={{ marginRight: "10px" }}>
+                <FaUserCircle fontSize={'50px'} />
+              </div>
+
+
+              {/* comment text area */}
+
+              <div style={{ width: "100%" }}>
+                <Textarea className={singlePageStyle.textArea} isDisabled={isAuth === false} placeholder={isAuth === true ? "Write some thoughts about his post" : "Please Login To Comment"}
+                  onChange={(e) => { dispatch(userCommentAction(e.target.value)) }}
+                  value={comment}
+
+
+                />
+
+
 
               </div>
+
+
+
+
             </div>
 
+
+
+
+
+            <div style={{ display: "flex", flexDirection: "row-reverse", marginTop: "10px" }}>
+              <Button isDisabled={isAuth === false || comment.length === 0} variant={'none'} className={singlePageStyle.commentBtn} onClick={commentSubmitHandler}>Comment</Button>
+            </div>
           </div>
 
 
-          {/* published at */}
+          {/* user Cmmnts */}
           <div>
-            <Text color={'white'}>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
-          </div>
-        </div>
-
-
-        {/* Like comment and views */}
-
-        <div>
-          <Button variant={'none'}><AiFillLike color={'grey'} /> <span style={{color: "grey", marginLeft: "5px"}}>34</span></Button>
-          <Button variant={'none'}><FaCommentAlt color={'grey'}/> <span style={{color: "grey", marginLeft: "5px"}}>17</span></Button>
-          <Button variant={'none'}><FaEye color={'grey'}/> <span style={{color: "grey", marginLeft: "5px"}}>100k</span></Button>
-        </div>
-
-
-
-
-        {/* Comment Box Section */}
-
-        <div  className={singlePageStyle.commentContainer}>
-          <Text>Comment 17</Text>
-
-          <div className={singlePageStyle.logoCommentArea}>
-
-
-            {/* comment logo */}
-            <div style={{marginRight: "10px"}} id='userComment'>
-              <FaUserCircle fontSize={'50px'} />
-            </div>
-
-
-            {/* comment text area */}
-
-            <div style={{width: "100%"}}>
-              <Textarea className={singlePageStyle.textArea} isDisabled={isAuth===false} placeholder={isAuth === true ? "Write some thoughts about his post" : "Please Login To Comment"}
-              onChange={(e)=>{dispatch(userCommentAction(e.target.value))}}
-              value={comment}
-              // value={comment + (selectedEmoji ? selectedEmoji.native : '')}
-              />
-              {/* <Emoji   /> */}
-              {/* <Emoji onEmojiSelect={handleEmojiSelect} /> */}
-
-              
-            </div>
-
-
-           
-
+            {
+              commentLoading ? <CommentLoaderContainer>
+                <CommentLoader />
+              </CommentLoaderContainer> : <UserComments />
+            }
           </div>
 
-           
 
 
 
-          <div style={{display: "flex", flexDirection: "row-reverse", marginTop: "10px"}}>
-          <Button variant={'none'} className={singlePageStyle.commentBtn} onClick={commentSubmitHandler}>Comment</Button>
-          </div>
         </div>
-
-
-        {/* user Cmmnts */}
-        <UserComments />
-
-
-
-      </div>
-}
+      }
 
 
       {/* More Arts */}
       {
         isLoading ? <HomePageLoader /> :
-      
-      <div className={singlePageStyle.moreArts}>
-       <MoreArts />
-      </div>
-}
 
-  
+          <div className={singlePageStyle.moreArts}>
+            <MoreArts />
+          </div>
+      }
+
+
 
     </DIV>
   )
 }
 
 const DIV = styled.div`
-/* background-color: black;
-color: white; */
+background-color: black;
+color: white;
 
 .singleImage{
   display: flex;
@@ -376,3 +412,33 @@ const StyledMainImage = styled.div`
     object-fit: cover; /* or object-fit: contain; depending on your preference */
   }
 `
+
+
+
+
+const CommentLoaderContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Darkened background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 1000; Higher z-index to appear on top of other elements */
+`;
+
+const CommentLoader = styled.div`
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;

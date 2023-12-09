@@ -1,10 +1,15 @@
 import axios from "axios";
 
 export const USER_COMMENT = "USER_COMMENT";
+export const USER_COMMENT_LOADING = "USER_COMMENT_LOADING";
 export const USER_COMMENT_RESET = "USER_COMMENT_RESET";
 
 const token = localStorage.getItem('Artist-Token')
 const userId = localStorage.getItem('Artist-UserId')
+
+export const userCommentLoadingAction = () => {
+    return { type: USER_COMMENT_LOADING}
+}
 
 export const userCommentAction = (payload) => {
     return { type: USER_COMMENT, payload }
@@ -20,7 +25,9 @@ const headers = {
 
 
 export const postUserComment = (id, comment) => (dispatch) => {
-    axios.post(`https://artists-kg0g.onrender.com/post/comment/${id}`, { comment }, { headers })
+    // axios.post(`https://artists-kg0g.onrender.com/post/comment/${id}`, { comment }, { headers })
+    dispatch(userCommentLoadingAction())
+    axios.post(`http://localhost:8000/post/comment/${id}`, { comment }, { headers })
         .then((res) => {
             console.log(res.data);
             dispatch(userCommentResetAction())

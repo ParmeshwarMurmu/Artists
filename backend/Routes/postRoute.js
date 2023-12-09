@@ -128,6 +128,7 @@ postRoute.get('/singlePost/:_id', async(req, res)=>{
     }
 })
 
+// individual post comments
 postRoute.post('/comment/:id',auth, async(req, res)=>{
     console.log(req.body);
     const {id} = req.params;
@@ -144,13 +145,15 @@ postRoute.post('/comment/:id',auth, async(req, res)=>{
 })
 
 
+// Comment of Posts
+
 postRoute.get('/postComment/:_id', async(req, res)=>{
     // console.log(req.body);
     const {_id} = req.params;
     console.log(_id);
 
     try {
-        const postComment = await CommentModel.find({post:_id}).populate('user')
+        const postComment = await CommentModel.find({post:_id}).populate('user').sort({_id: -1})
         res.status(200).send({"msg": "All Post Comments", "postComment": postComment})
     } catch (error) {
         res.status(400).send({"msg": "cannot get Post Comment", "err": error})
@@ -158,6 +161,20 @@ postRoute.get('/postComment/:_id', async(req, res)=>{
     }
 })
 
+// patch for likes posts
+postRoute.patch('/postLike/:_id', async(req, res)=>{
+    // console.log(req.body);
+    const {_id} = req.params;
+    console.log(_id);
+
+    try {
+        const postComment = await CommentModel.find({post:_id}).populate('user').sort({_id: -1})
+        res.status(200).send({"msg": "All Post Comments", "postComment": postComment})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get Post Comment", "err": error})
+        
+    }
+})
 
 
 postRoute.get('/moreArts/:_id', async(req, res)=>{

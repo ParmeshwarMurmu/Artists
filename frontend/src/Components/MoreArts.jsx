@@ -9,7 +9,7 @@ import { getSggestedArtsData } from '../Redux/SuggestedArtsReducer/action';
 export const MoreArts = () => {
 
     const { id } = useParams();
-    console.log("mortArts", id);
+    // console.log("mortArts", id);
     const dispatch = useDispatch()
 
 
@@ -32,7 +32,7 @@ export const MoreArts = () => {
 
     // console.log("moreArts", moreArts);
     // console.log("moreArts", moreArts);
-    console.log("sArts", suggestedArts);
+    // console.log("sArts", suggestedArts);
 
 
 

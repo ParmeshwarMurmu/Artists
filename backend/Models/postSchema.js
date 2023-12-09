@@ -11,7 +11,10 @@ const postSchema = mongoose.Schema({
         ref: 'user',
         required: true
     },
-    userName: String
+    title: String,
+    likes: Number,
+    isLiked: Boolean,
+    userName: String,
 
 }, {
     versionKey: false,
