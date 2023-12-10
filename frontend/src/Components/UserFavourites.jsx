@@ -6,6 +6,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiLike } from "react-icons/bi";
 import { BiChat } from "react-icons/bi";
 import styled from 'styled-components';
+import { HomePageLoader } from './HomePageLoader';
+import { Link } from 'react-router-dom';
 
 
 export const UserFavourites = () => {
@@ -32,69 +34,72 @@ export const UserFavourites = () => {
 
 
   return (
-    <DIV style={{backgroundColor: "black", color: "white"}}>
+    <DIV style={{ backgroundColor: "black", color: "white" }}>
       {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
-      <SimpleGrid spacing={8} templateColumns='repeat(5, minmax(250px, 1fr))' >
+      {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
         {
-          userFavourite.map((el)=>(
-            <Card key={el._id} style={{backgroundColor: "black"}}>
-          <CardHeader style={{ color: "white"}}>
-            <Flex spacing='4'>
-              <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                <Avatar name={`${el.post.user.firstName} ${el.post.user.lastName}`} src={`${el.post.user.image}`} />
+          userFavourite.map((el) => (
+            <Card key={el._id} style={{ backgroundColor: "black" }}>
+              <CardHeader style={{ color: "white" }}>
+                <Flex spacing='4'>
+                  <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                    <Avatar name={`${el.post.user.firstName} ${el.post.user.lastName}`} src={`${el.post.user.image}`} />
 
-                <Box>
-                  <Heading size='sm'>{`${el.post.user.firstName} ${el.post.user.lastName}`}</Heading>
-                  <Text>Creator</Text>
-                </Box>
-              </Flex>
-              <IconButton
-                variant='none'
-                colorScheme='gray'
-                aria-label='See menu'
+                    <Box>
+                      <Heading size='sm'>{`${el.post.user.firstName} ${el.post.user.lastName}`}</Heading>
+                      <Text>Creator</Text>
+                    </Box>
+                  </Flex>
+                  <IconButton
+                    variant='none'
+                    colorScheme='gray'
+                    aria-label='See menu'
 
-                icon={<BsThreeDotsVertical color='white' />}
-              />
-            </Flex>
-          </CardHeader>
-          <CardBody>
-            <Text color='white'>
-            {`${el.post.title}`}
-            </Text>
-          </CardBody>
-          
-          <div style={{display: "flex", justifyContent: "center"}}>
-          <Image
-            // objectFit='cover'
-            // width={'20%'}
-            height={'180px'}
-            src={`${el.post.image}`}
-            alt='Chakra UI'
-          />
-          </div>
+                    icon={<BsThreeDotsVertical color='white' />}
+                  />
+                </Flex>
+              </CardHeader>
+              <CardBody>
+                <Text color='white'>
+                  {`${el.post.title}`}
+                </Text>
+              </CardBody>
 
-          <CardFooter
-          display={'flex'}
-            // justify='space-between'
-            // flexWrap='wrap'
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Link to={`/singlePage/${el.post._id}`}><Image
+                className='image'
+                  // objectFit='cover'
+                  // width={'20%'}
+                  height={'180px'}
+                  src={`${el.post.image}`}
+                  alt='Chakra UI'
+                />
+                </Link>
+              </div>
 
-           
-          >
-            <Button color='white' flex='1' variant={'none'} leftIcon={<BiLike  />}>
-              {`${el.post.likes}`}
-            </Button>
-            {/* leftIcon={<BiShare />} */}
-            <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat  />} >
-              
-            </Button>
-            {/* <Button flex='1' variant='ghost' >
+              <CardFooter
+                display={'flex'}
+              // justify='space-between'
+              // flexWrap='wrap'
+
+
+              >
+                <Button color='white' flex='1' variant={'none'} leftIcon={<BiLike />}>
+                  {`${el.post.likes}`}
+                </Button>
+                {/* leftIcon={<BiShare />} */}
+                <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat />} >
+
+                </Button>
+                {/* <Button flex='1' variant='ghost' >
               Share
             </Button> */}
-          </CardFooter>
-        </Card>
+              </CardFooter>
+            </Card>
           ))
         }
       </SimpleGrid>
+      }
     </DIV>
   )
 
@@ -102,29 +107,29 @@ export const UserFavourites = () => {
 }
 
 const DIV = styled.div`
-/* display: grid;
-grid-template-columns: repeat(4, 1fr); */
+
+padding: 30px;
+
+
+.simpleGrid{
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.image{
+  position: relative;
+  transition: all .3s;
+  /* box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px; */
+  box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.image:hover{
+  cursor: pointer;
+  transform: scale(0.9);
+}
   
-  .photos {
-    /* Prevent vertical gaps */
-    line-height: 0;
-
-    -webkit-column-count: 5;
-    -webkit-column-gap: 5px;
-    -moz-column-count: 5;
-    -moz-column-gap: 5px;
-    column-count: 5;
-    column-gap: 10px;
-  }
-
-  .photos img {
-    /* Just in case there are inline attributes */
-    width: 100% !important;
-    height: auto !important;
-  }
-
-
-
+  
 
 
 @media (max-width: 1200px) {
@@ -134,6 +139,8 @@ grid-template-columns: repeat(4, 1fr); */
   column-count:         4;
   }
 }
+
+
   @media (max-width: 1000px) {
     .photos {
       -moz-column-count: 3;
@@ -141,6 +148,8 @@ grid-template-columns: repeat(4, 1fr); */
       column-count: 3;
     }
   }
+
+
   @media (max-width: 800px) {
     .photos {
       -moz-column-count: 2;
@@ -148,6 +157,8 @@ grid-template-columns: repeat(4, 1fr); */
       column-count: 2;
     }
   }
+
+
   @media (max-width: 400px) {
     .photos {
       -moz-column-count: 1;
@@ -156,77 +167,6 @@ grid-template-columns: repeat(4, 1fr); */
     }
   }
 
-  .bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-    opacity: 0; /* Initially not visible */
-    transition: opacity 0.3s ease; /* Add transition for smooth effect */
-    display: flex;
-  }
-
-
-.container {
-  position: relative;
-  text-align: center;
-  color: white;
-  margin-bottom: 8px;
-
-
-}
-
-
-  img:hover {
-    /* filter: blur(2px); Blur the image on hover */
-    cursor: pointer;
-  }
-
-  .container:hover .bottom-left-user,
-  .container:hover .bottom-left,
-  .container:hover .star,
-  .container:hover .bottom-comment {
-    opacity: 1; /* Increase opacity on hover */
-  }
-
-  .bottom-left-user {
-    position: absolute;
-    bottom: 80px;
-    left: 16px;
-    opacity: 0; /* Initially not visible */
-    transition: opacity 0.3s ease; /* Add transition for smooth effect */
-  }
-
-  .bottom-comment {
-    position: absolute;
-    bottom: 68px;
-    right: 16px;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bolder;
-  }
-
-  .star {
-    position: absolute;
-    bottom: 8px;
-   right: 20px;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bolder;
-  }
-
-  .star:hover {
-    color: #6def6d;
-    cursor: pointer;
-  }
-
-  .bottom-comment:hover {
-    color: #6def6d;
-    cursor: pointer;
-  }
-
+  
 `
 

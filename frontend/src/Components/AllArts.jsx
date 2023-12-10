@@ -24,13 +24,13 @@ export const AllArts = () => {
     }
   }, shallowEqual)
 
-  const { singlePageIsLoading} = useSelector((store) => {
+  const { singlePageIsLoading } = useSelector((store) => {
     return {
       singlePageIsLoading: store.singlePageReducer.singlePageIsLoading,
     }
   }, shallowEqual)
 
-  
+
 
   useEffect(() => {
 
@@ -69,7 +69,7 @@ background-color: black;
 
 .grid-container{
   padding-top: 20px;
-  height: ${props => (props.isLoading  ? "600px" : "")};
+  height: ${props => (props.isLoading ? "600px" : "")};
 }
 
   #photos {
@@ -142,9 +142,17 @@ background-color: black;
 
 }
 
+img{
+  /* position: relative; */
+  transition: all .3s;
+  /* box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px; */
+  /* box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
+
+  }
 
   img:hover {
-    filter: blur(2px); /* Blur the image on hover */
+    /* filter: blur(2px); Blur the image on hover */
+    transform: scale(0.9);
     cursor: pointer;
   }
 

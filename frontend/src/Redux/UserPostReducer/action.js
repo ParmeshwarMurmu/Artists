@@ -27,10 +27,10 @@ const headers = {
 
 export const getUserPostData = ()=>(dispatch)=>{
     dispatch(userPostLoadingAction())
-    axios.get(`http://localhost:8000/post/userPost`)
+    axios.get(`http://localhost:8000/post/userPost`, {headers})
     .then((res)=>{
         console.log(res.data);
-        dispatch(userPostLoadingAction(res.data.userPost))
+        dispatch(userPostSuccessAction(res.data.userPost))
     })
     .catch((err)=>{
         console.log(err);

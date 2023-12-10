@@ -286,6 +286,23 @@ postRoute.get('/userFavourite', auth, async (req, res) => {
 })
 
 
+// user Post
+
+postRoute.get('/userPost', auth, async (req, res) => {
+
+    try {
+        const { user } = req.body;
+
+        // const userFavourite = await FavouriteModel.find({ user }).populate('post').populate('user').sort({ post: -1 })
+        const userPost= await PostModel.find({ user }).populate('user').sort({_id: -1})
+        res.status(200).send({ "msg": "userPost", "userPost": userPost })
+    } catch (error) {
+        res.status(400).send({ "msg": "cannot get userPost", "err": error })
+
+    }
+})
+
+
 
 
 module.exports = {
