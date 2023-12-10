@@ -25,9 +25,9 @@ const headers = {
 };
 
 
-export const getUserPostData = ()=>(dispatch)=>{
+export const getUserFavouriteData = ()=>(dispatch)=>{
     dispatch(userFavouriteLoadingAction())
-    axios.get(`http://localhost:8000/post/userFavourite`)
+    axios.get(`http://localhost:8000/post/userFavourite`, {headers})
     .then((res)=>{
         console.log(res.data);
         dispatch(userFavouriteLoadingAction(res.data.userFavourite))

@@ -233,6 +233,37 @@ postRoute.get('/suggestedArts', async(req, res)=>{
 })
 
 
+// adding user fav
+postRoute.get('/addToFavoutrite', async(req, res)=>{
+    
+    try {
+        const {user} = req.body;
+
+        const userFavourite = await PostModel.find({user}).sort({user: -1})
+        res.status(200).send({"msg": "userFavourite", "userFavourite": userFavourite})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get userFavourite", "err": error})
+        
+    }
+})
+
+
+// user Favourite
+
+postRoute.get('/userFavourite', async(req, res)=>{
+    
+    try {
+        const {user} = req.body;
+
+        const userFavourite = await PostModel.find({user}).sort({user: -1})
+        res.status(200).send({"msg": "userFavourite", "userFavourite": userFavourite})
+    } catch (error) {
+        res.status(400).send({"msg": "cannot get userFavourite", "err": error})
+        
+    }
+})
+
+
 
 
 module.exports = {
