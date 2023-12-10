@@ -21,7 +21,7 @@ export const ContextApi = ({children}) => {
             setIsAuth(true)
             axios.get(`https://artists-kg0g.onrender.com/user/singleUser/${userId}`)
             .then((res)=>{
-                console.log(res);
+                // console.log(res);
                 setUserData(res.data.user)
             })
             .catch((err)=>{

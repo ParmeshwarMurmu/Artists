@@ -30,7 +30,8 @@ export const getUserFavouriteData = ()=>(dispatch)=>{
     axios.get(`http://localhost:8000/post/userFavourite`, {headers})
     .then((res)=>{
         console.log(res.data);
-        dispatch(userFavouriteLoadingAction(res.data.userFavourite))
+        console.log(res.data.userFavourite);
+        dispatch(userFavouriteSuccessAction(res.data.userFavourite))
     })
     .catch((err)=>{
         console.log(err);
