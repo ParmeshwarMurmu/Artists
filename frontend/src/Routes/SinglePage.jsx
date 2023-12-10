@@ -25,6 +25,7 @@ import { HomePageLoader } from '../Components/HomePageLoader'
 import { Link } from 'react-scroll'
 import AUdio from '../Assets/Like_Audio.mp3'
 import { patchUserLikes } from '../Redux/LikesReducer/action'
+import { addToFavouriteData } from '../Redux/AddToFavouriteReducer/action'
 
 export const SinglePage = () => {
 
@@ -75,14 +76,21 @@ export const SinglePage = () => {
     }
   }, shallowEqual)
 
-  const { totalLikes , isLiked} = useSelector((store) => {
+
+  const { totalLikes, isLiked } = useSelector((store) => {
     return {
       totalLikes: store.LikesReducer.totalLikes,
       isLiked: store.LikesReducer.isLiked,
     }
   }, shallowEqual)
 
-  // console.log("singleData", singleData);
+
+  const { msg, isAddedToFavourite } = useSelector((store) => {
+    return {
+      isAddedToFavourite: store.AddToFavouriteReducer.isAddedToFavourite,
+      msg: store.AddToFavouriteReducer.msg,
+    }
+  }, shallowEqual)
 
   const handleImageLoad = (e) => {
     const image = e.target;
@@ -156,8 +164,76 @@ export const SinglePage = () => {
     audio.playbackRate = 1.30;
     audio.play();
     dispatch(patchUserLikes(id))
-    
+
   }
+
+
+  const token = localStorage.getItem('Artist-Token')
+  const userId = localStorage.getItem('Artist-UserId')
+
+  const headers = {
+    Authorization: `bearer ${token}`,
+  };
+
+  const favouriteHandler = () => {
+    if (isAuth) {
+      // dispatch(addToFavouriteData(id))
+      axios.post(`http://localhost:8000/post/addToFavoutrite`, { id }, { headers })
+        .then((res) => {
+          console.log(res.data);
+          // dispatch(addToFavouriteSuccessAction(res.data.msg))
+          if(res.data.msg === 'Added to your Favourites'){
+            toast({
+              // title: '',
+              description: `${res.data.msg}`,
+              status: 'success',
+              duration: 4000,
+              isClosable: true,
+            })
+          }
+          else{
+            toast({
+              // title: '',
+              description: `${res.data.msg}`,
+              status: 'warning',
+              duration: 4000,
+              isClosable: true,
+            })
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast({
+            // title: '',
+            description: `Something went wrong`,
+            status: 'warning',
+            duration: 4000,
+            isClosable: true,
+          })
+        })
+    }
+    else {
+      toast({
+        // title: '',
+        description: `Please Login.`,
+        status: 'warning',
+        duration: 4000,
+        isClosable: true,
+      })
+    }
+  }
+
+  // if (isAddedToFavourite) {
+  //   toast({
+  //     title: 'Favourites',
+  //     description: `${msg}`,
+  //     status: 'success',
+  //     duration: 4000,
+  //     isClosable: true,
+  //   })
+  //   dispatch()
+  // }
+
 
   useEffect(() => {
     dispatch(getSinglePageData(id))
@@ -202,7 +278,9 @@ export const SinglePage = () => {
             <div>
 
               <Tooltip hasArrow label='Add to favourite' bg='gray.300' color='black'>
-                <Button className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
+                <Button
+                  onClick={favouriteHandler}
+                  className={singlePageStyle.favComBtn} variant={'none'}><span className={singlePageStyle.spanTag}><FaRegStar /></span> Add to Favourites</Button>
               </Tooltip>
 
               <Link to='userComment' smooth={true} duration={500} offset={-50} >

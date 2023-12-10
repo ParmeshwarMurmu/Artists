@@ -11,7 +11,8 @@ import { reducer as ArtSubmissionReducer } from "../ArtSubmissionReducer/reducer
 import { reducer as AllArtsReducer } from "../AllArtsReducer/reducer";
 import { reducer as LikesReducer } from "../LikesReducer/reducer";
 import { reducer as UserPostReducer } from '../UserPostReducer/reducer'
-import { reducer as UserFavouriteReducer } from '../UserFavouriteReducer/reducer'
+import { reducer as UserFavouriteReducer } from '../UserFavouriteReducer/reducer';
+import { reducer as AddToFavouriteReducer } from "../AddToFavouriteReducer/reducer";
 
 const rootReducer = combineReducers({
    UserRegistrationReducer,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
    AllArtsReducer,
    LikesReducer,
    UserPostReducer,
-   UserFavouriteReducer
+   UserFavouriteReducer,
+   AddToFavouriteReducer
 
 
 })

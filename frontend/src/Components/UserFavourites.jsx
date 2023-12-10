@@ -16,12 +16,13 @@ export const UserFavourites = () => {
     }
 }, shallowEqual)
 
+
 useEffect(()=>{
   dispatch(getUserFavouriteData())
 
 }, [])
 
-console.log("userFavourite", "userFavourite");
+console.log("userFavourite", userFavourite);
 
 
   return (
