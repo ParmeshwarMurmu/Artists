@@ -277,7 +277,7 @@ postRoute.get('/userFavourite', auth, async (req, res) => {
             }
         })
         .populate('user') // Populate the user field in FavouriteModel
-        .sort({ post: -1 });
+        .sort({ _id: -1 });
         res.status(200).send({ "msg": "userFavourite", "userFavourite": userFavourite })
     } catch (error) {
         res.status(400).send({ "msg": "cannot get userFavourite", "err": error })

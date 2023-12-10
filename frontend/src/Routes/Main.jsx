@@ -17,7 +17,7 @@ export const Main = () => {
 
       </div>
 
-      <div>
+      <div >
         <Footer />
 
         <div style={{display: "flex", justifyContent: "center", marginTop: '50px', paddingBottom: "50px"}}>

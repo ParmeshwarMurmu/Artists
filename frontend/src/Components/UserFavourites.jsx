@@ -5,6 +5,7 @@ import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Head
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiLike } from "react-icons/bi";
 import { BiChat } from "react-icons/bi";
+import styled from 'styled-components';
 
 
 export const UserFavourites = () => {
@@ -31,8 +32,9 @@ export const UserFavourites = () => {
 
 
   return (
-    <div style={{backgroundColor: "black", color: "white"}}>
-      <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(250px, 1fr))'>
+    <DIV style={{backgroundColor: "black", color: "white"}}>
+      {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
+      <SimpleGrid spacing={8} templateColumns='repeat(5, minmax(250px, 1fr))' >
         {
           userFavourite.map((el)=>(
             <Card key={el._id} style={{backgroundColor: "black"}}>
@@ -47,7 +49,7 @@ export const UserFavourites = () => {
                 </Box>
               </Flex>
               <IconButton
-                variant='ghost'
+                variant='none'
                 colorScheme='gray'
                 aria-label='See menu'
 
@@ -56,15 +58,20 @@ export const UserFavourites = () => {
             </Flex>
           </CardHeader>
           <CardBody>
-            <Text>
+            <Text color='white'>
             {`${el.post.title}`}
             </Text>
           </CardBody>
+          
+          <div style={{display: "flex", justifyContent: "center"}}>
           <Image
-            objectFit='cover'
+            // objectFit='cover'
+            // width={'20%'}
+            height={'180px'}
             src={`${el.post.image}`}
             alt='Chakra UI'
           />
+          </div>
 
           <CardFooter
           display={'flex'}
@@ -73,11 +80,11 @@ export const UserFavourites = () => {
 
            
           >
-            <Button flex='1' variant={'none'} leftIcon={<BiLike />}>
+            <Button color='white' flex='1' variant={'none'} leftIcon={<BiLike  />}>
               {`${el.post.likes}`}
             </Button>
             {/* leftIcon={<BiShare />} */}
-            <Button flex='1' variant={'none'} leftIcon={<BiChat />} >
+            <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat  />} >
               
             </Button>
             {/* <Button flex='1' variant='ghost' >
@@ -88,8 +95,138 @@ export const UserFavourites = () => {
           ))
         }
       </SimpleGrid>
-    </div>
+    </DIV>
   )
 
 
 }
+
+const DIV = styled.div`
+/* display: grid;
+grid-template-columns: repeat(4, 1fr); */
+  
+  .photos {
+    /* Prevent vertical gaps */
+    line-height: 0;
+
+    -webkit-column-count: 5;
+    -webkit-column-gap: 5px;
+    -moz-column-count: 5;
+    -moz-column-gap: 5px;
+    column-count: 5;
+    column-gap: 10px;
+  }
+
+  .photos img {
+    /* Just in case there are inline attributes */
+    width: 100% !important;
+    height: auto !important;
+  }
+
+
+
+
+
+@media (max-width: 1200px) {
+  .photos {
+  -moz-column-count:    4;
+  -webkit-column-count: 4;
+  column-count:         4;
+  }
+}
+  @media (max-width: 1000px) {
+    .photos {
+      -moz-column-count: 3;
+      -webkit-column-count: 3;
+      column-count: 3;
+    }
+  }
+  @media (max-width: 800px) {
+    .photos {
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
+    }
+  }
+  @media (max-width: 400px) {
+    .photos {
+      -moz-column-count: 1;
+      -webkit-column-count: 1;
+      column-count: 1;
+    }
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    opacity: 0; /* Initially not visible */
+    transition: opacity 0.3s ease; /* Add transition for smooth effect */
+    display: flex;
+  }
+
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-bottom: 8px;
+
+
+}
+
+
+  img:hover {
+    /* filter: blur(2px); Blur the image on hover */
+    cursor: pointer;
+  }
+
+  .container:hover .bottom-left-user,
+  .container:hover .bottom-left,
+  .container:hover .star,
+  .container:hover .bottom-comment {
+    opacity: 1; /* Increase opacity on hover */
+  }
+
+  .bottom-left-user {
+    position: absolute;
+    bottom: 80px;
+    left: 16px;
+    opacity: 0; /* Initially not visible */
+    transition: opacity 0.3s ease; /* Add transition for smooth effect */
+  }
+
+  .bottom-comment {
+    position: absolute;
+    bottom: 68px;
+    right: 16px;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+  }
+
+  .star {
+    position: absolute;
+    bottom: 8px;
+   right: 20px;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+  }
+
+  .star:hover {
+    color: #6def6d;
+    cursor: pointer;
+  }
+
+  .bottom-comment:hover {
+    color: #6def6d;
+    cursor: pointer;
+  }
+
+`
+
