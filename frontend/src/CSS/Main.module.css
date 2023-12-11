@@ -1,0 +1,11 @@
+.allRoutesContainer{
+    padding-top: 80px;
+}
+
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+    .allRoutesContainer{
+        /* padding-top: 100px; */
+    }
+    
+}

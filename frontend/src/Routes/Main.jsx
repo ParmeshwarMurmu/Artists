@@ -4,7 +4,7 @@ import { AllRoutes } from './AllRoutes'
 import { Footer } from '../Components/Footer'
 import { Text } from '@chakra-ui/react'
 import { RiCopyrightLine } from "react-icons/ri";
-import style from '../CSS/Navbar.module.css'
+import style from '../CSS/Main.module.css'
 import { SearchBar } from '../Components/SearchBar'
 
 export const Main = () => {
@@ -18,7 +18,7 @@ export const Main = () => {
       
 
 
-      <div style={{ paddingTop: "80px" }}>
+      <div className={style.allRoutesContainer}>
         <AllRoutes />
 
       </div>

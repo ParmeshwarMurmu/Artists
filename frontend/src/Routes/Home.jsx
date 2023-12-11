@@ -32,7 +32,7 @@ export const Home = () => {
 
             <div>
                 <Tabs variant='unstyled' style={{ display: "flex", height: "100vh" }}>
-                    <TabList style={{ flexDirection: "column", borderRight: "2px solid red", flex: "0 0 auto" }}>
+                    <TabList style={{ flexDirection: "column", borderRight: "1px solid #353740", flex: "0 0 auto" }}>
                         <Tab style={{}} _selected={{ color: 'white', bg: 'green.400' }} color={'white'} fontSize={'20px'}><IoHomeSharp /></Tab>
                         <Tab style={{}} _selected={{ color: 'white', bg: 'green.400' }} color={'white'} fontSize={'20px'}><FaHashtag /></Tab>
                     </TabList>
