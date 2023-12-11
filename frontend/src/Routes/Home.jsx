@@ -5,6 +5,8 @@ import { AllArts } from '../Components/AllArts'
 import { HomePageLoader } from '../Components/HomePageLoader'
 import { FaHashtag } from "react-icons/fa";
 import { IoHomeSharp } from "react-icons/io5";
+import { SearchBar } from '../Components/SearchBar'
+
 
 export const Home = () => {
     const {loginOpen} = useContext(appContent)
@@ -21,6 +23,10 @@ export const Home = () => {
     }
     return (
         <div style={{ }}>
+
+            
+
+            <div>
             <Tabs variant='unstyled' style={{ display: "flex", height: "100vh" }}>
                 <TabList style={{  flexDirection: "column", borderRight: "2px solid red", flex: "0 0 auto" }}>
                     <Tab style={{}} _selected={{ color: 'white', bg: 'green.400' }} color={'white'} fontSize={'20px'}><IoHomeSharp /></Tab>
@@ -36,6 +42,7 @@ export const Home = () => {
                     </TabPanel>
                 </TabPanels>
             </Tabs>
+            </div>
             
         </div>
     )

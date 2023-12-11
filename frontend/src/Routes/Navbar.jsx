@@ -41,15 +41,15 @@ export const Navbar = () => {
 
         <div className={style.shopAndSearchContainer}>
 
-          <div className={style.spanSection}>
+          <div className={`${style.spanSection} ${style.spanSectionSearch}`}>
             <span>|</span>
           </div>
 
-          <div>
+          <div className={`${style.shopSection}`}>
             <Text className={style.text}>Shop</Text>
           </div>
 
-          <div className={style.spanSection}>
+          <div className={`${style.spanSection} ${style.shopSpanSection}`}>
             <span>|</span>
           </div>
 
@@ -57,7 +57,7 @@ export const Navbar = () => {
 
           <div className={style.navbarContainerSearchBar}>
 
-            <div style={{ display: "flex" }}>
+            <div className={style.searchBar}>
               <SearchBar />
             </div>
 

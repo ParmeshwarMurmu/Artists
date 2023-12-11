@@ -9,6 +9,8 @@ import styled from 'styled-components'
 import { registerFirstNameAction, registerConfirmPasswordAction, registerEmailAction, registerLastNameAction, registerPasswordAction, registerResetAction } from '../Redux/UserRegisterReducer/action';
 import axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { BiSolidUserPlus } from "react-icons/bi";
+
 
 
 
@@ -158,7 +160,7 @@ export const JoinDrawer = () => {
                 setConfirmPassMessage("")
                 onClose()
                 // return <Navigate to={'/'}/>
-                
+
             })
             .catch((err) => {
                 console.log(err);
@@ -179,7 +181,9 @@ export const JoinDrawer = () => {
         <DIV errorPass={errorPass}>
             <Button ref={btnRef} variant={'none'} onClick={onOpen}>
                 <Tooltip hasArrow label='New User ? Register Now' bg='gray.300' color='black'>
-                    <Text className={style.text}>Join</Text>
+                    {/* <Text className={style.text}>Join</Text> */}
+                    <Text className={style.text}><span className={style.loginText}>Join</span>  <span className={style.loginLogo}><BiSolidUserPlus /></span> </Text>
+                    
                 </Tooltip>
             </Button>
             <Drawer

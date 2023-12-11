@@ -1,4 +1,4 @@
-import { Avatar, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Wrap, WrapItem } from '@chakra-ui/react'
+import { Avatar, Button, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, Wrap, WrapItem } from '@chakra-ui/react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { appContent } from '../ContextApi/ContextApi'
 import { LiaEdit } from "react-icons/lia";
@@ -108,9 +108,21 @@ export const UserProfile = () => {
                             size="sm"
                             icon={
                                 firstNameEdit ?
-                                 <><T<IoIosClose style={{ marginRight: '10px' }} fontSize={'20px'} onClick={() => { setFirstNameEdit(false) }} /> <TiTick /> </> :
-                                
-                                <LiaEdit fontSize={'20px'} onClick={handleEditClick} />}
+                                    <>
+                                        {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
+                                            <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => { setFirstNameEdit(false) }} />
+                                            
+                                        {/* </Tooltip> */}
+
+                                        {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
+                                            <TiTick style={{ marginRight: '10px' }} fontSize={'20px'}  />
+                                        {/* </Tooltip> */}
+
+
+                                    </>
+                                    :
+
+                                    <LiaEdit fontSize={'20px'} onClick={handleEditClick} />}
                         />
                     </InputRightElement>
                 </InputGroup>

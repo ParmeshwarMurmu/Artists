@@ -1,5 +1,5 @@
 .navbarContainer {
-    /* border: 2px solid red; */
+    border: 2px solid red;
     background-color: black;
     display: flex;
     justify-content: space-between;
@@ -115,13 +115,47 @@
     display: none;
 }
 
+/* searchBar */
 
-@media screen and (max-width: 768px) {
+.searchBar{
+    display: flex;
+}
+
+.homeSearchBar{
+    display: flex;
+    /* flex-direction: row-reverse; */
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    /* border: 2px solid red; */
+    background-color: black;
+    top: 60px;
+
+}
+
+
+
+/* Nava login */
+
+.loginLogo{
+    display: none;
+}
+
+/* Medium Screen */
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    .upgradeContainer, .shopSection, .shopSpanSection{
+        display: none;
+    }
+    
+}
+
+/* @media screen and (max-width: 768px) {
     .upgradeContainer, .upgradeSpanSection{
         display: none;
     }
 
-    .submitBtnContainer{
+    .shopSection, .submitBtnContainer, .shopSpanSection{
         display: none;
     }
 
@@ -129,8 +163,47 @@
         display: block;
     }
 
+} */
+
+/* Small Screen */
+@media all and (min-width: 320px) and (max-width: 767px) {
+    .upgradeContainer, .upgradeSpanSection{
+        display: none;
+    }
+
+    .shopSection, .submitBtnContainer, .shopSpanSection{
+        display: none;
+    }
+
+    .hambergContainer{
+        display: block;
+    }
+
+    .loginText{
+        display: none;
+    }
+
+    .loginLogo{
+        display: block;
+        font-size: 25px;
+    }
+
+    .searchBar{
+        display: none;
+    }
+
+    .spanSectionSearch{
+        display: none;
+    }
+
+    
 }
 
-@media screen and (max-width: 425px) {
+
+@media all and (min-width: 320px) and (max-width: 420px) {
+    
+    .homeSearchBar{
+        justify-content: center;
+    }
     
 }

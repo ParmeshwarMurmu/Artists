@@ -134,13 +134,31 @@ const DIV = styled.div`
   }
 
 
-  @media (max-width: 800px) {
+  /* @media (max-width: 800px) {
     .moreArtsContainer {
       -moz-column-count: 2;
       -webkit-column-count: 2;
       column-count: 2;
     }
-  }
+  } */
+
+  @media all and (min-width: 768px) and (max-width: 1024px) {
+    .moreArtsContainer {
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
+    }
+    
+}
+
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+    .moreArtsContainer {
+      -moz-column-count: 5;
+      -webkit-column-count: 5;
+      column-count: 5;
+    }
+}
 
 
   @media (max-width: 400px) {

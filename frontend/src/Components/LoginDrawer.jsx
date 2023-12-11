@@ -10,7 +10,7 @@ import { loginEmailAction, loginPasswordAction, loginResetAction } from '../Redu
 import axios from 'axios';
 import { RxCross2 } from "react-icons/rx";
 import { appContent } from '../ContextApi/ContextApi';
-
+import { BiSolidLogIn } from "react-icons/bi";
 
 export const LoginDrawer = () => {
 
@@ -79,7 +79,7 @@ export const LoginDrawer = () => {
         <>
             <Button ref={btnRef} variant={'none'} onClick={onOpen}>
                 <Tooltip hasArrow label='Registered User' bg='gray.300' color='black'>
-                    <Text className={style.text}>Login</Text>
+                    <Text className={style.text}><span className={style.loginText}>Login</span>  <span className={style.loginLogo}><BiSolidLogIn /></span> </Text>
                 </Tooltip>
             </Button>
             <Drawer

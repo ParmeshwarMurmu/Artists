@@ -258,7 +258,7 @@ export const SinglePage = () => {
 
       {isLoading ? <HomePageLoader /> : isData &&
 
-        <div style={{ width: "75%" }}>
+        <div className={singlePageStyle.singlePageMainContainer}>
 
           <div className={singlePageStyle.singlePageImage}>
 
@@ -327,7 +327,7 @@ export const SinglePage = () => {
 
               {/* post Title */}
               <div className={singlePageStyle.postTitle} style={{ marginLeft: "10px" }}>
-                <Heading as='h1' size='lg'>
+                <Heading as='h1' size={{base: 'sm'}}>
                   {isData && singleData.title}
                 </Heading>
 

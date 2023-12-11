@@ -17,7 +17,7 @@ export const HambergMenuItem = () => {
                     variant='none'
 
                 />
-                <MenuList>
+                <MenuList className={style.menuList}>
                     <MenuItem >
                         <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black' placement='left'>
                             <Link to={'/newSumbission'}><Button className={style.submitBtn} variant={'none'}>

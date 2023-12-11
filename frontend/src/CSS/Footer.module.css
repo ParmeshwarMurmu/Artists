@@ -3,8 +3,8 @@
     /* border: 2px solid red; */
     width: 80%;
     margin: auto;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     color: white;
     /* background-color: black; */
     margin-top: 20px;
@@ -12,7 +12,10 @@
 
 .footerContainer > div{
     /* border: 2px solid rgb(8, 212, 25); */
-    width: 15%;
+    /* width: 15%; */
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
 }
 
 .icons{
@@ -43,4 +46,15 @@
 .about:hover{
     color: rgb(80, 239, 112);
     cursor: pointer;
+}
+
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+    .footerContainer{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footerContainer > div{
+        margin-bottom: 40px;
+    }
 }

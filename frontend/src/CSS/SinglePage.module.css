@@ -1,21 +1,25 @@
-
-.singlePageConatiner{
+.singlePageConatiner {
     margin-top: 0px;
     padding: 50px;
-    /* border: 2px solid red; */
+    border: 2px solid red;
     display: flex;
     /* background-color: black; */
 }
 
-.singlePageImage{
-    /* border: 4px solid yellow; */
+.singlePageImage {
+    border: 4px solid yellow;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-    
+
 }
 
-.mainImage{
+.singlePageMainContainer {
+    border: 2px solid rgb(252, 251, 251);
+    width: 75%;
+}
+
+.mainImage {
     /* width: 80%; */
     width: 32%;
     /* width: 200%; */
@@ -24,15 +28,15 @@
     justify-content: center;
 }
 
-.moreArts{
-    /* border: 2px solid green; */
+.moreArts {
+    border: 2px solid green;
     width: 25%;
     padding: 10px;
 }
 
 /*  Favourites comment download CSS*/
 
-.favouriteAndDownloadContainer{
+.favouriteAndDownloadContainer {
     /* border: 4px solid rgb(9, 90, 25); */
     display: flex;
     justify-content: space-between;
@@ -41,16 +45,16 @@
     margin-bottom: 20px;
 }
 
-.spanTag{
+.spanTag {
     margin-right: 10px;
 }
 
-.favComBtn{
+.favComBtn {
     color: white;
 
 }
 
-.favComBtn:hover{
+.favComBtn:hover {
     color: rgb(17, 222, 123);
     cursor: pointer;
 }
@@ -58,16 +62,16 @@
 
 /* commentAndViews */
 
-.commentAndViews{
+.commentAndViews {
     width: 90%;
     margin: auto;
-    
+
 }
 
 
 /* User Post Title Published CSS */
 
-.userPostTitleContainer{
+.userPostTitleContainer {
     width: 90%;
     margin: auto;
     /* border: 4px solid #000; */
@@ -75,27 +79,28 @@
     justify-content: space-between;
 }
 
-.userAndTitle{
+.userAndTitle {
     display: flex;
     color: #ffffff;
     /* justify-content: center; */
 }
 
-.userCredit{
+.userCredit {
     display: flex;
-    
+
 }
 
 
 /* comment section CSS */
 
-.commentContainer{
+.commentContainer {
     width: 90%;
     margin: auto;
     padding-top: 20px;
 
 }
-.logoCommentArea{
+
+.logoCommentArea {
     display: flex;
 }
 
@@ -112,23 +117,38 @@
 
 /* user Comments Container css */
 
-.userCommentsContainer{
+.userCommentsContainer {
     /* border: 2px solid red; */
     width: 90%;
     margin: auto;
 
 }
 
-.userContent{
+.userContent {
     /* border: 2px solid rgb(25, 13, 197); */
     display: flex;
     margin: 20px 0px 20px 0px;
 }
 
-.userComments{
+.userComments {
     /* border: 2px solid rgb(13, 197, 25); */
     width: 100%;
     margin-left: 10px;
 }
 
 
+@media all and (min-width: 320px) and (max-width: 767px) {
+    .singlePageConatiner {
+        flex-direction: column;
+    }
+
+    .moreArts {
+        width: 100%;
+    }
+
+    .singlePageMainContainer {
+        width: 100%;
+        margin-bottom: 40px;
+
+    }
+}
