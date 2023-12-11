@@ -15,9 +15,7 @@ export const Main = () => {
 
       </div>
 
-      <div className={style.homeSearchBar}>
-        <SearchBar />
-      </div>
+      
 
 
       <div style={{ paddingTop: "80px" }}>

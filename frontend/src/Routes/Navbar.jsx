@@ -132,9 +132,11 @@ export const Navbar = () => {
 
 
         {/* Hamberg */}
-        <div className={style.hambergContainer}>
-          <HambergMenuItem />
-        </div>
+        {
+          !isAuth && <div className={style.hambergContainer}>
+            <HambergMenuItem />
+          </div>
+        }
 
       </div>
     </div>

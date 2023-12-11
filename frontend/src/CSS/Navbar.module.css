@@ -126,11 +126,12 @@
     /* flex-direction: row-reverse; */
     position: fixed;
     z-index: 1;
-    width: 100%;
+    /* width: 100%; */
     margin-bottom: 20px;
     /* border: 2px solid red; */
     background-color: black;
     top: 60px;
+    display: none;
 
 }
 
@@ -196,14 +197,21 @@
         display: none;
     }
 
+    .homeSearchBar{
+        display: block;
+        width: 30%;
+        display: flex;
+    }
+
     
 }
 
 
 @media all and (min-width: 320px) and (max-width: 420px) {
     
-    .homeSearchBar{
+    /* .homeSearchBar{
         justify-content: center;
-    }
+        width: 30%;
+    } */
     
 }

@@ -14,3 +14,7 @@
 .submitBtn:hover {
     background-color: rgb(80, 239, 112);
 }
+
+.menuList{
+    z-index: 1000;
+}

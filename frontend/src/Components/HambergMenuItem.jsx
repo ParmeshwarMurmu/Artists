@@ -8,7 +8,7 @@ import { IoMdAdd } from "react-icons/io";
 
 export const HambergMenuItem = () => {
     return (
-        <div>
+        <div  className={style.menuList}>
             <Menu>
                 <MenuButton className={style.hambergMenuButton}
                     as={IconButton}
@@ -17,7 +17,7 @@ export const HambergMenuItem = () => {
                     variant='none'
 
                 />
-                <MenuList className={style.menuList}>
+                <MenuList>
                     <MenuItem >
                         <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black' placement='left'>
                             <Link to={'/newSumbission'}><Button className={style.submitBtn} variant={'none'}>
