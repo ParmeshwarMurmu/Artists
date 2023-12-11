@@ -39,7 +39,7 @@ export const UserAvtarMenuItem = () => {
                 <MenuButton as={Button} variant={'none'} colorScheme='pink'>
                     <UserAvtar />
                 </MenuButton>
-                <MenuList>
+                <MenuList style={{paddingTop: "0px", paddingBottom: "0px"}}>
                     <Link to={'/newSumbission'}>
                         <Tooltip hasArrow label='Upload your Art' bg='gray.300' color='black' placement='left'>
                             <MenuItem as={Button} variant={'none'} className='submitBtn'>

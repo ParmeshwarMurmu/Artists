@@ -5,6 +5,7 @@ import { LiaEdit } from "react-icons/lia";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { IoIosClose } from "react-icons/io";
 import { TiTick } from "react-icons/ti";
+import style from '../CSS/UserProfile.module.css'
 
 export const UserProfile = () => {
     const { userData } = useContext(appContent)
@@ -16,6 +17,18 @@ export const UserProfile = () => {
     const [imageURL, setImageURL] = useState("");
     const [firstNameEdit, setFirstNameEdit] = useState(false);
     const [lastNameEdit, setLastNameEdit] = useState(false);
+
+
+    const dispatch = useDispatch();
+    const { firstName, lastName, email, password, confirmPassword } = useSelector((store) => {
+        return {
+            firstName: store.UserRegistrationReducer.firstName,
+            lastName: store.UserRegistrationReducer.lastName,
+            email: store.UserRegistrationReducer.email,
+            password: store.UserRegistrationReducer.password,
+            confirmPassword: store.UserRegistrationReducer.confirmPassword,
+        }
+    }, shallowEqual)
 
 
 
@@ -36,7 +49,8 @@ export const UserProfile = () => {
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             // Set imageUrl in your component's state or wherever it's needed
-            console.log("imageUrl", imageUrl);
+            console.log("imageUrl");
+            console.log(imageUrl);
             setImageURL(imageUrl);
         }
 
@@ -217,6 +231,16 @@ export const UserProfile = () => {
                 <div>
                     {/* <Text color={errorConfirmPass ? 'red' : 'green'} fontSize={'x-small'}>{errorConfirmPass ? confirmPassMessage : confirmPassMessage}</Text> */}
                 </div>
+
+
+                <FormLabel>State</FormLabel>
+                <Input placeholder="State" />
+
+
+                <FormLabel>City</FormLabel>
+                <Input placeholder="City" />
+
+
 
             </FormControl>
 
