@@ -32,12 +32,12 @@ export const UserPosts = () => {
 
   return (
     <DIV style={{ backgroundColor: "black", color: "white" }}>
-    {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
-    {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
-      {
-        userPost.map((el) => (
-          <Card key={el._id} style={{ backgroundColor: "black" }}>
-            {/* <CardHeader style={{ color: "white" }}>
+      {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
+      {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
+        {
+          userPost.map((el) => (
+            <Card key={el._id} style={{ backgroundColor: "black" }}>
+              {/* <CardHeader style={{ color: "white" }}>
               <Flex spacing='4'>
                 <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                   <Avatar name={`${el.post.user.firstName} ${el.post.user.lastName}`} src={`${el.post.user.image}`} />
@@ -56,48 +56,48 @@ export const UserPosts = () => {
                 />
               </Flex>
             </CardHeader> */}
-            <CardBody>
-              <Text color='white'>
-                {`${el.title}`}
-              </Text>
-            </CardBody>
+              <CardBody>
+                <Text color='white'>
+                  {`${el.title}`}
+                </Text>
+              </CardBody>
 
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Link to={`/singlePage/${el._id}`}><Image
-              className='image'
-                // objectFit='cover'
-                // width={'20%'}
-                height={'180px'}
-                src={`${el.image}`}
-                alt='Chakra UI'
-              />
-              </Link>
-            </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Link to={`/singlePage/${el._id}`}><Image
+                  className='image'
+                  // objectFit='cover'
+                  // width={'20%'}
+                  height={'180px'}
+                  src={`${el.image}`}
+                  alt='Chakra UI'
+                />
+                </Link>
+              </div>
 
-            <CardFooter
-              display={'flex'}
-            // justify='space-between'
-            // flexWrap='wrap'
+              <CardFooter
+                display={'flex'}
+              // justify='space-between'
+              // flexWrap='wrap'
 
 
-            >
-              <Button color='white' flex='1' variant={'none'} leftIcon={<BiLike />}>
-                {`${el.likes}`}
-              </Button>
-              {/* leftIcon={<BiShare />} */}
-              <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat />} >
+              >
+                <Button color='white' flex='1' variant={'none'} leftIcon={<BiLike />}>
+                  {`${el.likes}`}
+                </Button>
+                {/* leftIcon={<BiShare />} */}
+                <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat />} >
 
-              </Button>
-              {/* <Button flex='1' variant='ghost' >
+                </Button>
+                {/* <Button flex='1' variant='ghost' >
             Share
           </Button> */}
-            </CardFooter>
-          </Card>
-        ))
+              </CardFooter>
+            </Card>
+          ))
+        }
+      </SimpleGrid>
       }
-    </SimpleGrid>
-    }
-  </DIV>
+    </DIV>
   )
 }
 
@@ -110,6 +110,7 @@ padding: 30px;
 
 display: grid;
 grid-template-columns: repeat(4, 1fr);
+border: 1px solid #353740;
 }
 
 .image{
@@ -135,23 +136,52 @@ column-count:         4;
 }
 }
 
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .simpleGrid{
 
-@media (max-width: 1000px) {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+
+    
+}
+
+
+@media all and (min-width: 500px) and (max-width: 767px) {
+  .simpleGrid{
+
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+}
+    
+}
+
+
+@media all and (min-width: 320px) and (max-width: 500px) {
+  .simpleGrid{
+
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+}
+    
+}
+
+/* @media (max-width: 1000px) {
   .photos {
     -moz-column-count: 3;
     -webkit-column-count: 3;
     column-count: 3;
   }
-}
+} */
 
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .photos {
     -moz-column-count: 2;
     -webkit-column-count: 2;
     column-count: 2;
   }
-}
+} */
 
 
 @media (max-width: 400px) {

@@ -1,11 +1,10 @@
-import { UPDATE_CONFIRM_PASSWORD, UPDATE_FIRST_NAME, UPDATE_LAST_NAME, UPDATE_PASSWORD, UPDATE_RESET, UPDATE_STATE } from "./action"
+import { UPDATE_CITY, UPDATE_CONFIRM_PASSWORD, UPDATE_FIRST_NAME, UPDATE_LAST_NAME, UPDATE_PASSWORD, UPDATE_RESET, UPDATE_STATE } from "./action"
 
 const initialState = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
     state: "",
     city: "",
 }
@@ -38,10 +37,16 @@ export const reducer = (state = initialState, { type, payload }) => {
                 password: payload
             }
 
-        case UPDATE_CONFIRM_PASSWORD:
+        // case UPDATE_CONFIRM_PASSWORD:
+        //     return {
+        //         ...state,
+        //         confirmPassword: payload
+        //     }
+
+            case UPDATE_CITY:
             return {
                 ...state,
-                confirmPassword: payload
+                city: payload
             }
 
 
