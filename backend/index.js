@@ -16,6 +16,8 @@ app.use((req, res, next) => {
     next();
   });
 app.use(cors())
+app.use('/userProfile', express.static('userProfile'));
+
 // app.use('/uploads', express.static('uploadArt'));
 app.use('/uploads', express.static('uploads'));
 app.use('/user', userRoute)

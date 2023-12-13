@@ -252,7 +252,7 @@ export const SinglePage = () => {
 
 
   return (
-    <DIV isHeightGreater={isHeightGreater} className={singlePageStyle.singlePageConatiner}>
+    <DIV isLoading={isLoading} isHeightGreater={isHeightGreater} className={singlePageStyle.singlePageConatiner}>
 
       {/* main image container */}
 
@@ -319,7 +319,7 @@ export const SinglePage = () => {
 
                 <Wrap>
                   <WrapItem>
-                    <Avatar size='lg' borderRadius={'50px'} name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
+                    <Avatar size='lg'  name={isData && singleData.user.firstName} src={isData && singleData.user.image} alt={isData && singleData.user.firstName} />
                   </WrapItem>
                 </Wrap>
               </div>
@@ -435,7 +435,8 @@ export const SinglePage = () => {
 const DIV = styled.div`
 background-color: black;
 color: white;
-
+/* isLoading */
+height:  ${props => (props.isLoading === true ? "700px" : "")};
 .singleImage{
   display: flex;
   justify-content: center;

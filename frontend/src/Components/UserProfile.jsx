@@ -1,4 +1,4 @@
-import { Avatar, Button, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, Wrap, WrapItem } from '@chakra-ui/react'
+import { Avatar, Button, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { appContent } from '../ContextApi/ContextApi'
 import { LiaEdit } from "react-icons/lia";
@@ -33,9 +33,12 @@ export const UserProfile = () => {
     const [confirmValuePass, setConfirmValuePass] = useState("")
     const [errorConfirmPass, setErrorConfirmPass] = useState(false)
     const [confirmPassMessage, setConfirmPassMessage] = useState("")
+    const [refresh, setRefesh] = useState("")
 
     const token = localStorage.getItem('Artist-Token')
     const userId = localStorage.getItem('Artist-UserId')
+
+    const toast = useToast()
 
 
     const dispatch = useDispatch();
@@ -212,37 +215,76 @@ export const UserProfile = () => {
     // console.log(data);
     console.log(cityEdit);
 
-    const updateUserHandler = () => {
+    const updateUserHandler = (e) => {
         let data = {}
+        // console.log(fileInput.current.files);
+        // console.log(fileInput.current.files.length);
+
+        const formData = new FormData();
+
+        if (fileInput.current.files.length > 0) {
+            
+            formData.append("userImage", fileInput.current.files[0]);
+            console.log(fileInput.current.files[0], "))))))");
+            console.log(formData);
+            data.image = formData
+        }
 
         if (firstName) {
-            data.firstName = firstName
+            // formData.firstName = firstName
+            formData.append("firstName", firstName);
 
         }
-        else if (lastName) {
-            data.lastName = lastName
+
+        if (lastName) {
+            // data.lastName = lastName
+            formData.append("lastName", lastName);
         }
-        else if (state) {
-            data.state = state
+
+        if (state) {
+            // data.state = state
+            formData.append("state", state);
         }
-        else if (city) {
-            data.city = city
+
+        if (city) {
+            // data.city = city
+            formData.append("city", city);
         }
-        else if (password) {
-            data.password = password
+
+        if (password) {
+            // data.password = password
+            formData.append("password", password);
         }
+
+        console.log(formData);
+        // console.log(data);
 
         const headers = {
             Authorization: `bearer ${token}`,
         };
 
-        axios.post('http://localhost:8000/user/userProfileUpdate', data, { headers })
-        .then((res)=>{
-            console.log(res);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        axios.patch('http://localhost:8000/user/userProfileUpdate', formData,   { headers })
+            .then((res) => {
+                console.log(res);
+                toast({
+                    title: 'Profile',
+                    description: `Profile Updated Successfully`,
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                })
+                setRefesh(res.data.msg)
+            })
+            .catch((err) => {
+                console.log(err);
+                toast({
+                    title: 'Profile',
+                    description: `Something Went Wrong`,
+                    status: 'error',
+                    duration: 4000,
+                    isClosable: true,
+                })
+            })
 
 
 
@@ -274,263 +316,280 @@ export const UserProfile = () => {
     }, [cityEdit]);
 
 
+    
+    useEffect(() => {
+        
+    }, [refresh]);
+
+
 
 
     return (
-        <div style={{ width: "50%", margin: "auto" }}>UserProfile
-            <div>
-                {/* <Avatar size='2xl' name={`${userData.firstName} ${userData.lastName}`} src={userData.image} /> */}
+        <div className={style.userProfileContainer}>UserProfile
+            <div style={{ width: "30%", margin: "auto" }}>
+                <div className={style.uploadFile}>
+                    {/* <Avatar size='2xl' name={`${userData.firstName} ${userData.lastName}`} src={userData.image} /> */}
+                    <div>
+                        <Wrap className={style.uploadFile}>
+                            <WrapItem>
+                                <Avatar size='xl' name={userData.firstName} src={imageURL || userData.image} alt={userData.firstName} />
+                            </WrapItem>
+                        </Wrap>
 
-                <Wrap>
-                    <WrapItem>
-                        <Avatar size='xl' name={userData.firstName} src={imageURL} alt={userData.firstName} />
-                    </WrapItem>
-                </Wrap>
+                        <Text mb={4}>Upload Image</Text>
 
-                <Text mb={4}>Upload Image</Text>
+                        <Input type='file'
+                            name="userImage"
+                            ref={fileInput}
+                            onChange={onChange}
+                            borderRadius={'20px'}
+                            variant={'none'}
 
-                <Input type='file'
-                    name="userImage"
-                    ref={fileInput}
-                    onChange={onChange}
-                    borderRadius={'20px'} />
+                            // width={'20%'}
+                            enctype="multipart/form-data"
+                        />
 
+                    </div>
+
+
+                </div>
+
+                <FormControl isRequired>
+
+                    <FormLabel className={style.formLabel}>First Name</FormLabel>
+
+                    <InputGroup className={style.inputGroup}>
+                        <Input
+
+                            placeholder="First Name"
+                            value={firstNameEdit ? firstName : userData.firstName}
+                            disabled={!firstNameEdit}
+                            onChange={(e) => { dispatch(updateFirstNameAction(e.target.value)) }}
+                            ref={firstNameInputRef}
+
+                        />
+
+                        <InputRightElement width="4.5rem">
+                            <IconButton
+                                variant={'none'}
+                                h="1.75rem"
+                                size="sm"
+                                icon={
+                                    firstNameEdit ?
+                                        <>
+                                            {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
+                                            <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => {
+                                                dispatch(updateFirstNameAction(""))
+                                                setFirstNameEdit(false)
+
+                                            }} />
+
+                                            {/* </Tooltip> */}
+
+                                            {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
+                                            <TiTick style={{ marginRight: '10px' }} fontSize={'20px'} />
+                                            {/* </Tooltip> */}
+
+
+                                        </>
+                                        :
+
+                                        <LiaEdit fontSize={'20px'} onClick={handleEditClick} />}
+                            />
+                        </InputRightElement>
+                    </InputGroup>
+
+
+                    <FormLabel className={style.formLabel}>Last Name</FormLabel>
+
+                    <InputGroup className={style.inputGroup}>
+                        <Input
+
+                            placeholder="Last Name"
+                            value={lastNameEdit ? lastName : userData.lastName}
+                            disabled={!lastNameEdit}
+                            onChange={(e) => { dispatch(updateLastNameAction(e.target.value)) }}
+                            ref={lastNameInputRef}
+
+                        />
+
+                        <InputRightElement width="4.5rem">
+                            <IconButton
+                                variant={'none'}
+                                h="1.75rem"
+                                size="sm"
+                                icon={lastNameEdit ? <IoIosClose fontSize={'20px'} onClick={() => {
+                                    dispatch(updateLastNameAction(""))
+                                    setLastNameEdit(false)
+                                }} />
+                                    : <LiaEdit fontSize={'20px'} onClick={handleLastNameEditClick} />}
+                            />
+                        </InputRightElement>
+                    </InputGroup>
+
+
+
+                    <FormLabel className={style.formLabel}>Email</FormLabel>
+                    <Input placeholder='Email'
+                        value={userData.email}
+                        disabled
+                        style={{ marginBottom: "10px" }}
+                    // value={email} 
+                    // onChange={(e) => { dispatch(registerEmailAction(e.target.value)) }} 
+                    />
+
+                    <FormLabel>Password</FormLabel>
+                    <InputGroup className={style.inputGroup}>
+                        <Input
+
+                            className='password'
+                            style={{
+                                border: errorPass ? '1px solid red' : '', // Set border to transparent when there is an error
+                                // Add other styles based on conditions
+                            }}
+                            value={valuePass}
+                            focusBorderColor={errorPass ? 'transparent' : ''}
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Password"
+                            // value={password}
+                            onChange={passwordHandleChange}
+                        // (e)=>{dispatch(registerPasswordAction(e.target.value))}
+                        />
+                        <InputRightElement width="4.5rem">
+                            <IconButton
+                                variant={'none'}
+                                h="1.75rem"
+                                size="sm"
+                                onClick={handleTogglePassword}
+                                icon={showPassword ? <FaEyeSlash /> : <FaEye />}
+
+                            />
+                        </InputRightElement>
+
+                    </InputGroup>
+                    <div>
+                        <Text color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
+                    </div>
+
+
+
+                    <FormLabel className={style.formLabel}>Confirm Password</FormLabel>
+                    <InputGroup className={style.inputGroup}>
+                        <Input
+                            type={showPasswordConfirm ? 'text' : 'password'}
+                            placeholder="Confirm Password"
+                            value={confirmValuePass}
+                            disabled={errorPass}
+
+                            onChange={confirmPasswordHandleChange}
+                        />
+
+                        <InputRightElement width="4.5rem">
+                            <IconButton
+                                variant={'none'}
+                                h="1.75rem"
+                                size="sm"
+                                onClick={confirmPasswordToggle}
+                                icon={showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
+                            />
+                        </InputRightElement>
+                    </InputGroup>
+                    <div>
+                        <Text color={errorConfirmPass ? 'red' : 'green'} fontSize={'x-small'}>{errorConfirmPass ? confirmPassMessage : confirmPassMessage}</Text>
+                    </div>
+
+
+                    <FormLabel className={style.formLabel}>State</FormLabel>
+                    <InputGroup className={style.inputGroup}>
+
+                        <Input placeholder="State"
+                            ref={stateInputRef}
+                            disabled={!stateEdit}
+                            value={stateEdit ? state : userData.state ? userData.state : "NA"}
+                            onChange={(e) => { dispatch(updateStateAction(e.target.value)) }}
+
+                        />
+
+                        <InputRightElement width="4.5rem">
+                            <IconButton
+                                variant={'none'}
+                                h="1.75rem"
+                                size="sm"
+                                icon={
+                                    stateEdit ?
+                                        <>
+                                            {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
+                                            <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => {
+                                                dispatch(updateStateAction(""))
+                                                setStateEdit(false)
+                                            }} />
+
+                                            {/* </Tooltip> */}
+
+                                            {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
+                                            <TiTick style={{ marginRight: '10px' }} fontSize={'20px'} />
+                                            {/* </Tooltip> */}
+
+
+                                        </>
+                                        :
+
+                                        <LiaEdit fontSize={'20px'} onClick={handleStateEdit} />}
+                            />
+                        </InputRightElement>
+                    </InputGroup>
+
+
+                    <FormLabel className={style.formLabel}>City</FormLabel>
+
+                    <InputGroup className={style.inputGroup}>
+
+                        <Input placeholder="City"
+                            ref={cityInputRef}
+                            disabled={!cityEdit}
+                            value={cityEdit ? city : userData.city ? userData.city : "NA"}
+                            onChange={(e) => { dispatch(updateCityAction(e.target.value)) }}
+                        />
+
+                        <InputRightElement width="4.5rem">
+                            <IconButton
+                                variant={'none'}
+                                h="1.75rem"
+                                size="sm"
+                                icon={
+                                    cityEdit ?
+                                        <>
+                                            {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
+                                            <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => {
+                                                setCityEdit(false);
+                                                dispatch(updateCityAction(""))
+                                            }} />
+
+                                            {/* </Tooltip> */}
+
+                                            {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
+                                            <TiTick style={{ marginRight: '10px' }} fontSize={'20px'} />
+                                            {/* </Tooltip> */}
+
+
+                                        </>
+                                        :
+
+                                        <LiaEdit fontSize={'20px'} onClick={handleCityEdit} />}
+                            />
+                        </InputRightElement>
+                    </InputGroup>
+
+
+
+
+
+                </FormControl>
+
+
+                <Button onClick={updateUserHandler}>Update</Button>
 
             </div>
-
-            <FormControl isRequired>
-
-                <FormLabel>First Name</FormLabel>
-
-                <InputGroup>
-                    <Input
-
-                        placeholder="First Name"
-                        value={firstNameEdit ? firstName : userData.firstName}
-                        disabled={!firstNameEdit}
-                        onChange={(e) => { dispatch(updateFirstNameAction(e.target.value)) }}
-                        ref={firstNameInputRef}
-
-                    />
-
-                    <InputRightElement width="4.5rem">
-                        <IconButton
-                            variant={'none'}
-                            h="1.75rem"
-                            size="sm"
-                            icon={
-                                firstNameEdit ?
-                                    <>
-                                        {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
-                                        <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => {
-                                            dispatch(updateFirstNameAction(""))
-                                            setFirstNameEdit(false)
-
-                                        }} />
-
-                                        {/* </Tooltip> */}
-
-                                        {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
-                                        <TiTick style={{ marginRight: '10px' }} fontSize={'20px'} />
-                                        {/* </Tooltip> */}
-
-
-                                    </>
-                                    :
-
-                                    <LiaEdit fontSize={'20px'} onClick={handleEditClick} />}
-                        />
-                    </InputRightElement>
-                </InputGroup>
-
-
-                <FormLabel>Last Name</FormLabel>
-
-                <InputGroup>
-                    <Input
-
-                        placeholder="Last Name"
-                        value={lastNameEdit ? lastName : userData.lastName}
-                        disabled={!lastNameEdit}
-                        onChange={(e) => { dispatch(updateLastNameAction(e.target.value)) }}
-                        ref={lastNameInputRef}
-
-                    />
-
-                    <InputRightElement width="4.5rem">
-                        <IconButton
-                            variant={'none'}
-                            h="1.75rem"
-                            size="sm"
-                            icon={lastNameEdit ? <IoIosClose fontSize={'20px'} onClick={() => {
-                                dispatch(updateLastNameAction(""))
-                                setLastNameEdit(false)
-                            }} />
-                                : <LiaEdit fontSize={'20px'} onClick={handleLastNameEditClick} />}
-                        />
-                    </InputRightElement>
-                </InputGroup>
-
-
-
-                <FormLabel>Email</FormLabel>
-                <Input placeholder='Email'
-                    value={userData.email}
-                    disabled
-                // value={email} 
-                // onChange={(e) => { dispatch(registerEmailAction(e.target.value)) }} 
-                />
-
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                    <Input
-
-                        className='password'
-                        style={{
-                            border: errorPass ? '1px solid red' : 'none', // Set border to transparent when there is an error
-                            // Add other styles based on conditions
-                        }}
-                        value={valuePass}
-                        focusBorderColor={errorPass ? 'transparent' : ''}
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder="Password"
-                        // value={password}
-                        onChange={passwordHandleChange}
-                    // (e)=>{dispatch(registerPasswordAction(e.target.value))}
-                    />
-                    <InputRightElement width="4.5rem">
-                        <IconButton
-                            variant={'none'}
-                            h="1.75rem"
-                            size="sm"
-                            onClick={handleTogglePassword}
-                            icon={showPassword ? <FaEyeSlash /> : <FaEye />}
-
-                        />
-                    </InputRightElement>
-
-                </InputGroup>
-                <div>
-                    <Text color={errorPass ? 'red' : 'green'} fontSize={'x-small'}>{verify}</Text>
-                </div>
-
-
-
-                <FormLabel>Confirm Password</FormLabel>
-                <InputGroup>
-                    <Input
-                        type={showPasswordConfirm ? 'text' : 'password'}
-                        placeholder="Confirm Password"
-                        value={confirmValuePass}
-                        disabled={errorPass}
-
-                        onChange={confirmPasswordHandleChange}
-                    />
-
-                    <InputRightElement width="4.5rem">
-                        <IconButton
-                            variant={'none'}
-                            h="1.75rem"
-                            size="sm"
-                            onClick={confirmPasswordToggle}
-                            icon={showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
-                        />
-                    </InputRightElement>
-                </InputGroup>
-                <div>
-                    <Text color={errorConfirmPass ? 'red' : 'green'} fontSize={'x-small'}>{errorConfirmPass ? confirmPassMessage : confirmPassMessage}</Text>
-                </div>
-
-
-                <FormLabel>State</FormLabel>
-                <InputGroup>
-
-                    <Input placeholder="State"
-                        ref={stateInputRef}
-                        disabled={!stateEdit}
-                        value={stateEdit ? state : userData.state ? userData.state : "NA"}
-                        onChange={(e) => { dispatch(updateStateAction(e.target.value)) }}
-
-                    />
-
-                    <InputRightElement width="4.5rem">
-                        <IconButton
-                            variant={'none'}
-                            h="1.75rem"
-                            size="sm"
-                            icon={
-                                stateEdit ?
-                                    <>
-                                        {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
-                                        <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => {
-                                            dispatch(updateStateAction(""))
-                                            setStateEdit(false)
-                                        }} />
-
-                                        {/* </Tooltip> */}
-
-                                        {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
-                                        <TiTick style={{ marginRight: '10px' }} fontSize={'20px'} />
-                                        {/* </Tooltip> */}
-
-
-                                    </>
-                                    :
-
-                                    <LiaEdit fontSize={'20px'} onClick={handleStateEdit} />}
-                        />
-                    </InputRightElement>
-                </InputGroup>
-
-
-                <FormLabel>City</FormLabel>
-
-                <InputGroup>
-
-                    <Input placeholder="City"
-                        ref={cityInputRef}
-                        disabled={!cityEdit}
-                        value={cityEdit ? city : userData.city ? userData.city : "NA"}
-                        onChange={(e) => { dispatch(updateCityAction(e.target.value)) }}
-                    />
-
-                    <InputRightElement width="4.5rem">
-                        <IconButton
-                            variant={'none'}
-                            h="1.75rem"
-                            size="sm"
-                            icon={
-                                cityEdit ?
-                                    <>
-                                        {/* <Tooltip hasArrow label='Close' bg='gray.300' color='black'> */}
-                                        <IoIosClose style={{ marginRight: '20px' }} fontSize={'20px'} onClick={() => {
-                                            setCityEdit(false);
-                                            dispatch(updateCityAction(""))
-                                        }} />
-
-                                        {/* </Tooltip> */}
-
-                                        {/* <Tooltip hasArrow label='OK' bg='gray.300' color='black'> */}
-                                        <TiTick style={{ marginRight: '10px' }} fontSize={'20px'} />
-                                        {/* </Tooltip> */}
-
-
-                                    </>
-                                    :
-
-                                    <LiaEdit fontSize={'20px'} onClick={handleCityEdit} />}
-                        />
-                    </InputRightElement>
-                </InputGroup>
-
-
-
-
-
-            </FormControl>
-
-
-            <Button onClick={updateUserHandler}>Update</Button>
 
         </div>
     )

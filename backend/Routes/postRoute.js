@@ -32,13 +32,13 @@ postRoute.get('/', async (req, res) => {
     }
 })
 
-postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
+postRoute.post('/uploads', upload.single('userImage'), auth, async (req, res) => {
 
     console.log("***");
 
     try {
         // console.log("++++++++++++++++++++++++++");
-        const file = req.file;
+        const file = req.files;
         // console.log(req.body);
         console.log(file);
 

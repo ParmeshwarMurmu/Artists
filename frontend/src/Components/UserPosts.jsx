@@ -31,12 +31,12 @@ export const UserPosts = () => {
   }, [])
 
   return (
-    <DIV style={{ backgroundColor: "black", color: "white" }}>
+    <DIV style={{ backgroundColor: "black", color: "white"}} isLoading={isLoading}>
       {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
       {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
         {
           userPost.map((el) => (
-            <Card key={el._id} style={{ backgroundColor: "black" }}>
+            <Card className='card' key={el._id} style={{ backgroundColor: "black" }}>
               {/* <CardHeader style={{ color: "white" }}>
               <Flex spacing='4'>
                 <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
@@ -104,13 +104,17 @@ export const UserPosts = () => {
 const DIV = styled.div`
 
 padding: 30px;
+height:  ${props => (props.isLoading === true ? "700px" : "")};
 
+.card{
+  border: 1px solid #353740;
 
+}
 .simpleGrid{
 
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-border: 1px solid #353740;
+/* border: 1px solid #353740; */
 }
 
 .image{

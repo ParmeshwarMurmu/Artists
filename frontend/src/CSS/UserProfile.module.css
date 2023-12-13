@@ -1,0 +1,26 @@
+.userProfileContainer{
+    border: 1px solid #870d0d;
+    background-color: black;
+    color: white;
+}
+
+.uploadFile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #eadc13; */
+}
+
+.uploadFile > div{
+    /* border: 1px solid #12cfed; */
+    width: 30%;
+}
+
+.formLabel{
+    margin-bottom: 10px
+}
+
+.inputGroup{
+    margin-bottom: 20px
+
+}
