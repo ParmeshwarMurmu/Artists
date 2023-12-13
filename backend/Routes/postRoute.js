@@ -32,13 +32,14 @@ postRoute.get('/', async (req, res) => {
     }
 })
 
-postRoute.post('/uploads', upload.single('userImage'), auth, async (req, res) => {
+postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
-    console.log("***");
+    // console.log("***");
 
     try {
         // console.log("++++++++++++++++++++++++++");
-        const file = req.files;
+        console.log(req.file, ">>>>>");
+        const file = req.file;
         // console.log(req.body);
         console.log(file);
 
@@ -57,7 +58,7 @@ postRoute.post('/uploads', upload.single('userImage'), auth, async (req, res) =>
         req.body.image = fileUrl;
         // console.log("reqbody", req.body); likes: Number,
         // isLiked: Boolean,
-        const we = PostModel({ ...req.body, title, likes: 0, isLiked: false })
+        const we = PostModel({ ...req.body, title, likes: 0, isLiked: false, views: 0 })
         await we.save();
 
         res.status(200).send({ "msg": "success" })
@@ -124,6 +125,25 @@ postRoute.get('/singlePost/:_id', async (req, res) => {
         // console.log("_id", _id);
         const singleData = await PostModel.findOne({ _id }).populate('user')
         res.status(200).send({ "singleData": singleData })
+
+    } catch (error) {
+        res.status(400).send({ "msg": "cannot get singleData", "err": error })
+
+    }
+})
+
+// views
+
+postRoute.patch('/views/:_id', async (req, res) => {
+
+    try {
+        const { _id } = req.params;
+        // console.log("_id", _id);
+        const views = await PostModel.findOne({ _id })
+        const updateViews = views.views + 1;
+        views.views = updateViews;
+        await PostModel.findByIdAndUpdate({ _id }, {views: updateViews})
+        res.status(200).send({ "views": "views"})
 
     } catch (error) {
         res.status(400).send({ "msg": "cannot get singleData", "err": error })

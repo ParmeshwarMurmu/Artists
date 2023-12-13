@@ -15,7 +15,7 @@ const userRoute = express.Router()
 
 
 const storage = multer.diskStorage({
-    destination: './uploads',
+    destination: './userProfile',
     filename: (req, file, callback) => {
         callback(null, file.originalname)
     },
@@ -132,12 +132,12 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
         if(file){
 
         
-        const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+        const destination = path.join(__dirname, '..', 'userProfile', file.originalname);
         fs.renameSync(file.path, destination);
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
+        const fileUrl = `${req.protocol}://${req.get('host')}/userProfile/${file.filename}`;
 
         // Append the image URL to req.body.image
         req.body.image = fileUrl;

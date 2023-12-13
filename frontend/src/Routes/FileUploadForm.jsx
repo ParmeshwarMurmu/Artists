@@ -74,7 +74,7 @@ export const FileUploadForm = ({setLoading} ) => {
 
     const formData = new FormData();
     formData.append("photos", fileInput.current.files[0]);
-    // console.log("***");
+    console.log("photos");
     console.log(fileInput.current.files);
 
 

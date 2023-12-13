@@ -15,6 +15,7 @@ const postSchema = mongoose.Schema({
     likes: Number,
     isLiked: Boolean,
     userName: String,
+    views: Number
 
 }, {
     versionKey: false,

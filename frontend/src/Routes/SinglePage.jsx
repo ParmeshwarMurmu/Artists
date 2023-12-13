@@ -234,10 +234,35 @@ export const SinglePage = () => {
   //   dispatch()
   // }
 
+  const views = ()=>{
+    axios.patch(`http://localhost:8000/post/views/${id}`)
+            .then((res) => {
+                console.log(res);
+                // toast({
+                //     title: 'Profile',
+                //     description: `Profile Updated Successfully`,
+                //     status: 'success',
+                //     duration: 4000,
+                //     isClosable: true,
+                // })
+                
+            })
+            .catch((err) => {
+                console.log(err);
+                // toast({
+                //     title: 'Profile',
+                //     description: `Something Went Wrong`,
+                //     status: 'error',
+                //     duration: 4000,
+                //     isClosable: true,
+                // })
+            })
+  }
+
 
   useEffect(() => {
     dispatch(getSinglePageData(id))
-
+    views()
   }, [id])
 
 
@@ -265,7 +290,7 @@ export const SinglePage = () => {
 
             <div className={'singleImage'}>
 
-              <img src={singleData.image} alt="" onLoad={handleImageLoad} />
+              <img className='mainImage' src={singleData.image} alt="" onLoad={handleImageLoad} />
             </div>
 
           </div>
@@ -352,7 +377,7 @@ export const SinglePage = () => {
           <div className={singlePageStyle.commentAndViews}>
             <Button variant={'none'} onClick={likeHandler}><AiFillLike color={isLiked ? 'rgb(17, 222, 123)' : 'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{totalLikes || singleData.likes}</span></Button>
             <Button variant={'none'}><FaCommentAlt color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{postComments.length > 0 && postComments.length}</span></Button>
-            <Button variant={'none'}><FaEye color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>100k</span></Button>
+            <Button variant={'none'}><FaEye color={'grey'} /> <span style={{ color: "grey", marginLeft: "5px" }}>{singleData.views > 0 && singleData.views} views</span></Button>
           </div>
 
 
@@ -457,7 +482,7 @@ height:  ${props => (props.isLoading === true ? "700px" : "")};
   /* transform: scale(0.9); */
 }
 
-img{
+.mainImage{
   /* border: 1px solid grey; */
   /* width: ${props => (props.isHeightGreater === true ? "" : "100%")}; */
   width: ${props => (
@@ -475,27 +500,27 @@ img{
   box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-img:hover{
+.mainImage:hover{
   transform: scale(0.9);
 }
   
 `
 
 
-const StyledMainImage = styled.div`
-  width: ${(props) => `${props.aspectRatio * 100}%`};
-  /* Adjust height as needed, or you can use 'auto' for dynamic height */
-  height: 0;
-  padding-bottom: ${(props) => `${100 / props.aspectRatio}%`};
-  position: relative;
-  overflow: hidden;
+// const StyledMainImage = styled.div`
+//   width: ${(props) => `${props.aspectRatio * 100}%`};
+//   /* Adjust height as needed, or you can use 'auto' for dynamic height */
+//   height: 0;
+//   padding-bottom: ${(props) => `${100 / props.aspectRatio}%`};
+//   position: relative;
+//   overflow: hidden;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* or object-fit: contain; depending on your preference */
-  }
-`
+//   img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover; /* or object-fit: contain; depending on your preference */
+//   }
+// `
 
 
 
