@@ -3,19 +3,21 @@ import React, { useState } from 'react'
 import { ImArrowUp } from "react-icons/im";
 import { FileUploadForm } from './FileUploadForm';
 import styled from 'styled-components';
+import { FaFileUpload } from "react-icons/fa";
+import Wall from '../Assets/Login_Community.png'
 
 
 export const NewArtSubmission = () => {
     // const [loading, setLoading] = useState(false);
 
     return (
-        <div style={{backgroundColor: "white"}}>
-            <Tabs isFitted variant='enclosed'>
+        <DIV style={{backgroundColor: "white"}} className='newSubmissionCont'>
+            <Tabs isFitted variant='enclosed'className='newSubmissionCont'>
                 <TabList mb='1em' style={{ width: "30%" }}>
-                    <Tab > <ImArrowUp style={{ marginRight: "8px" }} /> New Submission</Tab>
-                    <Tab isDisabled>New</Tab>
+                    <Tab > <ImArrowUp style={{ marginRight: "8px" }} /><span className='fileUploadIcon'><FaFileUpload /></span> <span className='newSubmissionText'> New Submission</span></Tab>
+                    {/* <Tab isDisabled>New</Tab> */}
                 </TabList>
-                <TabPanels>
+                <TabPanels className='TabPannelCont'>
                     <TabPanel>
                         <div style={{ marginBottom: "10px" }}>
 
@@ -29,38 +31,70 @@ export const NewArtSubmission = () => {
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='TabPannelCont'>
                                 <FileUploadForm />
                             </div>
 
                             
 
                         </div>
-                        {/* 
-                        <div style={{ display: "flex", width: "90%", margin: "auto" }}>
-                            <div style={{ width: "18%" }}>
-                                <Image src={""} alt='world day' />
+                        
+                        <div style={{ display: "flex", width: "90%", justifyContent: "center" }}>
+                            <div className='wall'>
+                                <Image src={Wall} alt='world day' />
                             </div>
 
-                            <div style={{ width: "60%" }}>
+                            {/* <div style={{ width: "60%" }}>
                                 <Image src={""} alt='world art day' />
                             </div>
 
                             <div style={{ width: "18%" }}>
                                 <Image src={""} alt='Brown Neutral' />
-                            </div>
-                        </div> */}
+                            </div> */}
+                        </div>
                     </TabPanel>
-                    <TabPanel>
-                        <p>two!</p>
-                    </TabPanel>
+                   
                 </TabPanels>
             </Tabs>
-        </div>
+        </DIV>
     )
 }
 
+const DIV = styled.div`
+    .newSubmissionCont{
+        /* border: 2px solid red; */
+    }
 
+    .wall{
+        width: 75%;
+        padding-left: 50px;
+    }
+
+    .fileUploadIcon{
+        display: none;
+    }
+
+    .TabPannelCont{
+        /* display: flex;
+        justify-content: center; */
+    }
+
+
+    @media all and (min-width: 320px) and (max-width: 600px) {
+    .fileUploadIcon{
+        display: block;
+    }
+
+    .newSubmissionText{
+        display: none;
+    }
+
+    .wall{
+        width:100%;
+    }
+    
+}
+`
 
 const LoaderContainer = styled.div`
   position: fixed;

@@ -1,5 +1,5 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import style from '../CSS/Navbar.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import loginVideo from '../Assets/Artist_Login_Video.mp4';
@@ -15,6 +15,7 @@ import { BiSolidLogIn } from "react-icons/bi";
 export const LoginDrawer = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const emailInputRef = useRef(null);
     const btnRef = React.useRef()
     const [showPassword, setShowPassword] = useState(false)
     // const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
@@ -73,6 +74,8 @@ export const LoginDrawer = () => {
         dispatch(loginResetAction())
     }
 
+   
+
 
 
     return (
@@ -95,7 +98,7 @@ export const LoginDrawer = () => {
                         setLoginOpen(false)
                         onClose()
                     }} />
-                    
+
                     <DrawerHeader>Welcome Back!</DrawerHeader>
 
                     <DrawerBody>
@@ -116,6 +119,7 @@ export const LoginDrawer = () => {
                         <FormControl isRequired>
                             <FormLabel>Email</FormLabel>
                             <Input placeholder='Email' type='email'
+                                
                                 onChange={(e) => { dispatch(loginEmailAction(e.target.value)) }}
                                 value={email}
                             />
@@ -128,6 +132,7 @@ export const LoginDrawer = () => {
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Password"
                                     value={password}
+                                   
                                     onChange={(e) => { dispatch(loginPasswordAction(e.target.value)) }}
                                 />
                                 <InputRightElement width="4.5rem">
@@ -142,14 +147,14 @@ export const LoginDrawer = () => {
 
                         </FormControl>
 
-                        <div style={{ marginTop: "20px" }}>
+                        <div style={{ marginTop: "10px" }}>
                             <Box >
                                 <Image src={communityWallpaper} alt='Community Wallpaper' />
                             </Box>
                         </div>
                     </DrawerBody>
 
-                    <DrawerFooter>       
+                    <DrawerFooter>
                         <Button className={style.negativeBtn} variant='none' mr={3} onClick={() => {
                             setLoginOpen(false)
                             onClose()

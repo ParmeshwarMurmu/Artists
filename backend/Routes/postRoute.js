@@ -4,6 +4,7 @@ const multer = require('multer')
 const fs = require("fs");
 const path = require("path");
 const { PostModel } = require('../Models/postSchema');
+const { UserModel } = require('../Models/userSchema')
 const { CommentModel } = require('../Models/commentSchema');
 const { log } = require('console');
 const { FavouriteModel } = require('../Models/favouriteSchema');
@@ -321,6 +322,48 @@ postRoute.get('/userPost', auth, async (req, res) => {
 
     }
 })
+
+// searchData
+
+
+
+postRoute.get('/search', async (req, res) => {
+    const { searchTerm } = req.query;
+    console.log("searchTerm", searchTerm);
+
+    try {
+        const data = await PostModel.aggregate([
+            {
+                $match: { title: { $regex: searchTerm, $options: "i" } }
+            },
+            
+        ]);
+
+        const user = await UserModel.aggregate([
+            {
+                $match: { firstName: { $regex: searchTerm, $options: "i" } }
+            },
+           
+        ]);
+
+        const lastName = await UserModel.aggregate([
+            {
+                $match: { lastName: { $regex: searchTerm, $options: "i" } }
+            },
+           
+        ]);
+
+        const concatenatedData = data.concat(user, lastName)
+        const populatedData = await PostModel.populate(concatenatedData, { path: 'user', select: 'user' });
+
+
+        res.send({ "msg": "searched data for ", "data": populatedData});
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ "error": "Internal Server Error" });
+    }
+});
 
 
 

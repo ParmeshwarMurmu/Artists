@@ -1,13 +1,13 @@
 .singlePageConatiner {
     margin-top: 0px;
     padding: 50px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     /* background-color: black; */
 }
 
 .singlePageImage {
-    border: 4px solid yellow;
+    /* border: 4px solid yellow; */
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -15,7 +15,7 @@
 }
 
 .singlePageMainContainer {
-    border: 2px solid rgb(252, 251, 251);
+    /* border: 2px solid rgb(252, 251, 251); */
     width: 75%;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .moreArts {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     width: 25%;
     padding: 10px;
 }

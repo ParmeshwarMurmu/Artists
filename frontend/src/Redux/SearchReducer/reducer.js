@@ -1,4 +1,4 @@
-import {  SEARCH_QUERY_ERROR, SEARCH_QUERY_LOADING, SEARCH_QUERY_SUCCESS } from "./action";
+import {  RESET_QUERY, SEARCH_QUERY_DATA, SEARCH_QUERY_ERROR, SEARCH_QUERY_LOADING, SEARCH_QUERY_SUCCESS } from "./action";
 
 const initialState = {
     query: "",
@@ -20,6 +20,12 @@ export const reducer = (state = initialState, { type, payload }) => {
         case SEARCH_QUERY_SUCCESS:
             return {
                 ...state,
+               query: payload
+            }
+
+            case SEARCH_QUERY_DATA:
+            return {
+                ...state,
                 isLoading: false,
                 Data: payload,
                 isData: true
@@ -29,7 +35,13 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                isData: true
+                isError: true
+            }
+
+            case RESET_QUERY:
+            return {
+                ...state,
+                query: ""
             }
 
         default:

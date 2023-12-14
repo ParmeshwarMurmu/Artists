@@ -7,6 +7,7 @@ import { SinglePage } from './SinglePage'
 import { UserProfile } from '../Components/UserProfile'
 import { UserPosts } from '../Components/UserPosts'
 import { UserFavourites } from '../Components/UserFavourites'
+import { SearchedData } from '../Components/SearchedData'
 
 
 export const AllRoutes = () => {
@@ -21,6 +22,7 @@ export const AllRoutes = () => {
      <Route path='/userProfile' element={<UserProfile/>} />
      <Route path='/userPosts' element={<UserPosts/>} />
      <Route path='/userFavourites' element={<UserFavourites/>} />
+     <Route path='/search' element={<SearchedData/>} />
     </Routes>
   )
 }

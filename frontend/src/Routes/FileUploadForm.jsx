@@ -147,7 +147,7 @@ export const FileUploadForm = ({setLoading} ) => {
 
       <form onSubmit={onSubmit} enctype="multipart/form-data" >
         <div style={{}}>
-          <div style={{ width: "25%", margin: "auto" }}>
+          <div  className='fileCont'>
             <div style={{ marginBottom: "20px" }}>
               <Text mb={4}>Drag and drop your art here</Text>
               <input
@@ -184,6 +184,27 @@ export const FileUploadForm = ({setLoading} ) => {
 
 
 const DIV = styled.div`
+
+.fileCont{
+  width: 35%;
+  margin: auto;
+  /* border: 2px solid green; */
+}
+
+
+@media all and (min-width: 320px) and (max-width: 768px) {
+    .fileUploadIcon{
+        display: block;
+    }
+
+    .newSubmissionText{
+        display: none;
+    }
+
+    .fileCont{
+      width: 90%;
+    }
+  }
 
   .Btn:hover {
     cursor: pointer;

@@ -127,6 +127,7 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
             ...(state !== undefined && { state }),
             ...(city !== undefined && { city }),
             
+            
         };
         
         if(file){
@@ -165,7 +166,8 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
                 // delete req.body.userName;
                 // req.body.password = hash;
                 updateFields.password = hash;
-                // console.log(req.body);
+                console.log("**************");
+                console.log(updateFields);
                 const ExistingUser = await UserModel.findByIdAndUpdate({ _id: user }, { ...updateFields })
                 res.status(200).send({ "msg": "Profile Updated" })
 
@@ -176,6 +178,8 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
             // delete req.body.user;
             // delete req.body.userName;
             // console.log(req.body);
+            console.log("????????????????");
+                console.log(updateFields);
             const ExistingUser = await UserModel.findByIdAndUpdate({ _id: user }, { ...updateFields})
             res.status(200).send({ "msg": "Profile Updated" })
         }

@@ -256,8 +256,8 @@ export const UserProfile = () => {
             formData.append("password", password);
         }
 
+        console.log("+++++++++++++++")
         console.log(formData);
-        // console.log(data);
 
         const headers = {
             Authorization: `bearer ${token}`,
@@ -273,7 +273,8 @@ export const UserProfile = () => {
                     duration: 4000,
                     isClosable: true,
                 })
-                setRefesh(res.data.msg)
+                
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);

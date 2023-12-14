@@ -9,14 +9,15 @@ import { SlDocs } from "react-icons/sl";
 import styled from 'styled-components'
 import { SlLogout } from "react-icons/sl";
 import { FaQuestionCircle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoMdAdd } from "react-icons/io";
 import style from '../CSS/Hamberg.module.css'
 
 export const UserAvtarMenuItem = () => {
 
     const { userData, setIsAuth } = useContext(appContent)
-    const toast = useToast()
+    const toast = useToast();
+    const navigate = useNavigate()
 
     const logoutHandler = () => {
         localStorage.removeItem('Artist-Token')
@@ -29,6 +30,9 @@ export const UserAvtarMenuItem = () => {
             duration: 4000,
             isClosable: true,
         })
+        navigate('/')
+
+
 
 
     }
