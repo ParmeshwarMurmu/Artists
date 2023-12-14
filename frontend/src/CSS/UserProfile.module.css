@@ -1,26 +1,86 @@
-.userProfileContainer{
-    border: 1px solid #870d0d;
+.userProfileContainer {
+    /* border: 1px solid #870d0d; */
     background-color: black;
     color: white;
+    padding: 50px;
 }
 
-.uploadFile{
+.userProfileContainer>div {
+    width: 40%;
+    margin: auto;
+}
+
+.uploadFile {
     display: flex;
     justify-content: center;
     align-items: center;
     /* border: 1px solid #eadc13; */
 }
 
-.uploadFile > div{
-    /* border: 1px solid #12cfed; */
-    width: 30%;
+.upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #05ff09; */
+    margin-bottom: 10px;
 }
 
-.formLabel{
+.uploadInput {
+    padding-left: 90px;
+    /* border: 1px solid #05ff09; */
+}
+
+.uploadFile>div {
+    /* border: 1px solid #12cfed; */
+    /* width: 30%; */
+}
+
+.formLabel {
     margin-bottom: 10px
 }
 
-.inputGroup{
+.inputGroup {
     margin-bottom: 20px
+}
+
+.updateBtnCont{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.updateBtn{
+    background-color: rgb(17, 222, 123);
+    color: black;
+}
+
+.updateBtn:hover{
+    background-color: rgb(80, 239, 112);
+}
+
+
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+
+@media all and (min-width: 506px) and (max-width: 767px) {
+    .userProfileContainer>div{
+        width: 80%;
+    }
+
+}
+
+
+@media all and (min-width: 320px) and (max-width: 506px) {
+    .userProfileContainer>div{
+        width: 100%;
+    }
+    
+    .userProfileContainer{
+        padding: 20px;
+
+    }
 
 }

@@ -10,6 +10,7 @@ export const ContextApi = ({children}) => {
     const userId = localStorage.getItem('Artist-UserId')
     const [userData, setUserData] = useState({})
     const [loginOpen, setLoginOpen] = useState(false)
+    const [userProfileLoading, setUserProfileLoading] = useState(false)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     // m("Artist-Token", res.data.token)
@@ -19,10 +20,12 @@ export const ContextApi = ({children}) => {
       
         if(token){
             setIsAuth(true)
+            setUserProfileLoading(true)
             axios.get(`https://artists-kg0g.onrender.com/user/singleUser/${userId}`)
             .then((res)=>{
                 // console.log(res);
                 setUserData(res.data.user)
+                setUserProfileLoading(false)
             })
             .catch((err)=>{
                 console.log(err);
@@ -32,7 +35,7 @@ export const ContextApi = ({children}) => {
 
 
 
-    return <appContent.Provider value={{isAuth, setIsAuth, userData, isOpen, onOpen, onClose, loginOpen, setLoginOpen}}>{children}</appContent.Provider>
+    return <appContent.Provider value={{isAuth, setIsAuth, userData, isOpen, onOpen, onClose, loginOpen, setLoginOpen, userProfileLoading}}>{children}</appContent.Provider>
 
   
 }

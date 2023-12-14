@@ -8,6 +8,7 @@ import { BiChat } from "react-icons/bi";
 import styled from 'styled-components';
 import { HomePageLoader } from './HomePageLoader';
 import { Link } from 'react-router-dom';
+import { FaEye } from "react-icons/fa";
 
 
 export const UserFavourites = () => {
@@ -38,15 +39,15 @@ export const UserFavourites = () => {
       {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
       {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
         {
-          userFavourite.map((el) => (
+          isData && userFavourite.map((el) => (
             <Card className='card' key={el._id} style={{ backgroundColor: "black" }}>
               <CardHeader style={{ color: "white" }}>
                 <Flex spacing='4'>
                   <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                    <Avatar name={`${el.post.user.firstName} ${el.post.user.lastName}`} src={`${el.post.user.image}`} />
+                    <Avatar name={`${el.post.user.firstName} ${el.post.user.lastName}`} src={`${  el.post.user.image}`} />
 
                     <Box>
-                      <Heading size='sm'>{`${el.post.user.firstName} ${el.post.user.lastName}`}</Heading>
+                      <Heading size='sm'>{ `${el.post.user.firstName} ${ el.post.user.lastName}`}</Heading>
                       <Text>Creator</Text>
                     </Box>
                   </Flex>
@@ -91,6 +92,10 @@ export const UserFavourites = () => {
                 <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat />} >
 
                 </Button>
+
+                <Button color='white' flex='1' variant={'none'} leftIcon={<FaEye />} >
+                {`${el.post.views}`}
+                </Button>
                 {/* <Button flex='1' variant='ghost' >
               Share
             </Button> */}
@@ -134,16 +139,45 @@ height:  ${props => (props.isLoading === true ? "700px" : "")};
   
   
 
-
+/* 
 @media (max-width: 1200px) {
   .photos {
   -moz-column-count:    4;
   -webkit-column-count: 4;
   column-count:         4;
   }
+} */
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .simpleGrid{
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+
+    
 }
 
 
+@media all and (min-width: 500px) and (max-width: 767px) {
+  .simpleGrid{
+
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+}
+    
+}
+
+
+@media all and (min-width: 320px) and (max-width: 500px) {
+  .simpleGrid{
+
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+}
+    
+}
+
+/* 
   @media (max-width: 1000px) {
     .photos {
       -moz-column-count: 3;
@@ -168,7 +202,7 @@ height:  ${props => (props.isLoading === true ? "700px" : "")};
       -webkit-column-count: 1;
       column-count: 1;
     }
-  }
+  } */
 
   
 `

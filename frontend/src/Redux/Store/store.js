@@ -14,6 +14,7 @@ import { reducer as UserPostReducer } from '../UserPostReducer/reducer'
 import { reducer as UserFavouriteReducer } from '../UserFavouriteReducer/reducer';
 import { reducer as AddToFavouriteReducer } from "../AddToFavouriteReducer/reducer";
 import { reducer as UserProfileUpdateReducer } from "../UserProfileUpdateReducer/reducer";
+import { reducer as SearchReducer } from "../SearchReducer/reducer";
 
 const rootReducer = combineReducers({
    UserRegistrationReducer,
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
    UserPostReducer,
    UserFavouriteReducer,
    AddToFavouriteReducer,
-   UserProfileUpdateReducer
+   UserProfileUpdateReducer,
+   SearchReducer
 
 
 })

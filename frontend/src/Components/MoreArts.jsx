@@ -111,8 +111,16 @@ const DIV = styled.div`
 }
 
 .artImg{
+    cursor: pointer;
+    transition: all .3s;
+    box-shadow: rgba(168, 166, 166, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+
+.artImg:hover{
     /* height: 100px; */
     /* width: 100%;     */
+    transform: scale(0.9);
 
 
 }

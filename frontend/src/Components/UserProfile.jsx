@@ -11,7 +11,7 @@ import { updateCityAction, updateFirstNameAction, updateLastNameAction, updatePa
 import axios from 'axios';
 
 export const UserProfile = () => {
-    const { userData } = useContext(appContent)
+    const { userData, userProfileLoading } = useContext(appContent)
     const fileInput = React.createRef();
     const firstNameInputRef = useRef(null);
     const lastNameInputRef = useRef(null);
@@ -223,7 +223,7 @@ export const UserProfile = () => {
         const formData = new FormData();
 
         if (fileInput.current.files.length > 0) {
-            
+
             formData.append("userImage", fileInput.current.files[0]);
             console.log(fileInput.current.files[0], "))))))");
             console.log(formData);
@@ -263,7 +263,7 @@ export const UserProfile = () => {
             Authorization: `bearer ${token}`,
         };
 
-        axios.patch('http://localhost:8000/user/userProfileUpdate', formData,   { headers })
+        axios.patch('http://localhost:8000/user/userProfileUpdate', formData, { headers })
             .then((res) => {
                 console.log(res);
                 toast({
@@ -316,38 +316,44 @@ export const UserProfile = () => {
     }, [cityEdit]);
 
 
-    
+
     useEffect(() => {
-        
+
     }, [refresh]);
 
 
 
 
     return (
-        <div className={style.userProfileContainer}>UserProfile
-            <div style={{ width: "30%", margin: "auto" }}>
+
+        
+        <div className={style.userProfileContainer}>
+            <div>
                 <div className={style.uploadFile}>
                     {/* <Avatar size='2xl' name={`${userData.firstName} ${userData.lastName}`} src={userData.image} /> */}
                     <div>
-                        <Wrap className={style.uploadFile}>
+                        <Wrap className={style.upload}>
                             <WrapItem>
                                 <Avatar size='xl' name={userData.firstName} src={imageURL || userData.image} alt={userData.firstName} />
                             </WrapItem>
                         </Wrap>
 
-                        <Text mb={4}>Upload Image</Text>
+                        <Text className={style.upload} mb={4}>Upload Image</Text>
 
-                        <Input type='file'
-                            name="userImage"
-                            ref={fileInput}
-                            onChange={onChange}
-                            borderRadius={'20px'}
-                            variant={'none'}
+                        <div className={style.uploadInput}>
 
-                            // width={'20%'}
-                            enctype="multipart/form-data"
-                        />
+                            <Input  type='file'
+                                name="userImage"
+                                ref={fileInput}
+                                onChange={onChange}
+                                borderRadius={'20px'}
+                                variant={'none'}
+
+                                // width={'20%'}
+                                enctype="multipart/form-data"
+                            />
+
+                        </div>
 
                     </div>
 
@@ -586,8 +592,10 @@ export const UserProfile = () => {
 
                 </FormControl>
 
+                <div className={style.updateBtnCont}>
 
-                <Button onClick={updateUserHandler}>Update</Button>
+                <Button className={style.updateBtn} variant={'none'} onClick={updateUserHandler}>Update</Button>
+                </div>
 
             </div>
 

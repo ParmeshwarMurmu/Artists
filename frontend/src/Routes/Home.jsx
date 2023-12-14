@@ -34,16 +34,18 @@ export const Home = () => {
                 <Tabs variant='unstyled' style={{ display: "flex", height: "100vh" }}>
                     <TabList style={{ flexDirection: "column", borderRight: "1px solid #353740", flex: "0 0 auto" }}>
                         <Tab style={{}} _selected={{ color: 'white', bg: 'green.400' }} color={'white'} fontSize={'20px'}><IoHomeSharp /></Tab>
-                        <Tab style={{}} _selected={{ color: 'white', bg: 'green.400' }} color={'white'} fontSize={'20px'}><FaHashtag /></Tab>
+                        <Tab isDisabled style={{}} _selected={{ color: 'white', bg: 'green.400' }} color={'white'} fontSize={'20px'}><FaHashtag /></Tab>
                     </TabList>
                     <TabPanels style={{ flex: "1", overflowY: 'auto' }}>
                         <TabPanel style={{ height: '100%', overflowY: 'auto' }}>
-                            {/* <HomePageLoader /> */}
+                            
                             <AllArts />
                         </TabPanel>
-                        <TabPanel>
-                            {/* <AllArts /> */}
+
+                        <TabPanel style={{ height: '100%', overflowY: 'auto' }}>
+                            
                         </TabPanel>
+                        
                     </TabPanels>
                 </Tabs>
             </div>

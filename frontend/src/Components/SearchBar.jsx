@@ -12,13 +12,17 @@ export const SearchBar = () => {
         console.log(event.key);
     };
 
+    const handleSearchQuery = (e)=>{
+        console.log(e.target.value);
+    }
+
     return (
         <>
 
             <div className={style.searchBarAndIcon}>
                 <Tooltip hasArrow label='Search you favourite artist and arts' bg='gray.300' color='black'>
                     <Input className={style.input} placeholder='Search'
-                    
+                    onChange={handleSearchQuery}
                     onKeyDown={handleKeyPress}
                      />
                 </Tooltip>

@@ -4,7 +4,7 @@ import { Main } from './Routes/Main';
 
 function App() {
   return (
-    <div style={{}}>
+    <div style={{backgroundColor: 'black'}}>
      <Main/>
     </div>
   );

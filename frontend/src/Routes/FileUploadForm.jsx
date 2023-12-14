@@ -184,6 +184,7 @@ export const FileUploadForm = ({setLoading} ) => {
 
 
 const DIV = styled.div`
+
   .Btn:hover {
     cursor: pointer;
     background-color: #3182ce;

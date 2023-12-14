@@ -8,6 +8,7 @@ import { BiLike } from "react-icons/bi";
 import { BiChat } from "react-icons/bi";
 import { HomePageLoader } from './HomePageLoader'
 import { Link } from 'react-router-dom'
+import { FaEye } from "react-icons/fa";
 
 export const UserPosts = () => {
 
@@ -35,7 +36,7 @@ export const UserPosts = () => {
       {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
       {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
         {
-          userPost.map((el) => (
+          isData && userPost.map((el) => (
             <Card className='card' key={el._id} style={{ backgroundColor: "black" }}>
               {/* <CardHeader style={{ color: "white" }}>
               <Flex spacing='4'>
@@ -87,6 +88,10 @@ export const UserPosts = () => {
                 {/* leftIcon={<BiShare />} */}
                 <Button color='white' flex='1' variant={'none'} leftIcon={<BiChat />} >
 
+                </Button>
+
+                <Button color='white' flex='1' variant={'none'} leftIcon={<FaEye />} >
+                {`${el.views}`}
                 </Button>
                 {/* <Button flex='1' variant='ghost' >
             Share
@@ -142,7 +147,6 @@ column-count:         4;
 
 @media all and (min-width: 768px) and (max-width: 1024px) {
   .simpleGrid{
-
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 }

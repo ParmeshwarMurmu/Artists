@@ -9,11 +9,11 @@ export const NewArtSubmission = () => {
     // const [loading, setLoading] = useState(false);
 
     return (
-        <div>
+        <div style={{backgroundColor: "white"}}>
             <Tabs isFitted variant='enclosed'>
                 <TabList mb='1em' style={{ width: "30%" }}>
                     <Tab > <ImArrowUp style={{ marginRight: "8px" }} /> New Submission</Tab>
-                    <Tab >New</Tab>
+                    <Tab isDisabled>New</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>

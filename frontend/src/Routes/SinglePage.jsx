@@ -366,7 +366,7 @@ export const SinglePage = () => {
 
 
             {/* published at */}
-            <div>
+            <div className={singlePageStyle.published}>
               <Text color={'white'}>Published: {isData && singleData.createdAt.split("T")[0]}</Text>
             </div>
           </div>

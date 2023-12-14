@@ -140,6 +140,7 @@
 @media all and (min-width: 320px) and (max-width: 767px) {
     .singlePageConatiner {
         flex-direction: column;
+        padding: 20px;
     }
 
     .moreArts {
@@ -150,5 +151,22 @@
         width: 100%;
         margin-bottom: 40px;
 
+    }
+}
+
+
+
+@media all and (min-width: 320px) and (max-width: 500px) {
+    .userPostTitleContainer{
+        flex-direction: column;
+    }
+
+    .userAndTitle{
+        margin-bottom: 20px;
+    }
+
+    .published{
+        margin-bottom: 10px;
+        padding-left: 10px;
     }
 }
