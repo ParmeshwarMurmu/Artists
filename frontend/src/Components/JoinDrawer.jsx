@@ -199,7 +199,7 @@ export const JoinDrawer = () => {
 
                     <DrawerBody>
 
-                        <div style={{ marginBottom: "20px" }}>
+                        <div style={{ marginBottom: "10px" }}>
                             <video
                                 autoPlay
                                 loop
