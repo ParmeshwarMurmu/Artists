@@ -27,7 +27,7 @@ const headers = {
 export const postUserComment = (id, comment) => (dispatch) => {
     // axios.post(`https://artists-kg0g.onrender.com/post/comment/${id}`, { comment }, { headers })
     dispatch(userCommentLoadingAction())
-    axios.post(`https://artists-kg0g.onrender.com/post/comment/${id}`, { comment }, { headers })
+    axios.post(`https://artists-hrw4.onrender.com/post/comment/${id}`, { comment }, { headers })
         .then((res) => {
             console.log(res.data);
             dispatch(userCommentResetAction())

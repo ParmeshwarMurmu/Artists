@@ -30,7 +30,7 @@ export const allArtsErrorAction = ()=>{
 
 export const getAllArtsData = ()=>(dispatch)=>{
     dispatch(allArtsLoadingAction())
-    axios.get(`https://artists-kg0g.onrender.com/post/`)
+    axios.get(`https://artists-hrw4.onrender.com/post/`)
     .then((res)=>{
         console.log(res.data);
         dispatch(allArtsSuccessAction(res.data.data))

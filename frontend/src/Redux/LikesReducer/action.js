@@ -17,8 +17,8 @@ const headers = {
 
 
 export const patchUserLikes = (id)=>(dispatch) => {
-    // axios.post(`https://artists-kg0g.onrender.com/post/comment/${id}`, { comment }, { headers })
-    axios.patch(`https://artists-kg0g.onrender.com/post/postLike/${id}`, { headers })
+  
+    axios.patch(`https://artists-hrw4.onrender.com/post/postLike/${id}`, { headers })
     .then((res) => {
       console.log(res.data);
       dispatch(userLikesAction(res.data.totalUserLikes))

@@ -178,7 +178,7 @@ export const SinglePage = () => {
   const favouriteHandler = () => {
     if (isAuth) {
       // dispatch(addToFavouriteData(id))
-      axios.post(`http://localhost:8000/post/addToFavoutrite`, { id }, { headers })
+      axios.post(`https://artists-hrw4.onrender.com/post/addToFavoutrite`, { id }, { headers })
         .then((res) => {
           console.log(res.data);
           // dispatch(addToFavouriteSuccessAction(res.data.msg))
@@ -223,39 +223,18 @@ export const SinglePage = () => {
     }
   }
 
-  // if (isAddedToFavourite) {
-  //   toast({
-  //     title: 'Favourites',
-  //     description: `${msg}`,
-  //     status: 'success',
-  //     duration: 4000,
-  //     isClosable: true,
-  //   })
-  //   dispatch()
-  // }
+ 
 
   const views = ()=>{
-    axios.patch(`http://localhost:8000/post/views/${id}`)
+    axios.patch(`https://artists-hrw4.onrender.com/post/views/${id}`)
             .then((res) => {
                 console.log(res);
-                // toast({
-                //     title: 'Profile',
-                //     description: `Profile Updated Successfully`,
-                //     status: 'success',
-                //     duration: 4000,
-                //     isClosable: true,
-                // })
+               
                 
             })
             .catch((err) => {
                 console.log(err);
-                // toast({
-                //     title: 'Profile',
-                //     description: `Something Went Wrong`,
-                //     status: 'error',
-                //     duration: 4000,
-                //     isClosable: true,
-                // })
+                
             })
   }
 
@@ -264,14 +243,6 @@ export const SinglePage = () => {
     dispatch(getSinglePageData(id))
     views()
   }, [id])
-
-
-  // console.log(isData && singleData.createdAt.split("T")[0]);
-  // console.log("Cmt", comment);
-  // console.log("commentLoading", commentLoading);
-  // console.log("singleData", singleData);
-  console.log("Likes", totalLikes);
-
 
 
 

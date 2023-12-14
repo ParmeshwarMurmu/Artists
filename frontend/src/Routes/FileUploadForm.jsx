@@ -70,7 +70,7 @@ export const FileUploadForm = ({setLoading} ) => {
     };
    
     axios
-    .post("http://localhost:8000/post/uploads", formData, {headers})
+    .post("https://artists-hrw4.onrender.com/post/uploads", formData, {headers})
     .then((res) => {
       console.log(res);
         

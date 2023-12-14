@@ -38,7 +38,7 @@ export const LoginDrawer = () => {
             password
         }
 
-        axios.post('https://artists-kg0g.onrender.com/user/login', data)
+        axios.post('https://artists-hrw4.onrender.com/user/login', data)
             .then((res) => {
                 console.log(res);
                 if (res.data.msg === 'Login Successfully') {

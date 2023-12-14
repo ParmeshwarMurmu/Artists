@@ -27,7 +27,7 @@ export const sggestedArtsErrorAction  = ()=>{
 
 export const getSggestedArtsData  = ()=>(dispatch)=>{
    dispatch(sggestedArtsLodingAction());
-   axios.get(`https://artists-kg0g.onrender.com/post/suggestedArts`)
+   axios.get(`https://artists-hrw4.onrender.com/post/suggestedArts`)
         .then((res)=>{
             dispatch(sggestedArtsSuccessAction(res.data.suggestedArts))
             console.log(res.data);

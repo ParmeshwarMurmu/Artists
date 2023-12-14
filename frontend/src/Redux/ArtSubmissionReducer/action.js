@@ -29,7 +29,7 @@ export const postArtSubmission = (formData) => (dispatch) => {
     console.log("artSubmission");
     dispatch(artSubmissionLoadingAction())
     axios
-    .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
+    .post("https://artists-hrw4.onrender.com/post/uploads", formData, { headers })
     .then((res) => {
       console.log("art", res);
       dispatch(artSubmissionSuccessAction())
