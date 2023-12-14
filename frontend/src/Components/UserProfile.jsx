@@ -246,7 +246,7 @@ export const UserProfile = () => {
             Authorization: `bearer ${token}`,
         };
 
-        axios.patch('https://artists-hrw4.onrender.com/user/userProfileUpdate', formData, { headers })
+        axios.patch('https://again-art.onrender.com/user/userProfileUpdate', formData, { headers })
             .then((res) => {
                 console.log(res);
                 toast({

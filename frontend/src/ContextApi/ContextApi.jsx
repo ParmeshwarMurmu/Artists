@@ -21,7 +21,7 @@ export const ContextApi = ({children}) => {
         if(token){
             setIsAuth(true)
             setUserProfileLoading(true)
-            axios.get(`https://artists-hrw4.onrender.com/user/singleUser/${userId}`)
+            axios.get(`https://again-art.onrender.com/user/singleUser/${userId}`)
             .then((res)=>{
                 // console.log(res);
                 setUserData(res.data.user)

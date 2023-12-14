@@ -22,7 +22,7 @@ export const singlePageDataErrorAction = ()=>{
 export const getSinglePageData = (id)=>(dispatch)=>{
   
     dispatch(singlePageDataLoadingAction())
-    axios.get(`https://artists-hrw4.onrender.com/post/singlePost/${id}`)
+    axios.get(`https://again-art.onrender.com/post/singlePost/${id}`)
         .then((res)=>{
             dispatch(singlePageDataSuccessAction(res.data.singleData))
             console.log(res.data);

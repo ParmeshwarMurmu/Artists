@@ -27,7 +27,7 @@ const headers = {
 
 export const getUserFavouriteData = ()=>(dispatch)=>{
     dispatch(userFavouriteLoadingAction())
-    axios.get(`https://artists-hrw4.onrender.com/post/userFavourite`, {headers})
+    axios.get(`https://again-art.onrender.com/post/userFavourite`, {headers})
     .then((res)=>{
         console.log(res.data);
         console.log(res.data.userFavourite);

@@ -30,7 +30,7 @@ export const searchQueryResetAction = () => {
 export const getSearchedQueryData = (query) => (dispatch) => {
 
     dispatch(searchQueryLoadingAction())
-    axios.get(`https://artists-hrw4.onrender.com/post/search?searchTerm=${query}`)
+    axios.get(`https://again-art.onrender.com/post/search?searchTerm=${query}`)
         .then((res) => {
             console.log(res);
             dispatch(searchQueryDataAction(res.data.data))

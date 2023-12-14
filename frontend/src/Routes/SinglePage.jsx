@@ -178,7 +178,7 @@ export const SinglePage = () => {
   const favouriteHandler = () => {
     if (isAuth) {
       // dispatch(addToFavouriteData(id))
-      axios.post(`https://artists-hrw4.onrender.com/post/addToFavoutrite`, { id }, { headers })
+      axios.post(`https://again-art.onrender.com/post/addToFavoutrite`, { id }, { headers })
         .then((res) => {
           console.log(res.data);
           // dispatch(addToFavouriteSuccessAction(res.data.msg))
@@ -226,7 +226,7 @@ export const SinglePage = () => {
  
 
   const views = ()=>{
-    axios.patch(`https://artists-hrw4.onrender.com/post/views/${id}`)
+    axios.patch(`https://again-art.onrender.com/post/views/${id}`)
             .then((res) => {
                 console.log(res);
                

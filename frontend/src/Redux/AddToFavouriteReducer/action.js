@@ -19,7 +19,7 @@ const headers = {
 
 
 export const addToFavouriteData = (id)=>(dispatch)=>{
-    axios.post(`https://artists-hrw4.onrender.com/post/addToFavoutrite`, {id},  {headers})
+    axios.post(`https://again-art.onrender.com/post/addToFavoutrite`, {id},  {headers})
     .then((res)=>{
         console.log(res.data);
         dispatch(addToFavouriteSuccessAction(res.data.msg))

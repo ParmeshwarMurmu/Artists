@@ -27,7 +27,7 @@ const headers = {
 
 export const getUserPostData = ()=>(dispatch)=>{
     dispatch(userPostLoadingAction())
-    axios.get(`https://artists-hrw4.onrender.com/post/userPost`, {headers})
+    axios.get(`https://again-art.onrender.com/post/userPost`, {headers})
     .then((res)=>{
         console.log(res.data);
         dispatch(userPostSuccessAction(res.data.userPost))
