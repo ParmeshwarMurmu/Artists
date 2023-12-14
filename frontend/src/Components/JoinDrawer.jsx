@@ -212,13 +212,13 @@ export const JoinDrawer = () => {
                         </div>
                         <FormControl isRequired>
                             <FormLabel>First Name</FormLabel>
-                            <Input placeholder='First name' value={firstName} onChange={(e) => { dispatch(registerFirstNameAction(e.target.value)) }} />
+                            <Input placeholder='First name' type='text' value={firstName} onChange={(e) => { dispatch(registerFirstNameAction(e.target.value)) }} />
 
                             <FormLabel>Last Name</FormLabel>
-                            <Input placeholder='Last name' value={lastName} onChange={(e) => { dispatch(registerLastNameAction(e.target.value)) }} />
+                            <Input placeholder='Last name' type='text' value={lastName} onChange={(e) => { dispatch(registerLastNameAction(e.target.value)) }} />
 
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder='Email' value={email} onChange={(e) => { dispatch(registerEmailAction(e.target.value)) }} />
+                            <Input placeholder='Email' type='email' value={email} onChange={(e) => { dispatch(registerEmailAction(e.target.value)) }} />
 
                             <FormLabel>Password</FormLabel>
                             <InputGroup>
