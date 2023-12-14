@@ -21,17 +21,10 @@ export const SearchBar = () => {
 
 
     const handleKeyPress = (event) => {
-        // Check if the Enter key is pressed (key code 13)
-        // const params = {
-        //     query
-        // }
-
-        // setSearchParams(params)
+        
 
         if (event.key === 'Enter') {
-            // console.log(event.key);
-            // dispatch(getSearchedQueryData(query))
-            // return <Navigate to='/search' />
+            
             navigate('/search')
         }
         
@@ -49,20 +42,7 @@ export const SearchBar = () => {
         navigate('/search')
     }
 
-    // useEffect(()=>{
-
-    //     const params = {
-            
-    //     }
-
-    //     query && (params.query = query)
-
-    //     query && setSearchParams(query)
-
-    //     setSearchParams(params)
-        
-    // }, [serachParams])
-
+    
 
     useEffect(() => {
         const params = {};

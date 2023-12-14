@@ -41,20 +41,20 @@ export const SearchedData = () => {
 
 
   return (
-    <div>
+    <DIV isLoading={isLoading}>
       {
-        isLoading === true ? <HomePageLoader /> : Data.length === 0 ? <NoItem /> : <DIV className="grid-container" isLoading={isLoading}>
-          <section id="photos">
+        isLoading === true ? <HomePageLoader /> : Data.length === 0 ? <NoItem /> : <div className="Searchcontainer" >
+          <section id="searchImg">
 
             {Data.map((el, index) => (
               <CardComponent key={index} {...el} />
             ))}
         
           </section>
-        </DIV>
+        </div>
 
       }
-    </div>
+    </DIV>
   )
 }
 
@@ -62,12 +62,12 @@ const DIV = styled.div`
 
 height: ${props => (props.isLoading ? "600px" : "")};
 
-  .grid-container{
+  .Searchcontainer{
   padding-top: 20px;
   /* height: ${props => (props.isLoading ? "600px" : "")}; */
 }
 
-  #photos {
+  #searchImg {
     /* Prevent vertical gaps */
     line-height: 0;
 
@@ -79,7 +79,7 @@ height: ${props => (props.isLoading ? "600px" : "")};
     column-gap: 10px;
   }
 
-  #photos img {
+  #searchImg img {
     /* Just in case there are inline attributes */
     width: 100% !important;
     height: auto !important;
@@ -90,31 +90,31 @@ height: ${props => (props.isLoading ? "600px" : "")};
 
 
 @media (max-width: 1200px) {
-  #photos {
+  #searchImg {
   -moz-column-count:    4;
   -webkit-column-count: 4;
   column-count:         4;
   }
 }
   @media (max-width: 1000px) {
-    #photos {
+    #searchImg {
       -moz-column-count: 3;
       -webkit-column-count: 3;
       column-count: 3;
     }
   }
   @media (max-width: 800px) {
-    #photos {
+    #searchImg {
       -moz-column-count: 2;
       -webkit-column-count: 2;
       column-count: 2;
     }
   }
   @media (max-width: 400px) {
-    #photos {
-      -moz-column-count: 1;
-      -webkit-column-count: 1;
-      column-count: 1;
+    #searchImg {
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
     }
   }
 

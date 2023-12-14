@@ -105,14 +105,10 @@ userRoute.get('/singleUser/:id', async (req, res) => {
 userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (req, res) => {
 
     const file = req.file;
-    // console.log(req.body);
-    console.log(file, "****");
+    
 
 
-    // const { image} = req.body;
-    // console.log(image);
-    console.log("&&&");
-    console.log(req.body);
+   
 
 
 
@@ -143,8 +139,8 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
         // Append the image URL to req.body.image
         req.body.image = fileUrl;
 
-        console.log(">>>>");
-        console.log(fileUrl);
+        // console.log(">>>>");
+        // console.log(fileUrl);
 
         updateFields.image = fileUrl;
 
@@ -153,7 +149,7 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
 
         // console.log(...req.body);
         
-        console.log(updateFields);
+        
 
         if (password) {
             bcrypt.hash(password, 5, async (err, hash) => {
@@ -162,11 +158,9 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
                     res.status(200).send({ "msg": "Enter password again" })
 
                 }
-                // delete req.body.user;
-                // delete req.body.userName;
-                // req.body.password = hash;
+                
                 updateFields.password = hash;
-                console.log("**************");
+             
                 console.log(updateFields);
                 const ExistingUser = await UserModel.findByIdAndUpdate({ _id: user }, { ...updateFields })
                 res.status(200).send({ "msg": "Profile Updated" })
@@ -175,11 +169,8 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
         }
         else {
 
-            // delete req.body.user;
-            // delete req.body.userName;
-            // console.log(req.body);
-            console.log("????????????????");
-                console.log(updateFields);
+            
+            
             const ExistingUser = await UserModel.findByIdAndUpdate({ _id: user }, { ...updateFields})
             res.status(200).send({ "msg": "Profile Updated" })
         }

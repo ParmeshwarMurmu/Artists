@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getUserPostData } from '../Redux/UserPostReducer/action'
-import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, IconButton, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Button, Card, CardBody, CardFooter,  Image, SimpleGrid, Text } from '@chakra-ui/react'
 import styled from 'styled-components'
-import { BsThreeDotsVertical } from "react-icons/bs";
+
 import { BiLike } from "react-icons/bi";
 import { BiChat } from "react-icons/bi";
 import { HomePageLoader } from './HomePageLoader'
@@ -38,25 +38,7 @@ export const UserPosts = () => {
         {
           isData && userPost.map((el) => (
             <Card className='card' key={el._id} style={{ backgroundColor: "black" }}>
-              {/* <CardHeader style={{ color: "white" }}>
-              <Flex spacing='4'>
-                <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                  <Avatar name={`${el.post.user.firstName} ${el.post.user.lastName}`} src={`${el.post.user.image}`} />
-
-                  <Box>
-                    <Heading size='sm'>{`${el.post.user.firstName} ${el.post.user.lastName}`}</Heading>
-                    <Text>Creator</Text>
-                  </Box>
-                </Flex>
-                <IconButton
-                  variant='none'
-                  colorScheme='gray'
-                  aria-label='See menu'
-
-                  icon={<BsThreeDotsVertical color='white' />}
-                />
-              </Flex>
-            </CardHeader> */}
+              
               <CardBody>
                 <Text color='white'>
                   {`${el.title}`}
@@ -173,23 +155,6 @@ grid-template-columns: repeat(1, 1fr);
 }
     
 }
-
-/* @media (max-width: 1000px) {
-  .photos {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
-  }
-} */
-
-
-/* @media (max-width: 800px) {
-  .photos {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
-  }
-} */
 
 
 @media (max-width: 400px) {

@@ -14,15 +14,29 @@ export const AllRoutes = () => {
 
   return (
     <Routes>
-     <Route path='/' element={<Home/>} />
-     <Route path='/newSumbission' element={<PrivateRoute>
-      <NewArtSubmission />
-     </PrivateRoute>}/>
-     <Route path='/singlePage/:id' element={<SinglePage/>} />
-     <Route path='/userProfile' element={<UserProfile/>} />
-     <Route path='/userPosts' element={<UserPosts/>} />
-     <Route path='/userFavourites' element={<UserFavourites/>} />
-     <Route path='/search' element={<SearchedData/>} />
+      <Route path='/' element={<Home />} />
+      <Route path='/newSumbission' element={<PrivateRoute>
+        <NewArtSubmission />
+      </PrivateRoute>} />
+      <Route path='/singlePage/:id' element={<SinglePage />} />
+      <Route path='/userProfile' element={
+        <PrivateRoute>
+          <UserProfile />
+        </PrivateRoute>
+      } />
+      <Route path='/userPosts' element={
+        <PrivateRoute>
+
+          <UserPosts />
+        </PrivateRoute>
+      } />
+      <Route path='/userFavourites' element={
+        <PrivateRoute>
+
+          <UserFavourites />
+        </PrivateRoute>
+      } />
+      <Route path='/search' element={<SearchedData />} />
     </Routes>
   )
 }

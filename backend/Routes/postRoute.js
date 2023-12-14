@@ -35,14 +35,13 @@ postRoute.get('/', async (req, res) => {
 
 postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
-    // console.log("***");
 
     try {
-        // console.log("++++++++++++++++++++++++++");
-        console.log(req.file, ">>>>>");
+    
+        // console.log(req.file, ">>>>>");
         const file = req.file;
         // console.log(req.body);
-        console.log(file);
+
 
         // Move each file to the uploads directory
 
@@ -123,7 +122,7 @@ postRoute.get('/singlePost/:_id', async (req, res) => {
 
     try {
         const { _id } = req.params;
-        // console.log("_id", _id);
+       
         const singleData = await PostModel.findOne({ _id }).populate('user')
         res.status(200).send({ "singleData": singleData })
 
@@ -139,7 +138,7 @@ postRoute.patch('/views/:_id', async (req, res) => {
 
     try {
         const { _id } = req.params;
-        // console.log("_id", _id);
+        
         const views = await PostModel.findOne({ _id })
         const updateViews = views.views + 1;
         views.views = updateViews;
@@ -154,9 +153,9 @@ postRoute.patch('/views/:_id', async (req, res) => {
 
 // individual post comments
 postRoute.post('/comment/:id', auth, async (req, res) => {
-    console.log(req.body);
+    
     const { id } = req.params;
-    console.log(id);
+   
 
     try {
         const newComment = new CommentModel({ ...req.body, post: id })
@@ -174,7 +173,7 @@ postRoute.post('/comment/:id', auth, async (req, res) => {
 postRoute.get('/postComment/:_id', async (req, res) => {
     // console.log(req.body);
     const { _id } = req.params;
-    console.log(_id);
+ 
 
     try {
         const postComment = await CommentModel.find({ post: _id }).populate('user').sort({ _id: -1 })
@@ -222,19 +221,18 @@ postRoute.patch('/postLike/:_id', async (req, res) => {
 
 
 postRoute.get('/moreArts/:_id', async (req, res) => {
-    // console.log(req.body);
+    
     const { _id } = req.params;
-    console.log(_id, "moreArts");
+    
 
     try {
         const postData = await PostModel.findOne({ _id })
-        // console.log("postData", postData);
+        
 
         const userId = postData.user
-        // console.log(userId, "userId");
+        
         const moreArts = await PostModel.find({ user: userId }).limit(15)
-        // console.log("mortArts");
-        // console.log(moreArts);
+      
         res.status(200).send({ "msg": "AmoreArts", "moreArts": moreArts })
     } catch (error) {
         res.status(400).send({ "msg": "cannot get moreArts", "err": error })
@@ -263,7 +261,7 @@ postRoute.post('/addToFavoutrite', auth, async (req, res) => {
         const { user, id } = req.body;
         console.log(user, id);
         const isPresent = await FavouriteModel.findOne({ user, post: id });
-        // console.log(isPresent);
+       
         if (isPresent) {
             res.status(200).send({ "msg": "Already in your Favorites" });
         }
@@ -288,7 +286,7 @@ postRoute.get('/userFavourite', auth, async (req, res) => {
     try {
         const { user } = req.body;
 
-        // const userFavourite = await FavouriteModel.find({ user }).populate('post').populate('user').sort({ post: -1 })
+        
         const userFavourite = await FavouriteModel.find({ user })
         .populate({
             path: 'post',
@@ -314,7 +312,7 @@ postRoute.get('/userPost', auth, async (req, res) => {
     try {
         const { user } = req.body;
 
-        // const userFavourite = await FavouriteModel.find({ user }).populate('post').populate('user').sort({ post: -1 })
+        
         const userPost= await PostModel.find({ user }).populate('user').sort({_id: -1})
         res.status(200).send({ "msg": "userPost", "userPost": userPost })
     } catch (error) {
@@ -329,7 +327,7 @@ postRoute.get('/userPost', auth, async (req, res) => {
 
 postRoute.get('/search', async (req, res) => {
     const { searchTerm } = req.query;
-    console.log("searchTerm", searchTerm);
+    // console.log("searchTerm", searchTerm);
 
     try {
         const data = await PostModel.aggregate([

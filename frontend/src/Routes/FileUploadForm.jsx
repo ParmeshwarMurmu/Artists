@@ -50,27 +50,13 @@ export const FileUploadForm = ({setLoading} ) => {
     }
   };
 
-  // if(completed){
-  //   if(!isLoading){
-  //     toast({
-  //           title: "New Submission",
-  //           description: `Uploaded Successfully`,
-  //           status: "success",
-  //           duration: 4000,
-  //           isClosable: true,
-  //         });
-  //         fileInput.current.form.reset();
-  //   }
-
-  // }
-
+ 
   
 
   const onSubmit = (e) => {
 
     e.preventDefault();
-    // console.log("selectedFiles");
-    // console.log(selectedFiles);
+    
 
     const formData = new FormData();
     formData.append("photos", fileInput.current.files[0]);
@@ -78,30 +64,17 @@ export const FileUploadForm = ({setLoading} ) => {
     console.log(fileInput.current.files);
 
 
-    // Array Of Images
-    // for(let i=0; i<5; i++){
-    //   formData.append("photos", fileInput.current.files[i]);
-      // formData.append("photos", selectedFiles[i]);
-      // console.log(fileInput.current.files[i].name);
-      // console.log(selectedFiles[i].name);
-    // }
-
+   
     const headers = {
       Authorization: `bearer ${token}`,
     };
-    // .post("https://artists-kg0g.onrender.com/post/uploads", formData, { headers })
-    
-    // setLoading(true)
+   
     axios
     .post("http://localhost:8000/post/uploads", formData, {headers})
     .then((res) => {
       console.log(res);
         
-        // if (formRef.current) {
-        //   formRef.current.reset(); // Use the stored form reference
-        //   fileInput.current.form.reset();
-        // }
-        // formRef.current = null;
+        
         toast({
           title: "New Submission",
           description: `${res.data.msg}`,
@@ -115,12 +88,7 @@ export const FileUploadForm = ({setLoading} ) => {
         
       })
       .catch((err) => {
-        // if (formRef.current) {
-        //   formRef.current.reset(); // Use the stored form reference
-        //   }
-        //   fileInput.current = null;
-        //   fileInput.current.form.reset();
-        //   setLoading(false)
+        
           console.log(err)
           toast({
             title: "New Submission",
@@ -136,7 +104,7 @@ export const FileUploadForm = ({setLoading} ) => {
 
 
 
-      // dispatch(postArtSubmission(formData))
+     
   };
 
   return (

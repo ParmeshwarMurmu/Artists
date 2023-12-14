@@ -503,24 +503,19 @@ height:  ${props => (props.isLoading === true ? "700px" : "")};
 .mainImage:hover{
   transform: scale(0.9);
 }
+
+
+
+@media all and (min-width: 320px) and (max-width: 600px) {
+  .mainImage{
+    height:  ${props => (props.isHeightGreater === true ? "300px" : "")};
+  }
+    
+}
   
 `
 
 
-// const StyledMainImage = styled.div`
-//   width: ${(props) => `${props.aspectRatio * 100}%`};
-//   /* Adjust height as needed, or you can use 'auto' for dynamic height */
-//   height: 0;
-//   padding-bottom: ${(props) => `${100 / props.aspectRatio}%`};
-//   position: relative;
-//   overflow: hidden;
-
-//   img {
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover; /* or object-fit: contain; depending on your preference */
-//   }
-// `
 
 
 

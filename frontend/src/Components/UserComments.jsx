@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getPostComment } from '../Redux/UserCommentReducer/action';
-import { Avatar, Heading, Text, Wrap, WrapItem } from '@chakra-ui/react';
+import { Avatar,  Text, Wrap, WrapItem } from '@chakra-ui/react';
 import style from '../CSS/SinglePage.module.css'
-import { Link } from 'react-scroll';
+
 
 export const UserComments = () => {
 

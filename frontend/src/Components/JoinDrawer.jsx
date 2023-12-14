@@ -1,14 +1,14 @@
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import style from '../CSS/Navbar.module.css'
-import { FaUserLarge } from "react-icons/fa6";
+
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import artVideo from '../Assets/Artist_Video.mp4'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { registerFirstNameAction, registerConfirmPasswordAction, registerEmailAction, registerLastNameAction, registerPasswordAction, registerResetAction } from '../Redux/UserRegisterReducer/action';
 import axios from 'axios'
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { BiSolidUserPlus } from "react-icons/bi";
 
 
@@ -28,7 +28,7 @@ export const JoinDrawer = () => {
     const [valuePass, setValuePass] = useState("")
     const [confirmValuePass, setConfirmValuePass] = useState("")
     const toast = useToast()
-    const navigate = useNavigate()
+    
 
     const { firstName, lastName, email, password, confirmPassword } = useSelector((store) => {
         return {

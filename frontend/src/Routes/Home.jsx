@@ -50,9 +50,7 @@ export const Home = () => {
                             <AllArts />
                         </TabPanel>
 
-                        <TabPanel style={{ height: '100%', overflowY: 'auto' }}>
-                            
-                        </TabPanel>
+                        
                         
                     </TabPanels>
                 </Tabs>

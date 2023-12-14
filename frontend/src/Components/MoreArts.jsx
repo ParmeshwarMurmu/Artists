@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
 import { getMoreArtsData } from '../Redux/MoreArtsReducer/action';
-import { Heading, Image, Stack } from '@chakra-ui/react';
+import { Heading, } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { getSggestedArtsData } from '../Redux/SuggestedArtsReducer/action';
 
 export const MoreArts = () => {
 
     const { id } = useParams();
-    // console.log("mortArts", id);
+
     const dispatch = useDispatch()
 
 
@@ -30,9 +30,7 @@ export const MoreArts = () => {
 
     }, [])
 
-    // console.log("moreArts", moreArts);
-    // console.log("moreArts", moreArts);
-    // console.log("sArts", suggestedArts);
+    
 
 
 
@@ -126,13 +124,7 @@ const DIV = styled.div`
 }
 
 
-/* @media (max-width: 1200px) {
-    .moreArtsContainer#photos {
-  -moz-column-count:    4;
-  -webkit-column-count: 4;
-  column-count:         4;
-  }
-} */
+
   @media (max-width: 1000px) {
     .moreArtsContainer {
       -moz-column-count: 3;
@@ -142,13 +134,7 @@ const DIV = styled.div`
   }
 
 
-  /* @media (max-width: 800px) {
-    .moreArtsContainer {
-      -moz-column-count: 2;
-      -webkit-column-count: 2;
-      column-count: 2;
-    }
-  } */
+ 
 
   @media all and (min-width: 768px) and (max-width: 1024px) {
     .moreArtsContainer {

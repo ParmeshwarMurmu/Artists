@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { CardComponent } from './CardComponent'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -8,7 +8,7 @@ import { HomePageLoader } from './HomePageLoader'
 
 export const AllArts = () => {
 
-  // const [data, setData] = useState([])
+
 
   const dispatch = useDispatch();
 
@@ -34,21 +34,13 @@ export const AllArts = () => {
 
   useEffect(() => {
 
-    // axios.get(`http://localhost:8000/post/`)
-    // axios.get(`https://artists-kg0g.onrender.com/post/`)
-    //   .then((res)=>{
-    //       console.log(res.data);
-    //       setData(res.data.data)
-    //   })
-    //   .catch((err)=>{
-    //       console.log(err);
-    //   })
+    
 
     dispatch(getAllArtsData())
 
   }, [])
 
-  console.log("data", data)
+
   return (
     <DIV className="grid-container" isLoading={isLoading}>
       <section id="photos">
@@ -117,9 +109,9 @@ background-color: black;
   }
   @media (max-width: 400px) {
     #photos {
-      -moz-column-count: 1;
-      -webkit-column-count: 1;
-      column-count: 1;
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
     }
   }
 

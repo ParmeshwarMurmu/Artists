@@ -1,14 +1,13 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext,  useRef, useState } from 'react'
 import style from '../CSS/Navbar.module.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import loginVideo from '../Assets/Artist_Login_Video.mp4';
-import { FaHandsClapping } from "react-icons/fa6";
+
 import communityWallpaper from '../Assets/Login_Community.png'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { loginEmailAction, loginPasswordAction, loginResetAction } from '../Redux/UserLoginReducer/action';
 import axios from 'axios';
-import { RxCross2 } from "react-icons/rx";
 import { appContent } from '../ContextApi/ContextApi';
 import { BiSolidLogIn } from "react-icons/bi";
 

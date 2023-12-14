@@ -1,4 +1,4 @@
-import { Avatar, Button, FormControl, FormLabel, IconButton, Image, Input, InputGroup, InputRightElement, Text, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
+import { Avatar, Button, FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Text, Tooltip, Wrap, WrapItem, useToast } from '@chakra-ui/react'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { appContent } from '../ContextApi/ContextApi'
 import { LiaEdit } from "react-icons/lia";
@@ -58,10 +58,7 @@ export const UserProfile = () => {
 
     // Handler for updating the first name
     const handleFirstNameChange = (e) => {
-        // setUserData({
-        //   ...userData,
-        //   firstName: e.target.value,
-        // });
+        
         console.log(e.target.value,);
     };
 
@@ -69,12 +66,12 @@ export const UserProfile = () => {
 
     const onChange = (e) => {
         const file = e.target.files[0];
-        console.log("Files", file);
+        // console.log("Files", file);
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             // Set imageUrl in your component's state or wherever it's needed
-            console.log("imageUrl");
-            console.log(imageUrl);
+            // console.log("imageUrl");
+            // console.log(imageUrl);
             setImageURL(imageUrl);
         }
 
@@ -169,7 +166,7 @@ export const UserProfile = () => {
             //    ref.current = result;
             setErrorPass(true)
             setVerify(result)
-            console.log(errorPass, "errPass");
+            // console.log(errorPass, "errPass");
         }
         else {
             setVerify("Strong Password")
@@ -200,20 +197,8 @@ export const UserProfile = () => {
     }
 
 
-
-    // let data = {
-    //     firstName,
-    //     lastName,
-    //     state,
-    //     city,
-    //     password,
-
-    // }
-
-
-
-    // console.log(data);
-    console.log(cityEdit);
+    
+    // console.log(cityEdit);
 
     const updateUserHandler = (e) => {
         let data = {}
@@ -256,9 +241,7 @@ export const UserProfile = () => {
             formData.append("password", password);
         }
 
-        console.log("+++++++++++++++")
-        console.log(formData);
-
+        
         const headers = {
             Authorization: `bearer ${token}`,
         };
@@ -317,10 +300,6 @@ export const UserProfile = () => {
     }, [cityEdit]);
 
 
-
-    useEffect(() => {
-
-    }, [refresh]);
 
 
 
