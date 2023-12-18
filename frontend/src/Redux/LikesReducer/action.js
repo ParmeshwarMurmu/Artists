@@ -1,4 +1,5 @@
 import axios from "axios";
+import { APP_URL } from "../../Variables/Variables";
 
 export const USER_LIKES = "USER_LIKES"
 
@@ -18,7 +19,7 @@ const headers = {
 
 export const patchUserLikes = (id)=>(dispatch) => {
   
-    axios.patch(`https://again-art.onrender.com/post/postLike/${id}`, { headers })
+    axios.patch(`${APP_URL}/post/postLike/${id}`, { headers })
     .then((res) => {
       console.log(res.data);
       dispatch(userLikesAction(res.data.totalUserLikes))

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { APP_URL } from "../../Variables/Variables"
 
 
 export const USER_FAVOURITE_LOADING = 'USER_FAVOURITE_LOADING'
@@ -27,7 +28,7 @@ const headers = {
 
 export const getUserFavouriteData = ()=>(dispatch)=>{
     dispatch(userFavouriteLoadingAction())
-    axios.get(`https://again-art.onrender.com/post/userFavourite`, {headers})
+    axios.get(`${APP_URL}/post/userFavourite`, {headers})
     .then((res)=>{
         console.log(res.data);
         console.log(res.data.userFavourite);

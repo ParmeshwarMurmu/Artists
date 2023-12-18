@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { postArtSubmission } from '../Redux/ArtSubmissionReducer/action';
+import { APP_URL } from '../Variables/Variables';
 
 
 
@@ -69,8 +70,9 @@ export const FileUploadForm = ({setLoading} ) => {
       Authorization: `bearer ${token}`,
     };
    
+    // .post("https://again-art.onrender.com/post/uploads", formData, {headers})
     axios
-    .post("https://again-art.onrender.com/post/uploads", formData, {headers})
+    .post(`${APP_URL}/post/uploads`, formData, {headers})
     .then((res) => {
       console.log(res);
         

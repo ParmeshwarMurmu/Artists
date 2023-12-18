@@ -26,6 +26,7 @@ import { Link } from 'react-scroll'
 import AUdio from '../Assets/Like_Audio.mp3'
 import { patchUserLikes } from '../Redux/LikesReducer/action'
 import { addToFavouriteData } from '../Redux/AddToFavouriteReducer/action'
+import { APP_URL } from '../Variables/Variables'
 
 export const SinglePage = () => {
 
@@ -178,7 +179,7 @@ export const SinglePage = () => {
   const favouriteHandler = () => {
     if (isAuth) {
       // dispatch(addToFavouriteData(id))
-      axios.post(`https://again-art.onrender.com/post/addToFavoutrite`, { id }, { headers })
+      axios.post(`${APP_URL}/post/addToFavoutrite`, { id }, { headers })
         .then((res) => {
           console.log(res.data);
           // dispatch(addToFavouriteSuccessAction(res.data.msg))
@@ -226,7 +227,7 @@ export const SinglePage = () => {
  
 
   const views = ()=>{
-    axios.patch(`https://again-art.onrender.com/post/views/${id}`)
+    axios.patch(`${APP_URL}/post/views/${id}`)
             .then((res) => {
                 console.log(res);
                

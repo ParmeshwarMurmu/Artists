@@ -10,6 +10,7 @@ import { registerFirstNameAction, registerConfirmPasswordAction, registerEmailAc
 import axios from 'axios'
 import {useNavigate } from 'react-router-dom';
 import { BiSolidUserPlus } from "react-icons/bi";
+import { APP_URL } from '../Variables/Variables';
 
 
 
@@ -143,7 +144,7 @@ export const JoinDrawer = () => {
             password
         }
 
-        axios.post('https://again-art.onrender.com/user/register', data)
+        axios.post(`${APP_URL}/user/register`, data)
             .then((res) => {
                 console.log(res)
                 toast({

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { APP_URL } from "../../Variables/Variables";
 
 export const USER_COMMENT = "USER_COMMENT";
 export const USER_COMMENT_LOADING = "USER_COMMENT_LOADING";
@@ -27,7 +28,7 @@ const headers = {
 export const postUserComment = (id, comment) => (dispatch) => {
     // axios.post(`https://artists-kg0g.onrender.com/post/comment/${id}`, { comment }, { headers })
     dispatch(userCommentLoadingAction())
-    axios.post(`https://again-art.onrender.com/post/comment/${id}`, { comment }, { headers })
+    axios.post(`${APP_URL}/post/comment/${id}`, { comment }, { headers })
         .then((res) => {
             console.log(res.data);
             dispatch(userCommentResetAction())

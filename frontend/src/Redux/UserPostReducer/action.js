@@ -1,4 +1,5 @@
 import axios from "axios"
+import { APP_URL } from "../../Variables/Variables"
 
 
 export const USER_POST_LOADING = 'USER_POST_LOADING'
@@ -27,7 +28,8 @@ const headers = {
 
 export const getUserPostData = ()=>(dispatch)=>{
     dispatch(userPostLoadingAction())
-    axios.get(`https://again-art.onrender.com/post/userPost`, {headers})
+    // axios.get(`https://again-art.onrender.com/post/userPost`, {headers})
+    axios.get(`${APP_URL}/post/userPost`, {headers})
     .then((res)=>{
         console.log(res.data);
         dispatch(userPostSuccessAction(res.data.userPost))

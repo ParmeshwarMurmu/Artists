@@ -9,6 +9,8 @@ import styled from 'styled-components';
 import { HomePageLoader } from './HomePageLoader';
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa";
+import { FavNoItem } from './FavNoItem';
+import { ThreeDotsUserFavourites } from './ThreeDotsUserFavourites';
 
 
 export const UserFavourites = () => {
@@ -37,7 +39,7 @@ export const UserFavourites = () => {
   return (
     <DIV style={{ backgroundColor: "black", color: "white" }} isLoading={isLoading}>
       {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
-      {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
+      {isLoading ? <HomePageLoader /> : userFavourite.length ===0 ? <FavNoItem /> : <SimpleGrid spacing={8} className='simpleGrid' >
         {
           isData && userFavourite.map((el) => (
             <Card className='card' key={el._id} style={{ backgroundColor: "black" }}>
@@ -51,19 +53,23 @@ export const UserFavourites = () => {
                       <Text>Creator</Text>
                     </Box>
                   </Flex>
-                  <IconButton
+                  {/* <IconButton
                     variant='none'
                     colorScheme='gray'
                     aria-label='See menu'
 
-                    icon={<BsThreeDotsVertical color='white' />}
-                  />
+                    icon={<ThreeDotsUserFavourites id={el._id} />}
+                  /> */}
+                  <ThreeDotsUserFavourites id={el._id} />
+                  
                 </Flex>
               </CardHeader>
-              <CardBody>
+              <CardBody >
                 <Text color='white'>
                   {`${el.post.title}`}
                 </Text>
+
+                {/* <ThreeDotsUserFavourites id={el._id} /> */}
               </CardBody>
 
               <div style={{ display: "flex", justifyContent: "center" }}>

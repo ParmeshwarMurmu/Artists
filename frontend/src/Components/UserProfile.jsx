@@ -9,6 +9,7 @@ import style from '../CSS/UserProfile.module.css'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { updateCityAction, updateFirstNameAction, updateLastNameAction, updatePasswordAction, updateStateAction } from '../Redux/UserProfileUpdateReducer/action';
 import axios from 'axios';
+import { APP_URL } from '../Variables/Variables';
 
 export const UserProfile = () => {
     const { userData, userProfileLoading } = useContext(appContent)
@@ -246,7 +247,7 @@ export const UserProfile = () => {
             Authorization: `bearer ${token}`,
         };
 
-        axios.patch('https://again-art.onrender.com/user/userProfileUpdate', formData, { headers })
+        axios.patch(`${APP_URL}/user/userProfileUpdate`, formData, { headers })
             .then((res) => {
                 console.log(res);
                 toast({

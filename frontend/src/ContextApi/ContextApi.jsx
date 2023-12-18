@@ -1,6 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
+import { APP_URL } from '../Variables/Variables'
 
 export const appContent = createContext()
 export const ContextApi = ({children}) => {
@@ -21,7 +22,7 @@ export const ContextApi = ({children}) => {
         if(token){
             setIsAuth(true)
             setUserProfileLoading(true)
-            axios.get(`https://again-art.onrender.com/user/singleUser/${userId}`)
+            axios.get(`${APP_URL}/user/singleUser/${userId}`)
             .then((res)=>{
                 // console.log(res);
                 setUserData(res.data.user)

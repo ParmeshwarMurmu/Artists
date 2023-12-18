@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getUserPostData } from '../Redux/UserPostReducer/action'
-import { Button, Card, CardBody, CardFooter,  Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Button, Card, CardBody, CardFooter, IconButton, Image, SimpleGrid, Text } from '@chakra-ui/react'
 import styled from 'styled-components'
 
 import { BiLike } from "react-icons/bi";
@@ -9,6 +9,9 @@ import { BiChat } from "react-icons/bi";
 import { HomePageLoader } from './HomePageLoader'
 import { Link } from 'react-router-dom'
 import { FaEye } from "react-icons/fa";
+import { ThreeDotsUserPost } from './ThreeDotsUserPost'
+import { UserPostNoItem } from './UserPostNoItem'
+
 
 export const UserPosts = () => {
 
@@ -32,17 +35,20 @@ export const UserPosts = () => {
   }, [])
 
   return (
-    <DIV style={{ backgroundColor: "black", color: "white"}} isLoading={isLoading}>
+    <DIV style={{ backgroundColor: "black", color: "white" }} isLoading={isLoading}>
       {/* spacing={3} templateColumns='repeat(4, minmax(250px, 1fr))' */}
-      {isLoading ? <HomePageLoader /> : <SimpleGrid spacing={8} className='simpleGrid' >
+      {isLoading ? <HomePageLoader /> : userPost.length === 0 ? <UserPostNoItem /> : <SimpleGrid spacing={8} className='simpleGrid' >
         {
           isData && userPost.map((el) => (
             <Card className='card' key={el._id} style={{ backgroundColor: "black" }}>
-              
-              <CardBody>
+
+              <CardBody style={{display: "flex", justifyContent: 'space-between'}}>
                 <Text color='white'>
                   {`${el.title}`}
                 </Text>
+
+                <ThreeDotsUserPost id={el._id} />
+
               </CardBody>
 
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -73,7 +79,7 @@ export const UserPosts = () => {
                 </Button>
 
                 <Button color='white' flex='1' variant={'none'} leftIcon={<FaEye />} >
-                {`${el.views}`}
+                  {`${el.views}`}
                 </Button>
                 {/* <Button flex='1' variant='ghost' >
             Share

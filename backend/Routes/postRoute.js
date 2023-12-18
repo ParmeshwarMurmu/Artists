@@ -50,10 +50,12 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
+        const fileUrl = `${req.protocol}s://${req.get('host')}/uploads/${file.filename}`;
 
-        // console.log(fileUrl);
-        // console.log("title", title);
+        console.log(fileUrl);
+
+        console.log(req.protocol);
+        console.log(req.get('host'));
 
         req.body.image = fileUrl;
         // console.log("reqbody", req.body); likes: Number,
@@ -263,7 +265,7 @@ postRoute.post('/addToFavoutrite', auth, async (req, res) => {
         const isPresent = await FavouriteModel.findOne({ user, post: id });
        
         if (isPresent) {
-            res.status(200).send({ "msg": "Already in your Favorites" });
+            res.status(200).send({ "msg": "Already in your Favourites" });
         }
         else {
             const userFavourite = new FavouriteModel({ user, post: id })
@@ -363,6 +365,40 @@ postRoute.get('/search', async (req, res) => {
     }
 });
 
+
+// delete userPost
+
+postRoute.delete('/userPost/delete/:id', auth, async (req, res) => {
+
+    try {
+        const { id } = req.params;
+
+        
+        const userPost= await PostModel.findByIdAndDelete({_id: id})
+        res.status(200).send({ "msg": "Post Deleted" })
+    } catch (error) {
+        res.status(400).send({ "msg": "Cannot Delete Post", "err": error })
+
+    }
+})
+
+
+// delete user Favourites
+
+postRoute.delete('/userFavourite/delete/:id', auth, async (req, res) => {
+
+    try {
+        const { id } = req.params;
+        console.log("fav id", id);
+
+        
+        const userPost= await FavouriteModel.findByIdAndDelete({_id: id})
+        res.status(200).send({ "msg": "Favourite Deleted" })
+    } catch (error) {
+        res.status(400).send({ "msg": "Cannot Delete your Favourite", "err": error })
+
+    }
+})
 
 
 

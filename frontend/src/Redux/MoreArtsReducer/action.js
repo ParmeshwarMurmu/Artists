@@ -1,4 +1,5 @@
 import axios from "axios"
+import { APP_URL } from "../../Variables/Variables"
 
 
 export const MORE_ARTS_LOADING = "MORE_ARTS_LOADING"
@@ -27,7 +28,7 @@ export const moreArtsErrorAction  = ()=>{
 
 export const getMoreArtsData  = (id)=>(dispatch)=>{
    dispatch(moreArtsLodingAction());
-   axios.get(`https://again-art.onrender.com/post/moreArts/${id}`)
+   axios.get(`${APP_URL}/post/moreArts/${id}`)
         .then((res)=>{
             dispatch(moreArtsSuccessAction(res.data.moreArts))
             console.log(res.data);

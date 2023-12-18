@@ -1,4 +1,5 @@
 import axios from "axios";
+import { APP_URL } from "../../Variables/Variables";
 
 
 export const SEARCH_QUERY_LOADING = "SEARCH_QUERY_LOADING";
@@ -30,7 +31,7 @@ export const searchQueryResetAction = () => {
 export const getSearchedQueryData = (query) => (dispatch) => {
 
     dispatch(searchQueryLoadingAction())
-    axios.get(`https://again-art.onrender.com/post/search?searchTerm=${query}`)
+    axios.get(`${APP_URL}/post/search?searchTerm=${query}`)
         .then((res) => {
             console.log(res);
             dispatch(searchQueryDataAction(res.data.data))

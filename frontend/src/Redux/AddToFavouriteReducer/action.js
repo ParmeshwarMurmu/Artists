@@ -1,4 +1,5 @@
 import axios from "axios"
+import { APP_URL } from "../../Variables/Variables"
 
 
 // export const USER_FAVOURITE_LOADING = 'USER_FAVOURITE_LOADING'
@@ -19,7 +20,7 @@ const headers = {
 
 
 export const addToFavouriteData = (id)=>(dispatch)=>{
-    axios.post(`https://again-art.onrender.com/post/addToFavoutrite`, {id},  {headers})
+    axios.post(`${APP_URL}/post/addToFavoutrite`, {id},  {headers})
     .then((res)=>{
         console.log(res.data);
         dispatch(addToFavouriteSuccessAction(res.data.msg))

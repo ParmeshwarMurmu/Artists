@@ -1,4 +1,5 @@
 import axios from "axios";
+import { APP_URL } from "../../Variables/Variables";
 
 export const POST_COMMENT = "POST_COMMENT";
 
@@ -19,7 +20,7 @@ const headers = {
 
 export const getPostComment = (id) => (dispatch) => {
     
-    axios.get(`https://again-art.onrender.com/post/postComment/${id}`)
+    axios.get(`${APP_URL}/post/postComment/${id}`)
         .then((res) => {
             console.log(res.data);
             dispatch(postCommentAction(res.data.postComment))

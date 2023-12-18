@@ -10,6 +10,7 @@ import { loginEmailAction, loginPasswordAction, loginResetAction } from '../Redu
 import axios from 'axios';
 import { appContent } from '../ContextApi/ContextApi';
 import { BiSolidLogIn } from "react-icons/bi";
+import { APP_URL } from '../Variables/Variables';
 
 export const LoginDrawer = () => {
 
@@ -38,7 +39,7 @@ export const LoginDrawer = () => {
             password
         }
 
-        axios.post('https://again-art.onrender.com/user/login', data)
+        axios.post(`${APP_URL}/user/login`, data)
             .then((res) => {
                 console.log(res);
                 if (res.data.msg === 'Login Successfully') {
@@ -50,6 +51,7 @@ export const LoginDrawer = () => {
                         duration: 4000,
                         isClosable: true,
                     })
+                    setLoginOpen(false)
                     onClose()
                     setIsAuth(true)
                     localStorage.setItem("Artist-Token", res.data.token)

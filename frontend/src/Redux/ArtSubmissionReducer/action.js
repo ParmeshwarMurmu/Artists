@@ -1,4 +1,5 @@
 import axios from "axios";
+import { APP_URL } from "../../Variables/Variables";
 
 export const ART_SUBMISSION_LOADING = "ART_SUBMISSION_LOADING";
 export const ART_SUBMISSION_SUCCESS = "ART_SUBMISSION_SUCCESS";
@@ -29,7 +30,7 @@ export const postArtSubmission = (formData) => (dispatch) => {
     console.log("artSubmission");
     dispatch(artSubmissionLoadingAction())
     axios
-    .post("https://again-art.onrender.com/post/uploads", formData, { headers })
+    .post(`${APP_URL}/post/uploads`, formData, { headers })
     .then((res) => {
       console.log("art", res);
       dispatch(artSubmissionSuccessAction())

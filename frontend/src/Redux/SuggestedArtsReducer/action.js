@@ -1,4 +1,5 @@
 import axios from "axios"
+import { APP_URL } from "../../Variables/Variables"
 
 
 export const SUGGESTED_ARTS_LOADING = "SUGGESTED_ARTS_LOADING"
@@ -27,7 +28,7 @@ export const sggestedArtsErrorAction  = ()=>{
 
 export const getSggestedArtsData  = ()=>(dispatch)=>{
    dispatch(sggestedArtsLodingAction());
-   axios.get(`https://again-art.onrender.com/post/suggestedArts`)
+   axios.get(`${APP_URL}/post/suggestedArts`)
         .then((res)=>{
             dispatch(sggestedArtsSuccessAction(res.data.suggestedArts))
             console.log(res.data);
