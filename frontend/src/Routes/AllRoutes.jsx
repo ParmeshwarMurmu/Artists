@@ -20,21 +20,20 @@ export const AllRoutes = () => {
       </PrivateRoute>} />
       <Route path='/singlePage/:id' element={<SinglePage />} />
       <Route path='/userProfile' element={
-        <PrivateRoute>
+        
           <UserProfile />
-        </PrivateRoute>
+        
       } />
       <Route path='/userPosts' element={
-        <PrivateRoute>
-
+        
           <UserPosts />
-        </PrivateRoute>
+        
       } />
       <Route path='/userFavourites' element={
-        <PrivateRoute>
+        
 
           <UserFavourites />
-        </PrivateRoute>
+        
       } />
       <Route path='/search' element={<SearchedData />} />
     </Routes>

@@ -17,6 +17,8 @@ export const ContextApi = ({children}) => {
     // m("Artist-Token", res.data.token)
     //         localStorage.setItem('Artist-UserId', res.data.userId)
 
+    
+
     useEffect(()=>{
       
         if(token){
@@ -32,9 +34,9 @@ export const ContextApi = ({children}) => {
                 console.log(err);
             })
         }
-    }, [isAuth])
+    }, [])
 
-
+    console.log("contextApi login open", loginOpen);
 
     return <appContent.Provider value={{isAuth, setIsAuth, userData, isOpen, onOpen, onClose, loginOpen, setLoginOpen, userProfileLoading}}>{children}</appContent.Provider>
 

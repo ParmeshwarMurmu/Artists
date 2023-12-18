@@ -12,7 +12,7 @@ const { FavouriteModel } = require('../Models/favouriteSchema');
 const postRoute = express.Router()
 
 const storage = multer.diskStorage({
-    destination: './uploads',
+    destination: './pictures',
     filename: (req, file, callback) => {
         callback(null, file.originalname)
     },
@@ -38,19 +38,21 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
     try {
     
-        // console.log(req.file, ">>>>>");
+        console.log(req.file, ">>>>>");
         const file = req.file;
         // console.log(req.body);
+        // const imageUrl = URL.createObjectURL(file);
+        // console.log("imageURl", imageUrl);
 
 
         // Move each file to the uploads directory
 
-        const destination = path.join(__dirname, '..', 'uploads', file.originalname);
-        fs.renameSync(file.path, destination);
+        // const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+        // fs.renameSync(file.path, destination);
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}s://${req.get('host')}/uploads/${file.filename}`;
+        const fileUrl = `${req.protocol}s://${req.get('host')}/pictures/${file.filename}`;
 
         console.log(fileUrl);
 

@@ -15,6 +15,7 @@ export const FileUploadForm = ({setLoading} ) => {
   // const data = useSelector((store) => store.authReducer);
   const [selectedFiles, setSelectedFiles] = useState([]);
   
+  
   const dispatch = useDispatch();
   const formRef = useRef(null);
   
@@ -52,11 +53,12 @@ export const FileUploadForm = ({setLoading} ) => {
   };
 
  
-  
+
 
   const onSubmit = (e) => {
 
     e.preventDefault();
+   
     
 
     const formData = new FormData();
@@ -71,12 +73,14 @@ export const FileUploadForm = ({setLoading} ) => {
     };
    
     // .post("https://again-art.onrender.com/post/uploads", formData, {headers})
+    // setSubmitLoader(true)
     axios
     .post(`${APP_URL}/post/uploads`, formData, {headers})
     .then((res) => {
       console.log(res);
         
-        
+      // setSubmitLoader(false)
+     
         toast({
           title: "New Submission",
           description: `${res.data.msg}`,
@@ -104,6 +108,8 @@ export const FileUploadForm = ({setLoading} ) => {
       }
       );
 
+
+      
 
 
      
@@ -146,6 +152,8 @@ export const FileUploadForm = ({setLoading} ) => {
           {/* <input type="submit" value="Submit" /> */}
         </div>
       </form>
+
+      
 
       <hr />
     </DIV>

@@ -39,6 +39,8 @@ export const LoginDrawer = () => {
             password
         }
 
+        setLoginOpen(false)
+
         axios.post(`${APP_URL}/user/login`, data)
             .then((res) => {
                 console.log(res);
@@ -51,7 +53,7 @@ export const LoginDrawer = () => {
                         duration: 4000,
                         isClosable: true,
                     })
-                    setLoginOpen(false)
+                    // setLoginOpen(false)
                     onClose()
                     setIsAuth(true)
                     localStorage.setItem("Artist-Token", res.data.token)
@@ -76,7 +78,7 @@ export const LoginDrawer = () => {
     }
 
    
-
+    console.log("LOGINdrawer login open", loginOpen);
 
 
     return (

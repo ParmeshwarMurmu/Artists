@@ -22,6 +22,8 @@ export const Home = () => {
             isClosable: true,
         })
     }
+
+    console.log("HomePage login open", loginOpen);
     return (
         <div style={{}}>
 
