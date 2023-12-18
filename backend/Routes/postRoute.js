@@ -47,8 +47,8 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
         // Move each file to the uploads directory
 
-        // const destination = path.join(__dirname, '..', 'uploads', file.originalname);
-        // fs.renameSync(file.path, destination);
+        const destination = path.join(__dirname, '..', 'pictures', file.originalname);
+        fs.renameSync(file.path, destination);
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension

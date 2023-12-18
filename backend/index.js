@@ -10,10 +10,10 @@ const app = express()
 app.use(express.json())
 
 app.use(cors())
-app.use('/userProfile', express.static('userProfile'));
+app.use('/userProfileUpdate', express.static('userProfile'));
 
-app.use('/uploads', express.static('uploads'));
-app.use('/pictures', express.static('pictures'));
+// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('pictures'));
 app.use('/user', userRoute)
 app.use('/post', postRoute)
 

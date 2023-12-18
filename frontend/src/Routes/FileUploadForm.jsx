@@ -57,7 +57,7 @@ export const FileUploadForm = ({setLoading} ) => {
 
   const onSubmit = (e) => {
 
-    e.preventDefault();
+    // e.preventDefault();
    
     
 
@@ -119,9 +119,9 @@ export const FileUploadForm = ({setLoading} ) => {
     // 
     <DIV>
 
-      
+{/* enctype="multipart/form-data"  */}
 
-      <form onSubmit={onSubmit} enctype="multipart/form-data" >
+      <form onSubmit={onSubmit} >
         <div style={{}}>
           <div  className='fileCont'>
             <div style={{ marginBottom: "20px" }}>
