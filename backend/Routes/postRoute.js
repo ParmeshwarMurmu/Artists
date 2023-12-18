@@ -52,7 +52,7 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}s://${req.get('host')}/pictures/${file.filename}`;
+        const fileUrl = `${req.protocol}://${req.get('host')}/pictures/${file.filename}`;
 
         console.log(fileUrl);
 

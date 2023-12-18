@@ -57,7 +57,7 @@ export const FileUploadForm = ({setLoading} ) => {
 
   const onSubmit = (e) => {
 
-    // e.preventDefault();
+    e.preventDefault();
    
     
 

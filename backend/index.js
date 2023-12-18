@@ -13,7 +13,7 @@ app.use(cors())
 app.use('/userProfileUpdate', express.static('userProfile'));
 
 // app.use('/uploads', express.static('uploads'));
-app.use('/uploads', express.static('pictures'));
+app.use('/pictures', express.static('pictures'));
 app.use('/user', userRoute)
 app.use('/post', postRoute)
 
