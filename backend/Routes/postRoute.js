@@ -11,27 +11,24 @@ const { FavouriteModel } = require('../Models/favouriteSchema');
 
 const postRoute = express.Router()
 
+// const storage = multer.diskStorage({
+//     destination: './pictures',
+//     filename: (req, file, callback) => {
+//         callback(null, file.originalname)
+//     },
+// });
+
 const storage = multer.diskStorage({
-    destination: './pictures',
+    destination: path.join(__dirname, '../pictures'),  // Use an absolute path
     filename: (req, file, callback) => {
         callback(null, file.originalname)
     },
 });
 
+
 const upload = multer({ storage: storage })
 
 
-postRoute.get('/', async (req, res) => {
-
-    try {
-        const posts = await PostModel.find().populate('user').sort({ _id: -1 })
-        res.status(200).send({ "msg": "All Posts", data: posts })
-
-    } catch (error) {
-        res.status(400).send({ "msg": "cannot get posts", "err": error })
-
-    }
-})
 
 postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
@@ -53,7 +50,7 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}://${req.get('host')}/pictures/${file.filename}`;
+        const fileUrl = `${req.protocol}s://${req.get('host')}/pictures/${file.filename}`;
 
         console.log(fileUrl);
 
@@ -70,6 +67,19 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
 
     } catch (error) {
+
+    }
+})
+
+
+postRoute.get('/', async (req, res) => {
+
+    try {
+        const posts = await PostModel.find().populate('user').sort({ _id: -1 })
+        res.status(200).send({ "msg": "All Posts", data: posts })
+
+    } catch (error) {
+        res.status(400).send({ "msg": "cannot get posts", "err": error })
 
     }
 })
