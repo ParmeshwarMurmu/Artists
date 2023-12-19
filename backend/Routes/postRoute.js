@@ -39,6 +39,7 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
     try {
     
         console.log(req.file, ">>>>>");
+        console.log(req.body, "<<<<<");
         const file = req.file;
         // console.log(req.body);
         // const imageUrl = URL.createObjectURL(file);
