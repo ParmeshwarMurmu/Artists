@@ -12,14 +12,14 @@ const { FavouriteModel } = require('../Models/favouriteSchema');
 const postRoute = express.Router()
 
 // const storage = multer.diskStorage({
-//     destination: './pictures',
+//     destination: './Arts',
 //     filename: (req, file, callback) => {
 //         callback(null, file.originalname)
 //     },
 // });
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../pictures'),  // Use an absolute path
+    destination: path.join(__dirname, '../Arts'),  // Use an absolute path
     filename: (req, file, callback) => {
         callback(null, file.originalname)
     },
@@ -30,7 +30,7 @@ const upload = multer({ storage: storage })
 
 
 
-postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
+postRoute.post('/newSubmission', upload.single('arts'), auth, async (req, res) => {
 
 
     try {
@@ -45,12 +45,12 @@ postRoute.post('/uploads', upload.single('photos'), auth, async (req, res) => {
 
         // Move each file to the uploads directory
 
-        const destination = path.join(__dirname, '..', 'pictures', file.originalname);
+        const destination = path.join(__dirname, '..', 'Arts', file.originalname);
         fs.renameSync(file.path, destination);
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}s://${req.get('host')}/pictures/${file.filename}`;
+        const fileUrl = `${req.protocol}://${req.get('host')}/Arts/${file.filename}`;
 
         console.log(fileUrl);
 

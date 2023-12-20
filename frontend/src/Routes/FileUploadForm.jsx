@@ -62,8 +62,8 @@ export const FileUploadForm = ({setLoading} ) => {
     
 
     const formData = new FormData();
-    formData.append("photos", fileInput.current.files[0]);
-    console.log("photos");
+    formData.append("arts", fileInput.current.files[0]);
+    console.log("arts");
     console.log(fileInput.current.files);
 
 
@@ -75,7 +75,7 @@ export const FileUploadForm = ({setLoading} ) => {
     // .post("https://again-art.onrender.com/post/uploads", formData, {headers})
     // setSubmitLoader(true)
     axios
-    .post(`${APP_URL}/post/uploads`, formData, {headers})
+    .post(`${APP_URL}/post/newSubmission`, formData, {headers})
     .then((res) => {
       console.log(res);
         
@@ -128,7 +128,7 @@ export const FileUploadForm = ({setLoading} ) => {
               <Text mb={4}>Drag and drop your art here</Text>
               <input
                 type="file"
-                name="photos"
+                name="arts"
                 ref={fileInput}
               // multiple
               // onChange={onChange}
