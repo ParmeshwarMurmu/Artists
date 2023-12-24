@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 import { FaEye } from "react-icons/fa";
 import { ThreeDotsUserPost } from './ThreeDotsUserPost'
 import { UserPostNoItem } from './UserPostNoItem'
+import { APP_URL } from '../Variables/Variables'
 
 
 export const UserPosts = () => {
@@ -57,7 +58,7 @@ export const UserPosts = () => {
                   // objectFit='cover'
                   // width={'20%'}
                   height={'180px'}
-                  src={`${el.image}`}
+                  src={`${APP_URL}/Arts/${el.image}`}
                   alt='Chakra UI'
                 />
                 </Link>

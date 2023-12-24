@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa";
 import { FavNoItem } from './FavNoItem';
 import { ThreeDotsUserFavourites } from './ThreeDotsUserFavourites';
+import { APP_URL } from '../Variables/Variables';
 
 
 export const UserFavourites = () => {
@@ -78,7 +79,7 @@ export const UserFavourites = () => {
                   // objectFit='cover'
                   // width={'20%'}
                   height={'180px'}
-                  src={`${el.post.image}`}
+                  src={`${APP_URL}/Arts/${el.post.image}`}
                   alt='Chakra UI'
                 />
                 </Link>

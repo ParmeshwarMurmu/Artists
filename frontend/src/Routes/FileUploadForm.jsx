@@ -3,31 +3,33 @@ import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { postArtSubmission } from '../Redux/ArtSubmissionReducer/action';
+import { artSubmissionCompletedAction, postArtSubmission } from '../Redux/ArtSubmissionReducer/action';
 import { APP_URL } from '../Variables/Variables';
+import { newArtSubmission } from '../Redux/NewSubmissionReducer/action';
+import { HomePageLoader } from '../Components/HomePageLoader'
 
 
-
-export const FileUploadForm = ({setLoading} ) => {
-  const fileInput = React.createRef();
+export const FileUploadForm = ({ setLoading }) => {
+  const fileInput = useRef(null)
   const toast = useToast();
   const token = localStorage.getItem('Artist-Token')
   // const data = useSelector((store) => store.authReducer);
+  const [submitLoader, setSubmitLoader] = useState(false)
   const [selectedFiles, setSelectedFiles] = useState([]);
-  
-  
+
+
   const dispatch = useDispatch();
   const formRef = useRef(null);
-  
 
-  const { isLoading, isError, completed} = useSelector((store) => {
+
+  const { isLoading, isError, completed } = useSelector((store) => {
     return {
-        isLoading: store.ArtSubmissionReducer.isLoading,
-        isError: store.ArtSubmissionReducer.isError, 
-        completed: store.ArtSubmissionReducer.completed, 
-        
+      isLoading: store.ArtSubmissionReducer.isLoading,
+      isError: store.ArtSubmissionReducer.isError,
+      completed: store.ArtSubmissionReducer.completed,
+
     }
-}, shallowEqual)
+  }, shallowEqual)
 
 
   const onChange = (e) => {
@@ -52,14 +54,14 @@ export const FileUploadForm = ({setLoading} ) => {
     }
   };
 
- 
 
 
-  const onSubmit = (e) => {
+  console.log(completed, "completed");
+  const onSubmit = async (e) => {
 
     e.preventDefault();
-   
-    
+
+
 
     const formData = new FormData();
     formData.append("arts", fileInput.current.files[0]);
@@ -67,63 +69,85 @@ export const FileUploadForm = ({setLoading} ) => {
     console.log(fileInput.current.files);
 
 
-   
+
     const headers = {
       Authorization: `bearer ${token}`,
     };
-   
-    // .post("https://again-art.onrender.com/post/uploads", formData, {headers})
-    // setSubmitLoader(true)
-    axios
-    .post(`${APP_URL}/post/newSubmission`, formData, {headers})
-    .then((res) => {
-      console.log(res);
-        
-      // setSubmitLoader(false)
-     
-        toast({
-          title: "New Submission",
-          description: `${res.data.msg}`,
-          status: "success",
-          duration: 4000,
-          isClosable: true,
-        });
-        fileInput.current.form.reset();
-        // setLoading(false)
 
-        
-      })
-      .catch((err) => {
-        
-          console.log(err)
-          toast({
+    await dispatch(postArtSubmission(formData))
+    toast({
             title: "New Submission",
-            description: `${err.message} Please try Again`,
-            status: "error",
+            description: `Uploaded Successfull`,
+            status: "success",
             duration: 4000,
             isClosable: true,
           });
-          fileInput.current.form.reset();
+    fileInput.current.value = null;
 
-      }
-      );
+    if(isError){
+      toast({
+        title: "New Submission",
+        description: `Something Went Wrong`,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
 
 
-      
+
+    // .post("https://again-art.onrender.com/post/uploads", formData, {headers})
+    // setSubmitLoader(true)
+    // axios
+    // .post(`${APP_URL}/post/newSubmission`, formData, {headers})
+    // .then((res) => {
+    //   console.log(res);
+
+    //   // setSubmitLoader(false)
+
+    //     toast({
+    //       title: "New Submission",
+    //       description: `${res.data.msg}`,
+    //       status: "success",
+    //       duration: 4000,
+    //       isClosable: true,
+    //     });
+    //     fileInput.current.form.reset();
+    //     // setLoading(false)
 
 
-     
+    //   })
+    //   .catch((err) => {
+
+    //       console.log(err)
+    //       toast({
+    //         title: "New Submission",
+    //         description: `${err.message} Please try Again`,
+    //         status: "error",
+    //         duration: 4000,
+    //         isClosable: true,
+    //       });
+    //       fileInput.current.form.reset();
+
+    //   }
+    // );
+
+
+
+
+
+
   };
 
   return (
     // 
     <DIV>
 
-{/* enctype="multipart/form-data"  */}
+      {/* enctype="multipart/form-data"  */}
 
-      <form onSubmit={onSubmit} >
+      <form onSubmit={onSubmit} enctype="multipart/form-data" >
         <div style={{}}>
-          <div  className='fileCont'>
+          <div className='fileCont'>
             <div style={{ marginBottom: "20px" }}>
               <Text mb={4}>Drag and drop your art here</Text>
               <input
@@ -136,6 +160,8 @@ export const FileUploadForm = ({setLoading} ) => {
 
 
             </div>
+
+
 
             <div style={{}}>
               <Input
@@ -153,7 +179,11 @@ export const FileUploadForm = ({setLoading} ) => {
         </div>
       </form>
 
-      
+      {
+        isLoading && <HomePageLoader />
+      }
+
+
 
       <hr />
     </DIV>

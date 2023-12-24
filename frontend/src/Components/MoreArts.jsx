@@ -5,6 +5,7 @@ import { getMoreArtsData } from '../Redux/MoreArtsReducer/action';
 import { Heading, } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { getSggestedArtsData } from '../Redux/SuggestedArtsReducer/action';
+import { APP_URL } from '../Variables/Variables';
 
 export const MoreArts = () => {
 
@@ -47,7 +48,7 @@ export const MoreArts = () => {
                         <div className='arts' >
                             <Link to={`/singlePage/${el._id}`} >
 
-                                <img className='artImg' src={el.image} alt='' />
+                                <img className='artImg' src={`${APP_URL}/Arts/${el.image}`} alt='' />
                             </Link>
                         </div>
                     ))
@@ -65,7 +66,7 @@ export const MoreArts = () => {
                     isData && suggestedArts.map((el) => (
                         <div className='arts' >
                             <Link to={`/singlePage/${el._id}`} >
-                                <img className='artImg' src={el.image} alt='' />
+                                <img className='artImg' src={`${APP_URL}/Arts/${el.image}`} alt='' />
                             </Link>
                         </div>
                     ))

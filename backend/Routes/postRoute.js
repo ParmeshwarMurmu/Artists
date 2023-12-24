@@ -19,7 +19,7 @@ const postRoute = express.Router()
 // });
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../Arts'),  // Use an absolute path
+    destination:  './Arts',  // Use an absolute path
     filename: (req, file, callback) => {
         callback(null, file.originalname)
     },
@@ -50,14 +50,15 @@ postRoute.post('/newSubmission', upload.single('arts'), auth, async (req, res) =
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}://${req.get('host')}/Arts/${file.filename}`;
+        // const fileUrl = `${req.protocol}://${req.get('host')}/Arts/${file.filename}`;
 
-        console.log(fileUrl);
+        // console.log(fileUrl);
 
-        console.log(req.protocol);
-        console.log(req.get('host'));
+        // console.log(req.protocol);
+        // console.log(req.get('host'));
 
-        req.body.image = fileUrl;
+        // req.body.image = fileUrl;
+        req.body.image = fileName;
         // console.log("reqbody", req.body); likes: Number,
         // isLiked: Boolean,
         const we = PostModel({ ...req.body, title, likes: 0, isLiked: false, views: 0 })

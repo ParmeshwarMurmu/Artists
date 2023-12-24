@@ -1,4 +1,4 @@
-import { ART_SUBMISSION_ERROR, ART_SUBMISSION_LOADING, ART_SUBMISSION_SUCCESS, USER_COMMENT, USER_COMMENT_RESET } from "./action";
+import { ART_SUBMISSION_COMPLETED, ART_SUBMISSION_ERROR, ART_SUBMISSION_LOADING, ART_SUBMISSION_SUCCESS, USER_COMMENT, USER_COMMENT_RESET } from "./action";
 
 const initialState = {
     isLoading: false,
@@ -29,6 +29,14 @@ export const reducer = (state = initialState, {type, payload})=>{
                ...state,
                isLoading: false,
                isError: true
+
+               
+            }
+
+            case ART_SUBMISSION_COMPLETED:
+            return {
+               ...state,
+               completed: false
 
                
             }

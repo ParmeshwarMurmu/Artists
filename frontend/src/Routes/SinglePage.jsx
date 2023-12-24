@@ -262,7 +262,7 @@ export const SinglePage = () => {
 
             <div className={'singleImage'}>
 
-              <img className='mainImage' src={singleData.image} alt="" onLoad={handleImageLoad} />
+              <img className='mainImage' src={`${APP_URL}/Arts/${singleData.image}`} alt="" onLoad={handleImageLoad} />
             </div>
 
           </div>
