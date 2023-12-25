@@ -15,9 +15,9 @@ Backend: https://artists-6jh5.onrender.com
 
 ## Directory Structure
 
-## Artists/
+-**Artists/**
 - **backend/**
-   - ***Arts/***
+   - **Arts/**
       - Folder to store user uploaded Arts
    - **Config/**
       - db.js
@@ -53,15 +53,15 @@ Attach a very short video walkthough of codebase [ 1 - 5 minutes ] -->
 
 ## Features
 
-✅ Signup
-✅ Login
-✅ Handle File Uploads
-✅ Authentication
-✅ Authorization
-✅ Updating
-✅ Deleting
-✅ Text Search
-✅ Responsive
+- ✅ Signup
+- ✅ Login
+- ✅ Handle File Uploads
+- ✅ Authentication
+- ✅ Authorization
+- ✅ Updating
+- ✅ Deleting
+- ✅ Text Search
+- ✅ Responsive
 
 <!-- ## design decisions or assumptions
 List your design desissions & assumptions -->
