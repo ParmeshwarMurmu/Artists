@@ -128,7 +128,7 @@ Below are some instructions and examples on how to use this project.
 
 Step 1. If you are a new user and you have not registered then to upload your art you need to first create your Account.
 
-**Note** Password should be greater than 6 characters and it should contain at least 1 numeric, 1 upper case, and 1 special Characters.
+**Note** *** Password should be greater than 6 characters and it should contain at least 1 numeric, 1 upper case, and 1 special Characters.
 
 ![Artist_Register](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/3ffd5d3f-47fc-42f7-89e1-a90d7e7a2878)
 
@@ -149,7 +149,10 @@ After successfull Login to You are going to see your profile at top right corner
 
 Step 3. After Successful Login on the top right corner you will see a submit button and on clicking on the button you will redirect to another page where you can Upload your art.
 
-**Note** In order to set the title of your art you can rename your art to prefered title and then upload.
+**Note** *** In order to set the title of your art you can rename your art to prefered title and then upload.
+
+
+After your art has been successfully uploaded you can see your art on home page (top left) or in your profile section under Your Posts.
 
 
 
