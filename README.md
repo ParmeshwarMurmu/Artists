@@ -188,9 +188,49 @@ If you click on any of the arts you will be redirected to single art page where 
 
 In case of Backend Applications provide a list of your API endpoints, methods, brief descriptions, and examples of request/response.
 
+- POST /user/register - To Register User
+
+Example :- 
+
+Request
+
+```bash
+/user/register
+
+```
+
+Response
+```bash
+{ 
+   "msg": "User Registered" 
+}
+
+```
+
+- POST /user/login - To Login User
+
+Example :- 
+
+Request
+
+```bash
+/user/login
+
+```
+
+Response
+```bash
+{ 
+   "msg": "Login Successfully", 
+   "userId": existingUser._id, 
+   "token": token 
+}
+
+```
 
 
-**GET** /post/  - Retrieve all Arts
+
+- GET /post/  - Retrieve all Arts
 
 Example :-
 
