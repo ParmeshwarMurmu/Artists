@@ -14,36 +14,26 @@ Backend: https://artists-6jh5.onrender.com
 
 
 ## Directory Structure
-Artists/
-├─ backend/
-   ├─ Arts/
-      ├─ Folder to store user uploaded Arts
-   ├─ Config/
-      ├─ db.js
-   ├─ middleware/
-      ├─ auth.js
-   ├─ Models/
-      ├─ commentSchema.js 
-      ├─ favouriteSchema.js
-      ├─ postSchema.js
-      ├─ userSchema.js
-   ├─ Routes/
-      ├─ postRoute.js
-      ├─ userRoute.js
-   ├─ userProfile/
-      ├─ Folder to store all user profile Images uploaded Arts
-   ├─ index.js/
-    
-├─ frontend/
-   ├─ public/
-   ├─ src/
-      ├─ Assets/
-      ├─ Components/
-      ├─ ContextApi/
-      ├─ CSS/
-      ├─ Redux/
-      ├─ Routes/
-      ├─ Variables/
+
+## Artists/
+- **backend/**
+   - **Arts/**
+      - Folder to store user uploaded Arts
+   - **Config/**
+      - db.js
+   - **middleware/**
+      - auth.js
+   - **Models/**
+      - commentSchema.js 
+      - favouriteSchema.js
+      - postSchema.js
+      - userSchema.js
+   - **Routes/**
+      - postRoute.js
+      - userRoute.js
+   - **userProfile/**
+      - Folder to store all user profile Images uploaded Arts
+   - index.js
 
 - **frontend/**
    - **public/**
