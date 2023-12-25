@@ -8,8 +8,10 @@ Artists
 ## Project Type
 Fullstack
 
+
 ## Deplolyed App
 Frontend: https://artists-inky.vercel.app/
+
 Backend: https://artists-6jh5.onrender.com
 
 
@@ -119,15 +121,8 @@ this will start your frontend application.
 
 
 
-
-```bash
-npm install my-project
-cd my-project
-npm start
-```
-
 ## Usage
-Provide instructions and examples on how to use your project.
+Below are some instructions and examples on how to use this project.
 
 ```bash
 # Example
@@ -148,9 +143,20 @@ POST /api/items - create a new item
 
 
 ## Technology Stack
-List and provide a brief overview of the technologies used in the project.
+List and overview of the technologies used in the project.
 
+**frontend**
+- HTML
+- CSS
+- javaScript
+- React
+- chakraUi
+- Redux
+
+**backend**
 - Node.js
 - Express.js
+
+
+**Database**
 - MongoDB
-- Other libraries/modules
