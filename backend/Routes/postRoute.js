@@ -64,7 +64,7 @@ postRoute.post('/newSubmission', upload.single('arts'), auth, async (req, res) =
         const we = PostModel({ ...req.body, title, likes: 0, isLiked: false, views: 0 })
         await we.save();
 
-        res.status(200).send({ "msg": "success" })
+        res.status(200).send({ "msg": "Uploded Successful" })
 
 
     } catch (error) {

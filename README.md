@@ -262,7 +262,7 @@ Response
 }
 ```
 
-GET /post/singlePost/${id}  -  Retrieve Single Art
+- GET /post/singlePost/${id}  -  Retrieve Single Art
 
 Example :- 
 
@@ -290,7 +290,7 @@ Response
 
 ```
 
-PATCH /post/views/${id} - To update views on each Art
+- PATCH /post/views/${id} - To update views on each Art
 
 Example :- 
 
@@ -302,7 +302,9 @@ Request
 
 ```
 
-PATCH /post/postLike/${id} - To update Likes on each Art
+- PATCH /post/postLike/${id} - To update Likes on each Art
+
+Example :-
 
 Request
 
@@ -310,7 +312,9 @@ Request
 /post/postLike/65890a780a8bafacad471d32
 
 ```
-POST /post/postComment/${id}
+- POST /post/postComment/${id} - To Comment On Art
+
+Example :-
 
 Request
 
@@ -328,11 +332,74 @@ Response
 
 ```
 
-GET /api/items - retrieve all items
-POST /api/items - create a new item
+- POST /post/newSubmission - To Upload Art
+
+Example :-
+
+Request
+
+```bash
+/post/newSubmission
+
+```
+
+Response
+
+```bash
+{ 
+   "msg": "Uploaded Successfull"
+}
+
+```
+
+- GET /post/userPost - To get user Arts
+
+Example :-
+
+
+Request
+
+```bash
+/post/userPost
+
+```
+
+Response
+
+```bash
+{ 
+   "msg": "userPost", 
+   "userPost": [
+      {
+        image: 'Cyber Showdown.jpg',
+         user: ObjectId(13dww234dwsSd23w),
+         title: 'Cyber Showdown',
+         likes: 371,
+         isLiked: false,
+         userName: 'Wearefamily',
+         views: 578
+      },
+      {
+         image: 'German Castle.jpg',
+         user: ObjectId(13dww234dwsSd23w),
+         title: 'German Castle',
+         likes: 371,
+         isLiked: false,
+         userName: 'Wearefamily',
+         views: 578
+      }
+   ]
+}
+
+```
+
+
+<!-- GET /api/items - retrieve all items
+POST /api/items - create a new item -->
 
 
 ## Technology Stack
+
 List and overview of the technologies used in the project.
 
 **frontend**
