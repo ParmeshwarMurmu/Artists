@@ -124,7 +124,7 @@ this will start your frontend application.
 ## Usage
 Below are some instructions and examples on how to use this project.
 
-**Sign Up**
+## Sign Up
 
 Step 1. If you are a new user and you have not registered then to upload your art you need to first create your Account.
 
@@ -132,7 +132,7 @@ Step 1. If you are a new user and you have not registered then to upload your ar
 
 ![Artist_Register](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/3ffd5d3f-47fc-42f7-89e1-a90d7e7a2878)
 
-**Login**
+## Login
 
 Step 2. After successfull Registration Login to Your and use the same credential used at the time of registration.
 
@@ -145,15 +145,13 @@ After successfull Login to You are going to see your profile at top right corner
 ![Artist_Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/837f3dae-64cb-4215-ae11-4d85d51c29b7)
 
 
+## Upload Your Art
 
-```ba1h
-cd frontend
-npm start
+Step 3. After Successful Login on the top right corner you will see a submit button and on clicking on the button you will redirect to another page where you can Upload your art.
 
-```
+**Note** In order to set the title of your art you can rename your art to prefered title and then upload.
 
 
-Include screenshots as necessary.
 
 ## Credentials
 Provide user credentials for autheticated pages
