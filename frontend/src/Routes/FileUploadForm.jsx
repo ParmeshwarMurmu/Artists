@@ -74,7 +74,7 @@ export const FileUploadForm = ({ setLoading }) => {
       Authorization: `bearer ${token}`,
     };
 
-    await dispatch(postArtSubmission(formData))
+    await dispatch(postArtSubmission(formData, headers))
     toast({
             title: "New Submission",
             description: `Uploaded Successfull`,

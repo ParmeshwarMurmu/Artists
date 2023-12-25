@@ -11,9 +11,9 @@ const auth = (req, res, next)=>{
                 res.status(200).send({"msg": "Please login Again"})
             }
             
+            console.log(decoded);
             req.body.user = decoded.userId;
             req.body.userName = decoded.userName;
-            // console.log(decoded);
             next()
         });
         

@@ -26,12 +26,10 @@ export const artSubmissionErrorAction = () => {
 export const artSubmissionCompletedAction = () => {
     return { type: ART_SUBMISSION_COMPLETED }
 }
-const headers = {
-    Authorization: `bearer ${token}`,
-};
 
 
-export const postArtSubmission = (formData) => (dispatch) => {
+
+export const postArtSubmission = (formData, headers) => (dispatch) => {
     console.log("artSubmission");
     dispatch(artSubmissionLoadingAction())
     return axios.post(`${APP_URL}/post/newSubmission`, formData, {headers})
