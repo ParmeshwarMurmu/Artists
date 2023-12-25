@@ -155,15 +155,98 @@ Step 3. After Successful Login on the top right corner you will see a submit but
 After your art has been successfully uploaded you can see your art on home page (top left) or in your profile section under Your Posts.
 
 
+## Your Arts
 
-## Credentials
-Provide user credentials for autheticated pages
+If you want to see the your arts that you have uploaded you cn see it in your art section under your profile.
 
-## APIs Used
-If your application relies on external APIs, document them and include any necessary links or references.
+
+## Single Page Art
+
+If you click on any of the arts you will be redirected to single art page where you can see how many like , views and comments that art has received. You can also comment , download and share the art. You can also add arts to your favourite collections.
+
+
+## User Profile
+
+## Footer
+
+
+
+## Authenticasted Page
+
+- Upload Art Page
+- User Post Page
+- User Profile Page
+- User Favourite Page
+
+**Note** *** In order to access these pages you need to login first. Without authentication you cannot access this page.
+
 
 ## API Endpoints
+
 In case of Backend Applications provide a list of your API endpoints, methods, brief descriptions, and examples of request/response.
+
+
+GET /post/  - Retrieve all Arts
+
+Example :-
+
+Response
+```bash
+{
+   "msg": "All Post",
+   data: [
+      {
+         image: 'Bikes Blues.jpg',
+         user: ObjectId(1332dwscSd23w),
+         title: 'Bikes Blues',
+         likes: 121,
+         isLiked: false,
+         userName: 'Madrid',
+         views: 234
+      },
+
+      {
+         image: 'Cyber Showdown.jpg',
+         user: ObjectId(13dww234dwsSd23w),
+         title: 'Cyber Showdown',
+         likes: 371,
+         isLiked: false,
+         userName: 'Wearefamily',
+         views: 578
+      }
+   ]
+}
+```
+
+GET /post/singlePost/${id}  -  Retrieve Single Art
+
+Example :- 
+
+Request
+
+```bash
+/post/singlePost/65890a780a8bafacad471d32
+
+```
+
+Response
+
+```bash
+{ 
+   "singleData" : {
+         image: 'Cyber Showdown.jpg',
+         user: ObjectId(13dww234dwsSd23w),
+         title: 'Cyber Showdown',
+         likes: 371,
+         isLiked: false,
+         userName: 'Wearefamily',
+         views: 578
+   }
+}
+
+```
+
+
 GET /api/items - retrieve all items
 POST /api/items - create a new item
 
