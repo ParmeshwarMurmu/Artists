@@ -129,7 +129,7 @@ export const SinglePage = () => {
 
   const copyLinkHandler = async () => {
     try {
-      await navigator.clipboard.writeText(singleData.image);
+      await navigator.clipboard.writeText(`${APP_URL}/Arts/${singleData.image}`);
       // You can show a success message to the user if needed
 
       toast({
