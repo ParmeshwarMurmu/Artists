@@ -124,9 +124,16 @@ this will start your frontend application.
 ## Usage
 Below are some instructions and examples on how to use this project.
 
-```bash
-# Example
+Step 1. If you are a new user and you have not registered then in order to upload your art you need to first create your Account.
+
+**Note** Password should be greater than 6 characters and it should contain atleast 1 numeric, 1 upperCase, and 1 special Characters.
+
+```ba1h
+cd frontend
+npm start
+
 ```
+
 
 Include screenshots as necessary.
 
@@ -158,5 +165,5 @@ List and overview of the technologies used in the project.
 - Express.js
 
 
-**Database**
+qw**Database**
 - MongoDB
