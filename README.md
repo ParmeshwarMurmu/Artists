@@ -149,6 +149,9 @@ After successfull Login to You are going to see your profile at top right corner
 
 Step 3. After Successful Login on the top right corner you will see a submit button and on clicking on the button you will redirect to another page where you can Upload your art.
 
+![Artist Uploads](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/d2bd6ce1-0d6a-4974-9da6-fbce46e5c284)
+
+
 **Note** *** In order to set the title of your art you can rename your art to prefered title and then upload.
 
 
