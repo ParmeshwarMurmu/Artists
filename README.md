@@ -17,7 +17,7 @@ Backend: https://artists-6jh5.onrender.com
 
 ## Artists/
 - **backend/**
-   - **Arts/**
+   - ***Arts/***
       - Folder to store user uploaded Arts
    - **Config/**
       - db.js
