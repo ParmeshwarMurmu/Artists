@@ -15,16 +15,11 @@ Backend: https://artists-6jh5.onrender.com
 
 ## Directory Structure
 Artists/
-
 ├─ backend/
-
    ├─ Arts/
-
       ├─ Folder to store user uploaded Arts
    ├─ Config/
-
       ├─ db.js
-
    ├─ middleware/
       ├─ auth.js
    ├─ Models/
@@ -50,6 +45,16 @@ Artists/
       ├─ Routes/
       ├─ Variables/
 
+- **frontend/**
+   - **public/**
+   - **src/**
+      - **Assets/**
+      - **Components/**
+      - **ContextApi/**
+      - **CSS/**
+      - **Redux/**
+      - **Routes/**
+      - **Variables/**
 <!-- ## Video Walkthrough of the project
 Attach a very short video walkthough of all of the features [ 1 - 3 minutes ] -->
 
@@ -59,23 +64,14 @@ Attach a very short video walkthough of codebase [ 1 - 5 minutes ] -->
 ## Features
 
 ✅ Signup
-
 ✅ Login
-
 ✅ Handle File Uploads
-
 ✅ Authentication
-
 ✅ Authorization
-
 ✅ Updating
-
 ✅ Deleting
-
 ✅ Text Search
-
 ✅ Responsive
-
 
 <!-- ## design decisions or assumptions
 List your design desissions & assumptions -->
