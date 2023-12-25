@@ -124,11 +124,20 @@ this will start your frontend application.
 ## Usage
 Below are some instructions and examples on how to use this project.
 
+**Sign Up**
+
 Step 1. If you are a new user and you have not registered then to upload your art you need to first create your Account.
 
 **Note** Password should be greater than 6 characters and it should contain at least 1 numeric, 1 upper case, and 1 special Characters.
 
 ![Artist_Register](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/3ffd5d3f-47fc-42f7-89e1-a90d7e7a2878)
+
+**Login**
+
+Step 2. After successfull Registration Login to Your and use the same credential used at the time of registration.
+
+
+After successfull Login to You are going to see your profile at top right corner of you application.
 
 
 ```ba1h
