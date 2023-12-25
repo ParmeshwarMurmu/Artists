@@ -189,7 +189,8 @@ If you click on any of the arts you will be redirected to single art page where 
 In case of Backend Applications provide a list of your API endpoints, methods, brief descriptions, and examples of request/response.
 
 
-GET /post/  - Retrieve all Arts
+
+**GET** /post/  - Retrieve all Arts
 
 Example :-
 
@@ -249,6 +250,43 @@ Response
 
 ```
 
+PATCH /post/views/${id} - To update views on each Art
+
+Example :- 
+
+
+Request
+
+```bash
+/post/views/65890a780a8bafacad471d32
+
+```
+
+PATCH /post/postLike/${id} - To update Likes on each Art
+
+Request
+
+```bash
+/post/postLike/65890a780a8bafacad471d32
+
+```
+POST /post/postComment/${id}
+
+Request
+
+```bash
+/post/postComment/65890a780a8bafacad471d32 , { comment }, { headers }
+
+```
+
+Response
+
+```bash
+{ 
+   "msg": "Comment Posted"
+}
+
+```
 
 GET /api/items - retrieve all items
 POST /api/items - create a new item
