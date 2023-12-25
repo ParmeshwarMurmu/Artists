@@ -136,8 +136,14 @@ Step 1. If you are a new user and you have not registered then to upload your ar
 
 Step 2. After successfull Registration Login to Your and use the same credential used at the time of registration.
 
+![Artrist_Login](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/6337f650-d193-42ad-8eea-018a43d12e1b)
+
+
 
 After successfull Login to You are going to see your profile at top right corner of you application.
+
+![Artist_Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/837f3dae-64cb-4215-ae11-4d85d51c29b7)
+
 
 
 ```ba1h
