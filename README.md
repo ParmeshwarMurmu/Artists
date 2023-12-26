@@ -1,15 +1,17 @@
 
-# Project Title
-Artists 
+# ARTISTS
+
+
+
 
 ## Introduction
-"Artist" is a dynamic and visually engaging web application designed for artists to showcase their creative works. Developed as an individual project, this platform empowers users to upload and exhibit their art.
+Artist is a dynamic and visually engaging web application designed for artists to showcase their creative works. Developed as an individual project, this platform empowers users to upload and exhibit their art.
 
 ## Project Type
 Fullstack
 
 
-## Deplolyed App
+## Deployed App
 Frontend: https://artists-inky.vercel.app/
 
 Backend: https://artists-6jh5.onrender.com
@@ -157,10 +159,20 @@ Step 3. After Successful Login on the top right corner you will see a submit but
 
 After your art has been successfully uploaded you can see your art on home page (top left) or in your profile section under Your Posts.
 
+## Single Page Art
+
+If you click on any of the arts you will be redirected to single art page where you can see how many like , views and comments that art has received. You can also comment , download and share the art. You can also add arts to your favourite collections.
+
+![Artist Single Page](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/fce868bf-4f78-476b-8c6f-15415b3ae7a3)
+
+
+![Artist Likes Comments](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/0b047f20-e8ab-4a88-b8f1-0a5f67c313e1)
+
+
 
 ## Your Arts
 
-If you want to see the your arts that you have uploaded you cn see it in your art section under your profile.
+If you want to see the your arts that you have uploaded you can see it in your art section under your profile.
 
 ![Artist Your Arts](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/4c005e2a-dda4-4e71-aeac-7c2b6e69c2b8)
 
@@ -174,16 +186,7 @@ If you want to see the your arts that you have uploaded you cn see it in your ar
 ![Artist User Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/83c3527d-84b3-4b16-9a76-e71c0b6ae9db)
 
 
-## Single Page Art
 
-If you click on any of the arts you will be redirected to single art page where you can see how many like , views and comments that art has received. You can also comment , download and share the art. You can also add arts to your favourite collections.
-
-
-
-
-## User Profile
-
-![Artist User Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/3eb54d00-65f3-4379-aa8e-f1e7625980df)
 
 
 ## Footer
