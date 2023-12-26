@@ -162,15 +162,33 @@ After your art has been successfully uploaded you can see your art on home page 
 
 If you want to see the your arts that you have uploaded you cn see it in your art section under your profile.
 
+![Artist Your Arts](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/4c005e2a-dda4-4e71-aeac-7c2b6e69c2b8)
+
+
+## Your Favourites
+
+![Artist Fvourite](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/1dec0656-e220-44cd-bc87-df03e32e9460)
+
+## User Profile
+
+![Artist User Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/83c3527d-84b3-4b16-9a76-e71c0b6ae9db)
+
 
 ## Single Page Art
 
 If you click on any of the arts you will be redirected to single art page where you can see how many like , views and comments that art has received. You can also comment , download and share the art. You can also add arts to your favourite collections.
 
 
+
+
 ## User Profile
 
+![Artist User Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/3eb54d00-65f3-4379-aa8e-f1e7625980df)
+
+
 ## Footer
+
+![Artiist Footer](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/c4d5068c-7fa6-42e3-8b72-4d81e6aea0d1)
 
 
 
