@@ -134,7 +134,7 @@ userRoute.patch('/userProfileUpdate', upload.single('userImage'), auth, async (r
 
         const fileName = file.filename;
         const title = fileName.substring(0, fileName.lastIndexOf('.')); // Assuming the title is the part before the file extension
-        const fileUrl = `${req.protocol}://${req.get('host')}/userProfile/${file.filename}`;
+        const fileUrl = `${req.protocol}s://${req.get('host')}/userProfile/${file.filename}`;
 
         // Append the image URL to req.body.image
         req.body.image = fileUrl;

@@ -266,7 +266,7 @@ Response
    data: [
       {
          image: 'Bikes Blues.jpg',
-         user: ObjectId(1332dwscSd23w),
+         user: ObjectId('1332dwscSd23w'),
          title: 'Bikes Blues',
          likes: 121,
          isLiked: false,
@@ -276,7 +276,7 @@ Response
 
       {
          image: 'Cyber Showdown.jpg',
-         user: ObjectId(13dww234dwsSd23w),
+         user: ObjectId('13dww234dwsSd23w'),
          title: 'Cyber Showdown',
          likes: 371,
          isLiked: false,
@@ -304,7 +304,7 @@ Response
 { 
    "singleData" : {
          image: 'Cyber Showdown.jpg',
-         user: ObjectId(13dww234dwsSd23w),
+         user: ObjectId('13dww234dwsSd23w'),
          title: 'Cyber Showdown',
          likes: 371,
          isLiked: false,
@@ -397,7 +397,7 @@ Response
    "userPost": [
       {
         image: 'Cyber Showdown.jpg',
-         user: ObjectId(13dww234dwsSd23w),
+         user: ObjectId('13dww234dwsSd23w'),
          title: 'Cyber Showdown',
          likes: 371,
          isLiked: false,
@@ -406,7 +406,7 @@ Response
       },
       {
          image: 'German Castle.jpg',
-         user: ObjectId(13dww234dwsSd23w),
+         user: ObjectId('13dww234dwsSd23w'),
          title: 'German Castle',
          likes: 371,
          isLiked: false,
@@ -450,8 +450,154 @@ Response
 
 ```
 
+- DELETE post/userPost/delete/${id} - To delete user arts
+
+Example :-
 
 
+Request
+
+```bash
+post/userPost/delete/658926b0572e88c517aec9ef
+
+```
+
+Response
+
+```bash
+{
+   "msg": "Post Deleted"
+}
+
+```
+
+- DELETE /post/userFavourite/delete/${id} - To delete user Favourite
+
+Example :-
+
+
+Request
+
+```bash
+/post/userFavourite/delete/658a51c93d282733be99e951
+
+```
+
+Response
+
+```bash
+{
+   "msg": "Favourite Deleted"
+}
+
+```
+
+
+
+- POST /user/userProfileUpdate - To update user Profile
+
+Example :-
+
+
+Request
+
+```bash
+/user/userProfileUpdate
+
+```
+
+Response
+
+```bash
+{
+   "msg": "Profile Updated"
+}
+
+```
+
+- GET /post/suggestedArts - To get Suggested Arts
+
+Example :-
+
+
+Request
+
+```bash
+/post/suggestedArts
+
+```
+
+Response
+
+```bash
+{
+   "msg": "suggestedArts",
+    "suggestedArts": [
+      {
+         image: 'Bikes Blues.jpg',
+         user: ObjectId('1332dwscSd23w'),
+         title: 'Bikes Blues',
+         likes: 121,
+         isLiked: false,
+         userName: 'Madrid',
+         views: 234
+      },
+
+      {
+         image: 'Cyber Showdown.jpg',
+         user: ObjectId('13dww234dwsSd23w'),
+         title: 'Cyber Showdown',
+         likes: 371,
+         isLiked: false,
+         userName: 'Wearefamily',
+         views: 578
+      }
+    ]
+}
+
+```
+
+- GET /post/moreArts/${id} - To get Arts Related to that Artist (User)
+
+Example :-
+
+
+Request
+
+```bash
+/post/moreArts/13dww234dwsSd23w
+
+```
+
+Response
+
+```bash
+{
+   "msg": "AmoreArts", 
+   "moreArts": [
+      {
+         image: 'Bikes Blues.jpg',
+         user: ObjectId('1332dwscSd23w'),
+         title: 'Bikes Blues',
+         likes: 121,
+         isLiked: false,
+         userName: 'Madrid',
+         views: 234
+      },
+
+      {
+         image: 'Cyber Showdown.jpg',
+         user: ObjectId('13dww234dwsSd23w'),
+         title: 'Cyber Showdown',
+         likes: 371,
+         isLiked: false,
+         userName: 'Wearefamily',
+         views: 578
+      }
+   ]
+}
+
+```
 
 ## Technology Stack
 
