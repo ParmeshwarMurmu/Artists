@@ -418,9 +418,39 @@ Response
 
 ```
 
+- GET /post/userFavourite - To get User Favourite Arts
 
-<!-- GET /api/items - retrieve all items
-POST /api/items - create a new item -->
+Example :-
+
+
+Request
+
+```bash
+/post/userFavourite
+
+```
+
+Response
+
+```bash
+{
+   "msg": "userFavourite", 
+   "userFavourite": [
+      {
+       user: ObjectId('658a51c93d282733be99e951'),
+       post: ObjectId('658926b0572e88c517aec9df')
+      },
+
+      {
+       user: ObjectId('658a51c93d282733be99e951'),
+       post: ObjectId('658926b0572e88c517aec9ef')
+      }
+   ]
+}
+
+```
+
+
 
 
 ## Technology Stack
