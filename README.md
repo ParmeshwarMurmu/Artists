@@ -142,14 +142,14 @@ Step 2. After successfull Registration Login to Your and use the same credential
 
 
 
-After successfull Login to You are going to see your profile at top right corner of you application.
+After successfull Login to User is going to see its profile at top right corner of the application.
 
 ![Artist_Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/837f3dae-64cb-4215-ae11-4d85d51c29b7)
 
 
 ## Upload Your Art
 
-Step 3. After Successful Login on the top right corner you will see a submit button and on clicking on the button you will redirect to another page where you can Upload your art.
+Step 3. After Successful Login on the top right corner User Can see a submit button and on clicking on the button user will redirect to another page where user can Upload their art.
 
 ![Artist Uploads](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/d2bd6ce1-0d6a-4974-9da6-fbce46e5c284)
 
@@ -157,39 +157,43 @@ Step 3. After Successful Login on the top right corner you will see a submit but
 **Note** *** In order to set the title of your art you can rename your art to prefered title and then upload.
 
 
-After your art has been successfully uploaded you can see your art on home page (top left) or in your profile section under Your Posts.
+After your art has been successfully uploaded you can see your art on home page (top left) or in User profile section under Your Posts.
 
 ## Single Page Art
 
-If you click on any of the arts you will be redirected to single art page where you can see how many like , views and comments that art has received. You can also comment , download and share the art. You can also add arts to your favourite collections.
+Step 4. If user clicks on any of the arts user will be redirected to single art page where user can see how many like , views and comments that art has received. You can also comment , download and share the art. You can also add arts to your favourite collections.
 
 ![Artist Single Page](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/fce868bf-4f78-476b-8c6f-15415b3ae7a3)
+
 
 
 ![Artist Likes Comments](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/0b047f20-e8ab-4a88-b8f1-0a5f67c313e1)
 
 
 
-## Your Arts
+## User Arts
 
-If you want to see the your arts that you have uploaded you can see it in your art section under your profile.
+Step 5. If User want to see thier uploaded Arts can see their art in your art section under User profile.
 
 ![Artist Your Arts](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/4c005e2a-dda4-4e71-aeac-7c2b6e69c2b8)
 
 
-## Your Favourites
+## User Favourites
+
+Step 6. User can also add multiple arts to their favourite collection and user can  find them under your profile section on Your Fvourites.
 
 ![Artist Fvourite](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/1dec0656-e220-44cd-bc87-df03e32e9460)
 
 ## User Profile
 
+Step 7. User can also update their profile images, change password or update their credentials under user profile section.
+
 ![Artist User Profile](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/83c3527d-84b3-4b16-9a76-e71c0b6ae9db)
 
 
-
-
-
 ## Footer
+
+Step 8. This is the footer Section.
 
 ![Artiist Footer](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/c4d5068c-7fa6-42e3-8b72-4d81e6aea0d1)
 
