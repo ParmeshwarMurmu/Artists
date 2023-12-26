@@ -616,5 +616,5 @@ List and overview of the technologies used in the project.
 - Express.js
 
 
-qw**Database**
+**Database**
 - MongoDB

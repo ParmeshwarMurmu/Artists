@@ -256,6 +256,7 @@ postRoute.get('/moreArts/:_id', async (req, res) => {
     }
 })
 
+// Suggested Arts
 
 postRoute.get('/suggestedArts', async (req, res) => {
 
