@@ -2,13 +2,11 @@
 # ARTISTS
 
 
-
-
 ## Introduction
 Artist is a dynamic and visually engaging web application designed for artists to showcase their creative works. Developed as an individual project, this platform empowers users to upload and exhibit their art.
 
 ## Project Type
-Fullstack
+Full Stack
 
 
 ## Deployed App
