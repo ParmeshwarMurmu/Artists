@@ -15,6 +15,13 @@ Frontend: https://artists-inky.vercel.app/
 Backend: https://artists-6jh5.onrender.com
 
 
+
+## Table of Contents
+
+
+- [Usage](#usage)
+
+
 ## Directory Structure
 
 -**Artists/**
