@@ -18,9 +18,10 @@ Backend: https://artists-6jh5.onrender.com
 
 ## Table of Contents
 
-
+- [Installation & Getting Started](#installation--getting-started)
 - [Usage](#usage)
-
+- [Authenticated Pages](#authenticated-pages)
+- [Technology Used](#technology-used)
 
 ## Directory Structure
 
@@ -75,7 +76,7 @@ Attach a very short video walkthough of codebase [ 1 - 5 minutes ] -->
 <!-- ## design decisions or assumptions
 List your design desissions & assumptions -->
 
-## Installation & Getting started
+## Installation & Getting Started
 Detailed instructions on how to install, configure, and get the project running. For Backend/Frontend projects, guide the reviewer how to check mongodb schema etc.
 
 
@@ -204,7 +205,7 @@ Step 8. This is the footer Section.
 
 
 
-## Authenticasted Page
+## Authenticated Pages
 
 - Upload Art Page
 - User Post Page
@@ -604,7 +605,7 @@ Response
 
 ```
 
-## Technology Stack
+## Technology Used
 
 List and overview of the technologies used in the project.
 
