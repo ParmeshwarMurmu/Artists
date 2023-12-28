@@ -22,6 +22,7 @@ Backend: https://artists-6jh5.onrender.com
 - [Installation & Getting Started](#installation--getting-started)
 - [Usage](#usage)
 - [Authenticated Pages](#authenticated-pages)
+- [API Endpoints](#api-endpoints)
 - [Technology Used](#technology-used)
 
 ## Directory Structure
