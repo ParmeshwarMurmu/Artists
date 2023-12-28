@@ -1,5 +1,6 @@
 
-# ARTISTS
+# ![Artist Logo](https://github.com/ParmeshwarMurmu/Artists/assets/121368970/3d355e0b-9c6c-4226-b14a-e7945617ac93)
+
 
 
 ## Introduction
