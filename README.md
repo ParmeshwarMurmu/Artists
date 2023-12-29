@@ -210,9 +210,10 @@ Step 8. This is the footer Section.
 ## Authenticated Pages
 
 
-- User Cart Page
-- User Order Page
+- User Upload Art Page
+- User Post Page
 - User Profile Page
+- User Favourite Post Page
 
 
 **Note** *** In order to access these pages you need to login first. Without authentication you cannot access this page.
