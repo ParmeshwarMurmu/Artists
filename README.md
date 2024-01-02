@@ -116,7 +116,7 @@ SECRET_KEY = 'YOU CAN ADD ANY RANDOM KEY'
 Step 4. Start your backend server. Open terminal and write the below commands
 ```bash
 cd backend
-npm run server
+npm run backend
 
 ```
 this will start your backend server.
