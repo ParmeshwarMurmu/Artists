@@ -20,7 +20,10 @@ export const Footer = () => {
 
         <div className={style.icons}>
           <FaFacebookF fontSize={'20px'} className={style.facebook}/>
-          <FaInstagram fontSize={'20px'} className={style.instagram}/>
+          <Link to="https://www.instagram.com/virat.kohli/">
+            <FaInstagram fontSize={'20px'} className={style.instagram}/>
+          </Link>
+          
           <FaTwitter fontSize={'20px'} className={style.twitter}/>
         </div>
       </div>
