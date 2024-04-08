@@ -6,6 +6,7 @@ import { FaFacebookF } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 export const Footer = () => {
