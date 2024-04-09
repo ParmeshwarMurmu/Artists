@@ -57,9 +57,9 @@ export const Navbar = () => {
 
           <div className={style.navbarContainerSearchBar}>
 
-            <div className={style.searchBar}>
+            {/* <div className={style.searchBar}>
               <SearchBar />
-            </div>
+            </div> */}
 
             <div className={`${style.spanSection} ${style.upgradeSpanSection}`}>
               <span>|</span>
