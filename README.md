@@ -64,8 +64,7 @@ Attach a very short video walkthough of all of the features [ 1 - 3 minutes ] --
 Attach a very short video walkthough of codebase [ 1 - 5 minutes ] -->
 
 ## Features
-
-- ✅ Signup
+ Signup
 - ✅ Login
 - ✅ Handle File Uploads
 - ✅ Authentication
